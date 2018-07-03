@@ -22,6 +22,14 @@ namespace Etkinlik.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Login(string username, string password) {
+            ViewData["username"] = username;
+            ViewData["passowrd"] = password;
+
+            return View();
+        }
+
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
