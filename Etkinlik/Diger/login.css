@@ -1,0 +1,12 @@
+.imgcontainer{
+    height: 20%;
+    position: right;
+    width: 10px;
+}
+.body{
+    position: absolute;
+    list-style: none;
+margin: 0;
+padding: 0;
+
+}
