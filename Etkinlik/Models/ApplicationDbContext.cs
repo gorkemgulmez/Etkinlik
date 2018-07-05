@@ -9,6 +9,7 @@ namespace Etkinlik
     public class ApplicationDbContext : DbContext
     {
         public string Id { get; set; } = Guid.NewGuid().ToString("N");
+
         #region Public Properties
         public DbSet<UserModel> Users { get; set; }
         public DbSet<PostModel> Posts { get; set; }
@@ -30,6 +31,8 @@ namespace Etkinlik
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<PostModel>().HasKey(p => p.UserModel.userID);
         }
     }
 }
