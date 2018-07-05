@@ -9,12 +9,11 @@ namespace Etkinlik
 {
     public class UserModel
     {
-        [Key]
-        public int userID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(25)]
-        public string userName { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [MaxLength(25)]
@@ -22,11 +21,11 @@ namespace Etkinlik
 
         [Required]
         [MaxLength(150)]
-        public string userEmail { get; set; }
+        public string UserEmail { get; set; }
 
         [Required]
         [MaxLength(25)]
-        public string fullName { get; set; }
+        public string FullName { get; set; }
 
     }
 }

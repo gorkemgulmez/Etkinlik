@@ -29,11 +29,10 @@ namespace Etkinlik.Controllers
 
                 mContext.Users.Add(new UserModel
                 {
-                    userID = 1,
-                    userName = "gorkemgulmez",
-                    fullName = "Görkem Gülmez",
-                    userEmail = "gorkemgulmez@outlook.com",
-                    Password = "1234"
+                    UserName = "gorkemgulmez",
+                    FullName = "Görkem Gülmez",
+                    UserEmail = "gorkemgulmez@outlook.com",
+                    Password = "12366664"
                 });
             }
             mContext.SaveChanges();
@@ -42,10 +41,9 @@ namespace Etkinlik.Controllers
             {
                 mContext.Posts.Add(new PostModel
                 {
-                    postID = 1,
-                    postName = "Etkinlik",
-                    postDesc = "Piknik",
-                    UserModel = mContext.Users.First()
+                    PostName = "Etkinlik",
+                    PostDesc = "Piknik",
+                    UserModelId = 1
                 });
             }
             mContext.SaveChanges();
