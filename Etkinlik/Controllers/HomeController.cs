@@ -10,8 +10,46 @@ namespace Etkinlik.Controllers
 {
     public class HomeController : Controller
     {
+        #region ProtectedMember
+        protected ApplicationDbContext mContext;
+
+        #endregion
+        public HomeController(ApplicationDbContext context)
+        {
+            mContext = context;
+        }
         public IActionResult Index()
         {
+
+            //create db
+            mContext.Database.EnsureCreated();
+
+            if (!mContext.Users.Any())
+            {
+
+                mContext.Users.Add(new UserModel
+                {
+                    userID = 1,
+                    userName = "gorkemgulmez",
+                    fullName = "Görkem Gülmez",
+                    userEmail = "gorkemgulmez@outlook.com",
+                    Password = "1234"
+                });
+            }
+            mContext.SaveChanges();
+
+            if (!mContext.Posts.Any())
+            {
+                mContext.Posts.Add(new PostModel
+                {
+                    postID = 1,
+                    postName = "Etkinlik",
+                    postDesc = "Piknik",
+                    UserModel = mContext.Users.First()
+                });
+            }
+            mContext.SaveChanges();
+
             return View();
         }
 
