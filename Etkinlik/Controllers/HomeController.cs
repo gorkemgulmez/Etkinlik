@@ -12,6 +12,37 @@ namespace Etkinlik.Controllers
     {
         public IActionResult Index()
         {
+
+            //create db
+            var context = new ApplicationDbContext();
+            context.Database.EnsureCreated();
+
+            if (!context.Users.Any())
+            {
+
+                context.Users.Add(new UserModel
+                {
+                    userID = 1,
+                    userName = "gorkemgulmez",
+                    fullName = "Görkem Gülmez",
+                    userEmail = "gorkemgulmez@outlook.com",
+                    Password = "1234"
+                });
+            }
+            context.SaveChanges();
+
+            if (!context.Posts.Any())
+            {
+                context.Posts.Add(new PostModel
+                {
+                    postID = 1,
+                    postName = "Etkinlik",
+                    postDesc = "Piknik",
+                    UserModel = context.Users.First()
+                });
+            }
+            context.SaveChanges();
+
             return View();
         }
 
