@@ -28,6 +28,5 @@ namespace Etkinlik
         [MaxLength(25)]
         public string fullName { get; set; }
 
-       
     }
 }
