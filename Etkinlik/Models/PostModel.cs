@@ -16,7 +16,9 @@ namespace Etkinlik
         [Required]
         public string postDesc { get; set; }
 
-        [ForeignKey("userID")]
+        public int refUserID { get; set; }
+
+        [ForeignKey("refUserID")]
         public virtual UserModel UserModel { get; set; }
     }
 }
