@@ -32,7 +32,7 @@ namespace Etkinlik
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<PostModel>().HasKey(p => p.refUserID);
+            //modelBuilder.Entity<PostModel>().HasKey(p => p.refUserID);
         }
     }
 }

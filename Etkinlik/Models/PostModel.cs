@@ -5,20 +5,18 @@ namespace Etkinlik
 {
     public class PostModel
     {
-        [Key]
-        public int postID { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(100)]
         [Required]
-        public string postName { get; set; }
+        public string PostName { get; set; }
 
         [MaxLength(1000)]
         [Required]
-        public string postDesc { get; set; }
+        public string PostDesc { get; set; }
 
-        public int refUserID { get; set; }
+        public int UserModelId { get; set; }
 
-        [ForeignKey("refUserID")]
         public virtual UserModel UserModel { get; set; }
     }
 }
