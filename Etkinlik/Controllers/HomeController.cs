@@ -8,6 +8,7 @@ using Etkinlik.Models;
 
 namespace Etkinlik.Controllers
 {
+    [Route("user")]
     public class HomeController : Controller
     {
         #region ProtectedMember
@@ -18,34 +19,11 @@ namespace Etkinlik.Controllers
         {
             mContext = context;
         }
-        public IActionResult Index()
+        /*public IActionResult Index()
         {
-
             //create db
             mContext.Database.EnsureCreated();
 
-            if (!mContext.Users.Any())
-            {
-
-                mContext.Users.Add(new UserModel
-                {
-                    UserName = "gorkemgulmez",
-                    FullName = "Görkem Gülmez",
-                    UserEmail = "gorkemgulmez@outlook.com",
-                    Password = "12366664"
-                });
-            }
-            mContext.SaveChanges();
-
-            if (!mContext.Posts.Any())
-            {
-                mContext.Posts.Add(new PostModel
-                {
-                    PostName = "Etkinlik",
-                    PostDesc = "Piknik",
-                    UserModelId = 1
-                });
-            }
             mContext.SaveChanges();
 
             return View();
@@ -76,6 +54,42 @@ namespace Etkinlik.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }*/
+
+
+        [Route("")]
+        [Route("index")]
+        [Route("~/")]
+        public IActionResult Index()
+        {
+            //create db
+            mContext.Database.EnsureCreated();
+
+            return View();
         }
+
+       /* [HttpGet]
+        [Route("signup")]
+        public IActionResult Signup()
+        {
+            return View("SignUp", new UserModel());
+        }
+
+        [HttpPost]
+        [Route("signup")]
+        public IActionResult Signup(UserModel user)
+        {
+            //user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            mContext.Users.Add(user);
+            mContext.SaveChanges();
+            return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        [Route("/login")]
+        public IActionResult Login(UserModel user)
+        {
+            return RedirectToAction("login");
+        }*/
     }
 }
