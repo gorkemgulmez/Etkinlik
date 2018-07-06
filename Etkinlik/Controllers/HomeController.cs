@@ -91,5 +91,11 @@ namespace Etkinlik.Controllers
         {
             return RedirectToAction("Login");
         }
+        [HttpGet]
+        [Route("login")]
+        public IActionResult Login()
+        {
+            return View("Login", new UserModel());
+        }
     }
 }
