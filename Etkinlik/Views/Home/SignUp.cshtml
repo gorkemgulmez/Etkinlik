@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <script> type="text/javascript" src="JS/Signup.js" </script>
+    @Html.Partial("~/Views/Home/metaTag.cshtml")
     <title>Index</title>
 </head>
 
@@ -39,7 +39,7 @@
                     Mail
                 </td>
                 <td>
-                    <input type="email" asp-for="UserEmail" />
+                    <input type="email" asp-for="UserEmail" id="mailBox" placeholder="Lütfen geçerli bir mail adresi girin"/>
                 </td>
             </tr>
             <tr>
@@ -62,8 +62,9 @@
                 </td>
             </tr>
         </table>
-
+        
     </form>
+    <script type = "text/javascript" src = "../js/SignUp.js"></script>
 </body>
 </html>
 
