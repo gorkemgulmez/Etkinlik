@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    <h2>Login Page</h2>
+    <form method="post" asp-controller="user" asp-action="login">
+        <table cellpadding="2" cellspacing="2">
+
+            <tr>
+                <td>
+                    Username
+                </td>
+                <td>
+                    <input type="text" name="Username" />
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    Password
+                </td>
+                <td>
+                    <input type="password" name="Password" />
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <input type="submit" value="Login" />
+                    <br />
+                    <a asp-controller="user" asp-action="signup"> Sign Up</a>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>
+
+
