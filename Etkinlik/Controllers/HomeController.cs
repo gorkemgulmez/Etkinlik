@@ -58,7 +58,7 @@ namespace Etkinlik.Controllers
 
 
         [Route("")]
-        [Route("index")]
+        [Route("Index")]
         [Route("~/")]
         public IActionResult Index()
         {
@@ -86,10 +86,10 @@ namespace Etkinlik.Controllers
         }
 
         [HttpPost]
-        [Route("/login")]
+        [Route("login")]
         public IActionResult Login(UserModel user)
         {
-            return RedirectToAction("login");
+            return RedirectToAction("Login");
         }
     }
 }
