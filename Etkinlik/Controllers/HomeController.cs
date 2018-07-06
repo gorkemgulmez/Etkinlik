@@ -68,7 +68,7 @@ namespace Etkinlik.Controllers
             return View();
         }
 
-       /* [HttpGet]
+        [HttpGet]
         [Route("signup")]
         public IActionResult Signup()
         {
@@ -90,6 +90,6 @@ namespace Etkinlik.Controllers
         public IActionResult Login(UserModel user)
         {
             return RedirectToAction("login");
-        }*/
+        }
     }
 }
