@@ -13,6 +13,7 @@ namespace Etkinlik
         #region Public Properties
         public DbSet<UserModel> Users { get; set; }
         public DbSet<PostModel> Posts { get; set; }
+        public DbSet<UserPostModel> UserPosts { get; set; }
 
         #endregion
 
@@ -31,8 +32,6 @@ namespace Etkinlik
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            //modelBuilder.Entity<PostModel>().HasKey(p => p.refUserID);
         }
     }
 }
