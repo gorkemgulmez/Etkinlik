@@ -10,6 +10,7 @@ namespace Etkinlik
     {
         public static ApplicationDbContext ApplicationDbContext => IoCContainer.Provider.GetService<ApplicationDbContext>();
     }
+
     public class IoCContainer
     {
         public static ServiceProvider Provider { get; set; }
