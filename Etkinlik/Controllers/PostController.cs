@@ -13,26 +13,24 @@ namespace Etkinlik.Controllers
         protected ApplicationDbContext mContext;
         #endregion
 
-        public PostController(ApplicationDbContext context) {
+        public PostController(ApplicationDbContext context)
+        {
             mContext = context;
         }
 
-        // GET: /<controller>/
-        public IActionResult Index() {
-            return View();
-        }
+
 
         [HttpPost]
         [Route("post")]
-        public IActionResult PostDetail(PostModel post) {
-            if(post.PostName != null && post.PostName.Length > 0 && post.PostDesc.Length > 0)
+        public IActionResult PostDetail(PostModel post)
+        {
+            if (post.PostName != null && post.PostName.Length > 0 && post.PostDesc.Length > 0)
             {
-                
                 post.PostCreateTime = DateTime.Now;
                 //Spost.UserModel = 
                 mContext.Add(post);
                 mContext.SaveChanges();
-                
+
             }
 
             return View();
@@ -46,8 +44,9 @@ namespace Etkinlik.Controllers
 
         [HttpGet]
         [Route("post")]
-        public IActionResult PostDetail() {
-            return View();
+        public IActionResult AddActivity()
+        {
+            return View("AddActivity", new PostModel());
         }
     }
 }

@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "AddActivity";
+}
+
+@model Etkinlik.PostModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="~/css/StyleSheet.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <form method="post" asp-controller="post" asp-action="addactivity">
+
+        <table cellpadding="2" cellspacing="2">
+
+            <tr>
+                <td>
+                    Etkinlik Adı
+                </td>
+                <td>
+                    <input type="text" required autocomplete="off" asp-for="PostName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Etkinlik Detayı
+                </td>
+                <td>
+                    <input type="text" asp-for="PostDesc" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Saat
+                </td>
+                <td>
+                    <input type="time" asp-for="PostCreateTime" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Tarih
+                </td>
+                <td>
+                    <input type="date" asp-for="PostCreateTime" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <input type="submit" value="AddActivity" />
+                </td>
+            </tr>
+
+
+
+            <div id="footerr">
+                <footer>
+                    <p style="bottom:0px">&copy; 2018 - Etkinlik</p>
+
+                </footer>
+            </div>
+
+        </table>
+
+
+    </form>
+</body>
+</html>
