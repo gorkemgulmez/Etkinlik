@@ -21,5 +21,6 @@ namespace Etkinlik
 
         public int UserModelId { get; set; }
         public virtual UserModel UserModel { get; set; }
+
     }
 }

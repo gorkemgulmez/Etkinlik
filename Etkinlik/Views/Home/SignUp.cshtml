@@ -8,63 +8,75 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    @Html.Partial("~/Views/Home/metaTag.cshtml")
-    <title>Üye ol</title>
+
+    <link rel="stylesheet" type="text/css" href="~/css/StyleSheet.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Sign Up</title>
 </head>
 
 <body>
-    <h2>SignUp</h2>
-    <form method="post" asp-controller="user" asp-action="signup">
-        <table cellpadding="2" cellspacing="2">
+    <article role="signup">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+        <div class="col-xs-4">
 
-            <tr>
-                <td>
-                    Username
-                </td>
-                <td>
-                    <input type="text" asp-for="UserName" maxlength="25"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Name
-                </td>
-                <td>
-                    <input type="text" asp-for="FullName" maxlength="25"/>
-                </td>
-            </tr>
+            <div class="imgcontainer">
+                <div class="container" style="position:center">
 
-            <tr>
-                <td>
-                    Mail
-                </td>
-                <td>
-                    <input type="email" asp-for="UserEmail" id="mailBox" placeholder="Lütfen geçerli bir mail adresi girin" maxlength="150"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Password
-                </td>
-                <td>
-                    <input type="password" asp-for="Password" maxlength="25"/>
-                </td>
-            </tr>
+                    <hr>
 
 
+                    <div class="card bg-light">
+                        <article class="card-body mx-auto" style="max-width: 400px;">
+                            <h4 class="card-title mt-3 text-center">Create Account</h4>
+                            <p class="text-center">Get started with your free account</p>
+                            <form method="post" asp-controller="user" asp-action="signup">
 
-            <tr>
-                <td>
-                    &nbsp;
-                </td>
-                <td>
-                    <input type="submit" value="Save" />
-                </td>
-            </tr>
-        </table>
-        
-    </form>
-    <script type = "text/javascript" src = "../js/SignUp.js"></script>
+
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                    </div>
+                                    <input name="" class="form-control" placeholder="Full name" type="text">
+                                </div> <!-- form-group// -->
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                    </div>
+                                    <input name="" class="form-control" placeholder="Email address" type="email">
+                                </div> <!-- form-group// -->
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                    </div>
+                                    <input class="form-control" placeholder="Username" type="password">
+                                </div> <!-- form-group// -->
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                    </div>
+                                    <input class="form-control" placeholder="Create password" type="password">
+                                </div> <!-- form-group// -->
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                                </div> <!-- form-group// -->
+                                <p class="text-center">Have an account? <a href="">Log In</a> </p>
+
+                            </form>
+                    </div>
+                </div>
+            </div>
+    </article>
+    <!-- card.// -->
+    <!--container end.//-->
+    <br><br>
+
+
+
+    </article>
 </body>
 </html>
 
