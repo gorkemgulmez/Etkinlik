@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Etkinlik
@@ -15,8 +16,10 @@ namespace Etkinlik
         [Required]
         public string PostDesc { get; set; }
 
-        public int UserModelId { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime PostCreateTime { get; set; }
 
+        public int UserModelId { get; set; }
         public virtual UserModel UserModel { get; set; }
     }
 }

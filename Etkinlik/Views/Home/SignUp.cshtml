@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = null;
+    ViewData["Title"] = "SignUp";
 }
 
 @model Etkinlik.UserModel
@@ -8,7 +8,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    @Html.Partial("~/Views/Home/metaTag.cshtml")
+    <title>Üye ol</title>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
                     Username
                 </td>
                 <td>
-                    <input type="text" asp-for="UserName" />
+                    <input type="text" asp-for="UserName" maxlength="25"/>
                 </td>
             </tr>
             <tr>
@@ -29,7 +30,7 @@
                     Name
                 </td>
                 <td>
-                    <input type="text" asp-for="FullName" />
+                    <input type="text" asp-for="FullName" maxlength="25"/>
                 </td>
             </tr>
 
@@ -38,7 +39,7 @@
                     Mail
                 </td>
                 <td>
-                    <input type="email" asp-for="UserEmail" />
+                    <input type="email" asp-for="UserEmail" id="mailBox" placeholder="Lütfen geçerli bir mail adresi girin" maxlength="150"/>
                 </td>
             </tr>
             <tr>
@@ -46,7 +47,7 @@
                     Password
                 </td>
                 <td>
-                    <input type="password" asp-for="Password" />
+                    <input type="password" asp-for="Password" maxlength="25"/>
                 </td>
             </tr>
 
@@ -61,8 +62,9 @@
                 </td>
             </tr>
         </table>
-
+        
     </form>
+    <script type = "text/javascript" src = "../js/SignUp.js"></script>
 </body>
 </html>
 

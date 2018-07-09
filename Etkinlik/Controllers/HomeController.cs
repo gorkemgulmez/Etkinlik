@@ -8,57 +8,21 @@ using Etkinlik.Models;
 
 namespace Etkinlik.Controllers
 {
+
     [Route("user")]
     public class HomeController : Controller
     {
         #region ProtectedMember
         protected ApplicationDbContext mContext;
-
         #endregion
+
         public HomeController(ApplicationDbContext context)
         {
             mContext = context;
         }
-        /*public IActionResult Index()
-        {
-            //create db
-            mContext.Database.EnsureCreated();
-
-            mContext.SaveChanges();
-
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Login(string username, string password) {
-            ViewData["username"] = username;
-            ViewData["passowrd"] = password;
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }*/
-
 
         [Route("")]
-        [Route("index")]
+        [Route("Index")]
         [Route("~/")]
         public IActionResult Index()
         {
@@ -66,6 +30,11 @@ namespace Etkinlik.Controllers
             mContext.Database.EnsureCreated();
 
             return View();
+        }
+
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [HttpGet]
@@ -80,16 +49,37 @@ namespace Etkinlik.Controllers
         public IActionResult Signup(UserModel user)
         {
             //user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-            mContext.Users.Add(user);
-            mContext.SaveChanges();
-            return RedirectToAction("Login");
+            if( user.UserName !=null && user.UserName.Length >= 5 && user.UserName.Length <= 25
+                && user.Password.Length >= 5 && user.Password.Length <= 25
+                && user.FullName.Length >= 5 && user.FullName.Length <= 25
+                && user.UserEmail.Length >= 5 && user.UserEmail.Length <= 150)
+            {
+                mContext.Users.Add(user);
+                mContext.SaveChanges();
+                return RedirectToAction("Login");
+            }
+
+            return RedirectToAction("Signup");
         }
 
         [HttpPost]
-        [Route("/login")]
+        [Route("login")]
         public IActionResult Login(UserModel user)
         {
-            return RedirectToAction("login");
+            var lUser = mContext.Users.Where(usr => usr.UserName == user.UserName).FirstOrDefault();
+            if(lUser != null && lUser.Password == user.Password)
+                return View("Index");
+
+            ViewData["Message"] = "Hatalı Kullanıcı adı veya şifre";
+            return View("Login");
+            
+        }
+
+        [HttpGet]
+        [Route("login")]
+        public IActionResult Login()
+        {
+            return View("Login", new UserModel());
         }
     }
 }

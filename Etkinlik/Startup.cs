@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,20 @@ namespace Etkinlik
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer("Server=.;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
+                //options.UseSqlServer("Server=.;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
+            //options.UseSqlServer("Server=.\\SQLEXPRESS;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
+            /*services.AddIdentity<UserModel, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options => {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            });*/
             services.AddMvc();
         }
 
