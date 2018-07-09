@@ -69,8 +69,8 @@ namespace Etkinlik.Controllers
             var lUser = mContext.Users.Where(usr => usr.UserName == user.UserName).FirstOrDefault();
             if(lUser != null && lUser.Password == user.Password)
                 return View("Index");
-            //TODO hata mesajıyla gönder
-            //hatalı kullanıcı adı ve ya şifre
+
+            ViewData["Message"] = "Hatalı Kullanıcı adı veya şifre";
             return RedirectToAction("Login");
             
         }
