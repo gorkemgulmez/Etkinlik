@@ -71,7 +71,7 @@ namespace Etkinlik.Controllers
                 return View("Index");
 
             ViewData["Message"] = "Hatalı Kullanıcı adı veya şifre";
-            return RedirectToAction("Login");
+            return View("Login");
             
         }
 

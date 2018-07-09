@@ -27,6 +27,7 @@ namespace Etkinlik.Controllers
         public IActionResult PostDetail(PostModel post) {
             if(post.PostName != null && post.PostName.Length > 0 && post.PostDesc.Length > 0)
             {
+                
                 post.PostCreateTime = DateTime.Now;
                 //Spost.UserModel = 
                 mContext.Add(post);
