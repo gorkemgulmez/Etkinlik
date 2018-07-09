@@ -18,16 +18,24 @@ namespace Etkinlik.Controllers
             mContext = context;
         }
 
-
-
         [HttpPost]
         [Route("post")]
-        public IActionResult PostDetail(PostModel post)
+        public IActionResult AddActivity(PostModel post)
         {
-            if (post.PostName != null && post.PostName.Length > 0 && post.PostDesc.Length > 0)
+            if (post.PostName != null && post.PostName.Length > 0 && post.PostDesc.Length >= 0)
             {
-                post.PostCreateTime = DateTime.Now;
-                //Spost.UserModel = 
+                if(!mContext.Users.Any())
+                {
+                    mContext.Users.Add(new UserModel {
+                        UserName = "grkem",
+                        FullName = "full",
+                        Password = "123",
+                        UserEmail = "asdf@asdfjk.co"
+                       });
+                    mContext.SaveChanges();
+                }
+
+                if (post.UserModel == null) post.UserModel = mContext.Users.FirstOrDefault();
                 mContext.Add(post);
                 mContext.SaveChanges();
 
