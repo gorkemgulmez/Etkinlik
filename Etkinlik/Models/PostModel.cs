@@ -16,7 +16,11 @@ namespace Etkinlik
         [Required]
         public string PostDesc { get; set; }
 
-        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+
+        public DateTime PostCreateDate { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH/mm/ss}")]
         public DateTime PostCreateTime { get; set; }
 
         public int UserModelId { get; set; }
