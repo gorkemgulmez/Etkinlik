@@ -31,11 +31,13 @@
                                 <div class="row">
                                     <div class="center-block">
                                         <center>
-                                            <img src="~/images/avatar.png" alt="Avatar" width="100px" height="100px" class="avatar">
+                                            <i class="glyphicon glyphicon-user" style="font-size:100px">
 
-                                        </center>
+                                            </i>
+                                            </center>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="row">
                                     <div class="col-sm-12 col-md-10  col-md-offset-1 ">
                                         <div class="form-group">
@@ -43,7 +45,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="glyphicon glyphicon-user"></i>
                                                 </span>
-                                                <input class="form-control" placeholder="Username" name="loginname" required autocomplete="off" type="text" autofocus>
+                                                <input class="form-control" placeholder="UserName" name="loginname" required autocomplete="off" maxlength="25" type="text" autofocus>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -51,7 +53,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="glyphicon glyphicon-lock"></i>
                                                 </span>
-                                                <input class="form-control" placeholder="Password" name="password" required autocomplete="off" type="password" value="">
+                                                <input class="form-control" placeholder="PassWord" name="password" required autocomplete="off" maxlength="25" type="password" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -61,7 +63,12 @@
                                     </div>
                                 </div>
                             </fieldset>
-                        </form>
+                            <div class=" navbar navbar-fixed-bottom ">
+                                <footer>
+                                    <p>&copy; 2018 - Etkinlik</p>
+                                </footer>
+                                </div>
+</form>
                     </div>
                     <div class="panel-footer ">
                         Don't have an account! <a asp-controller="user" asp-action="signup"> Sign Up Here</a>
