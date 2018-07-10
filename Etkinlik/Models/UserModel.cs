@@ -10,6 +10,9 @@ namespace Etkinlik
 {
     public class UserModel : IdentityUser
     {
+        [Required]
+        [MaxLength(25)]
+        public string FullName { get; set; }
         /*public int Id { get; set; }
 
         [Required]
@@ -26,9 +29,7 @@ namespace Etkinlik
         [DataType(DataType.EmailAddress)]
         public string UserEmail { get; set; }
 
-        [Required]
-        [MaxLength(25)]
-        public string FullName { get; set; }*/
+        */
 
     }
 }

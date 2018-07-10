@@ -44,20 +44,28 @@ namespace Etkinlik.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpGet]
+        /*[HttpGet]
         [Route("signup")]
         public IActionResult Signup()
         {
             return View("SignUp", new UserModel());
-        }
+        }*/
 
-        [HttpPost]
+        //[HttpPost]
         [Route("signup")]
-        public async Task<IActionResult> Signup(UserModel user)
+        public async Task<IActionResult> CreateUserAsync(/*UserModel user*/)
         {
-            //user;
 
-            return RedirectToAction("Signup");
+            var result = await mUserManager.CreateAsync(new UserModel
+            {
+                UserName = "gooorkemgulmez",
+                Email = "sdsfdf@dsf.co",
+                FullName = "Goöörkem Gulmez"
+            }, "passwordAS1123*");
+            if(result.Succeeded)
+                return Content("Success");
+
+            return Content("Failed!!");
         }
 
         [HttpPost]
