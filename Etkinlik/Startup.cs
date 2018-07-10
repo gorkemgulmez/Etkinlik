@@ -34,13 +34,22 @@ namespace Etkinlik
                 //generate unique keys and links for: forgot password, verification etc.
                 .AddDefaultTokenProviders();
 
-            /*services.Configure<IdentityOptions>(options => {
+            services.Configure<IdentityOptions>(options => {
+                //Password
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 5;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
-            });*/
+
+                //Other
+                options.User.RequireUniqueEmail = true;
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/login";
+            });
             services.AddMvc();
         }
 
