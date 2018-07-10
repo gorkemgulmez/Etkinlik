@@ -24,15 +24,17 @@ namespace Etkinlik
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer("Server=.;Database=StajEtkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
                 //options.UseSqlServer("Server=.;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
-                //options.UseSqlServer("Server=.;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
-            options.UseSqlServer("Server=.\\SQLEXPRESS;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
+                //options.UseSqlServer("Server=.\\SQLEXPRESS;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
-            /*services.AddIdentity<UserModel, IdentityRole>()
+            //Cookie based user auth
+            services.AddIdentity<UserModel, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                //generate unique keys and links for: forgot password, verification etc.
                 .AddDefaultTokenProviders();
 
-            services.Configure<IdentityOptions>(options => {
+            /*services.Configure<IdentityOptions>(options => {
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 5;
                 options.Password.RequireLowercase = false;
@@ -46,6 +48,8 @@ namespace Etkinlik
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             IoCContainer.Provider = (ServiceProvider)serviceProvider;
+
+            app.UseAuthentication();
 
             if (env.IsDevelopment())
             {

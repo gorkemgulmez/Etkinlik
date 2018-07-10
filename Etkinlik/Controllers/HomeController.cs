@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Etkinlik.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Etkinlik.Controllers
 {
@@ -14,11 +15,17 @@ namespace Etkinlik.Controllers
     {
         #region ProtectedMember
         protected ApplicationDbContext mContext;
+        protected UserManager<UserModel> mUserManager;
+        protected SignInManager<UserModel> mSignInManager;
         #endregion
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context,
+                              UserManager<UserModel> userManager,
+                              SignInManager<UserModel> signInManager)
         {
             mContext = context;
+            mSignInManager = signInManager;
+            mUserManager = userManager;
         }
 
         [Route("")]
@@ -46,18 +53,9 @@ namespace Etkinlik.Controllers
 
         [HttpPost]
         [Route("signup")]
-        public IActionResult Signup(UserModel user)
+        public async Task<IActionResult> Signup(UserModel user)
         {
-            //user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-            if( user.UserName !=null && user.UserName.Length >= 5 && user.UserName.Length <= 25
-                && user.Password.Length >= 5 && user.Password.Length <= 25
-                && user.FullName.Length >= 5 && user.FullName.Length <= 25
-                && user.UserEmail.Length >= 5 && user.UserEmail.Length <= 150)
-            {
-                mContext.Users.Add(user);
-                mContext.SaveChanges();
-                return RedirectToAction("Login");
-            }
+            //user;
 
             return RedirectToAction("Signup");
         }
@@ -66,11 +64,11 @@ namespace Etkinlik.Controllers
         [Route("login")]
         public IActionResult Login(UserModel user)
         {
-            var lUser = mContext.Users.Where(usr => usr.UserName == user.UserName).FirstOrDefault();
+           /* var lUser = mContext.Users.Where(usr => usr.UserName == user.UserName).FirstOrDefault();
             if(lUser != null && lUser.Password == user.Password)
                 return View("Index");
 
-            ViewData["Message"] = "Hatalı Kullanıcı adı veya şifre";
+            ViewData["Message"] = "Hatalı Kullanıcı adı veya şifre";*/
             return View("Login");
             
         }
