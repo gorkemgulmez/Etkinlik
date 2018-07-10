@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Etkinlik
 {
-    public class UserModel
+    public class UserModel : IdentityUser
     {
-        public int Id { get; set; }
+        /*public int Id { get; set; }
 
         [Required]
         [MaxLength(25)]
@@ -27,7 +28,7 @@ namespace Etkinlik
 
         [Required]
         [MaxLength(25)]
-        public string FullName { get; set; }
+        public string FullName { get; set; }*/
 
     }
 }

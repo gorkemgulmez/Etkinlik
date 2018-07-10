@@ -22,7 +22,7 @@ namespace Etkinlik.Controllers
         [Route("post")]
         public IActionResult AddActivity(PostModel post)
         {
-            if (post.PostName != null && post.PostName.Length > 0 && post.PostDesc.Length >= 0)
+            /*if (post.PostName != null && post.PostName.Length > 0 && post.PostDesc.Length >= 0)
             {
                 if(!mContext.Users.Any())
                 {
@@ -39,7 +39,7 @@ namespace Etkinlik.Controllers
                 mContext.Add(post);
                 mContext.SaveChanges();
 
-            }
+            }*/
 
             return View();
         }
