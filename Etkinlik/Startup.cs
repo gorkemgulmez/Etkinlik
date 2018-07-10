@@ -24,9 +24,9 @@ namespace Etkinlik
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer("Server=.;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
                 //options.UseSqlServer("Server=.;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
-            //options.UseSqlServer("Server=.\\SQLEXPRESS;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
+                //options.UseSqlServer("Server=.;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
+            options.UseSqlServer("Server=.\\SQLEXPRESS;Database=etkinlik;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
             /*services.AddIdentity<UserModel, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
