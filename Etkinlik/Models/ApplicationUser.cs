@@ -11,8 +11,9 @@ namespace Etkinlik.Models
     public class ApplicationUser : IdentityUser
     {
         [Required]
+        [PersonalData]
         [MaxLength(25)]
-        public string FullName;
+        public string FullName { get; set; }
 
     }
 }
