@@ -9,6 +9,7 @@ namespace Etkinlik.Controllers
     [Route("post")]
     public class PostController : Controller
     {
+        /*
         #region
         protected ApplicationDbContext mContext;
         #endregion
@@ -39,7 +40,7 @@ namespace Etkinlik.Controllers
                 mContext.Add(post);
                 mContext.SaveChanges();
 
-            }*/
+            }//*
 
             return View();
         }
@@ -48,7 +49,7 @@ namespace Etkinlik.Controllers
          * var oldPost = mContext.Posts.Where(pst => pst.Id == post.Id).FirstOrDefault();
             if (post.PostName != null && !post.PostName.Equals("")) oldPost.PostName = post.PostName;
             if (post.PostDesc != null && !post.PostDesc.Equals("")) oldPost.PostDesc = post.PostDesc;
-            */
+            //*
 
         [HttpGet]
         [Route("post")]
@@ -56,5 +57,6 @@ namespace Etkinlik.Controllers
         {
             return View("AddActivity", new PostModel());
         }
+    */
     }
 }

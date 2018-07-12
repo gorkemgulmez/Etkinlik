@@ -6,7 +6,7 @@ namespace Etkinlik
 {
     public class PostModel
     {
-        public int Id { get; set; }
+        /*public int Id { get; set; }
 
         [MaxLength(100)]
         [Required]
@@ -24,7 +24,7 @@ namespace Etkinlik
         public DateTime PostCreateTime { get; set; }
 
         public int UserModelId { get; set; }
-        public virtual UserModel UserModel { get; set; }
+        public virtual UserModel UserModel { get; set; }*/
 
     }
 }
