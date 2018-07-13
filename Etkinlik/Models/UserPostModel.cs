@@ -11,8 +11,10 @@ namespace Etkinlik
     {
         public int Id { get; set; }
 
-        public int ApplicationUserId { get; set; }
-        public virtual ApplicationUser ApplicationUser{ get; set; }
+        [ForeignKey("ApplicationUser")]
+        public int? ApplicationUserId { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
 
         [ForeignKey("PostModelId")]
         public virtual PostModel PostModel { get; set; }

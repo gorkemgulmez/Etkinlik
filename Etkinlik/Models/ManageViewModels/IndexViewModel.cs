@@ -8,7 +8,9 @@ namespace Etkinlik.Models.ManageViewModels
 {
     public class IndexViewModel
     {
-        public string Username { get; set; }
+        [Required]
+        [MaxLength(25)]
+        public string FullName { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
 

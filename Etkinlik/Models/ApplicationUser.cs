@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Etkinlik.Models
 {
@@ -11,8 +12,8 @@ namespace Etkinlik.Models
     public class ApplicationUser : IdentityUser
     {
         [Required]
-        [PersonalData]
         [MaxLength(25)]
+        [BindProperty]
         public string FullName { get; set; }
 
     }

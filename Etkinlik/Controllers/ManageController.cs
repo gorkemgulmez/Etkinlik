@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Etkinlik.Models;
 using Etkinlik.Models.ManageViewModels;
 using Etkinlik.Services;
+using Etkinlik.Data;
 
 namespace Etkinlik.Controllers
 {
@@ -25,6 +26,7 @@ namespace Etkinlik.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
+        private readonly ApplicationDbContext _context;
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
         private const string RecoveryCodesKey = nameof(RecoveryCodesKey);
@@ -34,13 +36,15 @@ namespace Etkinlik.Controllers
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
           ILogger<ManageController> logger,
-          UrlEncoder urlEncoder)
+          UrlEncoder urlEncoder,
+          ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            _context = context;
         }
 
         [TempData]
@@ -57,7 +61,7 @@ namespace Etkinlik.Controllers
 
             var model = new IndexViewModel
             {
-                Username = user.UserName,
+                FullName = user.FullName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,
@@ -80,6 +84,14 @@ namespace Etkinlik.Controllers
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var fullName = user.FullName;
+            if(model.FullName != fullName)
+            {
+                user.FullName = model.FullName;
+                _context.Users.Update(user);
+                _context.SaveChanges();
             }
 
             var email = user.Email;

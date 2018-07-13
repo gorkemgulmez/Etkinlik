@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Etkinlik.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,7 +7,7 @@ namespace Etkinlik
 {
     public class PostModel
     {
-        /*public int Id { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(100)]
         [Required]
@@ -16,15 +17,17 @@ namespace Etkinlik
         [Required]
         public string PostDesc { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
 
-        public DateTime PostCreateDate { get; set; }
-
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH/mm/ss}")]
+        [DataType(DataType.DateTime)]
         public DateTime PostCreateTime { get; set; }
 
-        public int UserModelId { get; set; }
-        public virtual UserModel UserModel { get; set; }*/
+
+        [DataType(DataType.DateTime)]
+        public DateTime PostTime { get; set; }
+
+        [ForeignKey("ApplicationUser")]
+        public int? ApplicationUserId { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
     }
 }

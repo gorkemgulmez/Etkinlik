@@ -10,8 +10,8 @@ namespace Etkinlik.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        //public ApplicationDbContext<PostModel>
-        //public ApplicationDbContext<UserPostModel>
+        public DbSet<PostModel> Posts;
+        public DbSet<UserPostModel> UserPosts;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Etkinlik.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Etkinlik.Controllers
@@ -9,7 +10,6 @@ namespace Etkinlik.Controllers
     [Route("post")]
     public class PostController : Controller
     {
-        /*
         #region
         protected ApplicationDbContext mContext;
         #endregion
@@ -23,33 +23,21 @@ namespace Etkinlik.Controllers
         [Route("post")]
         public IActionResult AddActivity(PostModel post)
         {
-            /*if (post.PostName != null && post.PostName.Length > 0 && post.PostDesc.Length >= 0)
+            if(post == null)
             {
-                if(!mContext.Users.Any())
-                {
-                    mContext.Users.Add(new UserModel {
-                        UserName = "grkem",
-                        FullName = "full",
-                        Password = "123",
-                        UserEmail = "asdf@asdfjk.co"
-                       });
-                    mContext.SaveChanges();
-                }
+                return View();
+            }
 
-                if (post.UserModel == null) post.UserModel = mContext.Users.FirstOrDefault();
-                mContext.Add(post);
-                mContext.SaveChanges();
+            var newPost = new PostModel{
+                PostName = post.PostName,
+                PostDesc = post.PostDesc,
+                PostCreateTime = DateTime.Now,
+                PostTime = post.PostTime
+            };
 
-            }//*
-
+            mContext.Posts.AddAsync(newPost);
             return View();
         }
-
-        /*
-         * var oldPost = mContext.Posts.Where(pst => pst.Id == post.Id).FirstOrDefault();
-            if (post.PostName != null && !post.PostName.Equals("")) oldPost.PostName = post.PostName;
-            if (post.PostDesc != null && !post.PostDesc.Equals("")) oldPost.PostDesc = post.PostDesc;
-            //*
 
         [HttpGet]
         [Route("post")]
@@ -57,6 +45,6 @@ namespace Etkinlik.Controllers
         {
             return View("AddActivity", new PostModel());
         }
-    */
+    
     }
 }
