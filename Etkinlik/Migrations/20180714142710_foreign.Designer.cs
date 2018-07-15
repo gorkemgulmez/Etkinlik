@@ -11,34 +11,15 @@ using System;
 namespace Etkinlik.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180714142710_foreign")]
+    partial class foreign
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.3-rtm-10026")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Etkinlik.Models.AnswerModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AnswerName")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<int?>("SurveyModelId");
-
-                    b.Property<int>("Vote");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SurveyModelId");
-
-                    b.ToTable("Answers");
-                });
 
             modelBuilder.Entity("Etkinlik.Models.ApplicationUser", b =>
                 {
@@ -95,20 +76,6 @@ namespace Etkinlik.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Etkinlik.Models.SurveyModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Surveys");
-                });
-
             modelBuilder.Entity("Etkinlik.PostModel", b =>
                 {
                     b.Property<int>("Id")
@@ -119,6 +86,7 @@ namespace Etkinlik.Migrations
                     b.Property<DateTime>("PostCreateTime");
 
                     b.Property<string>("PostDesc")
+                        .IsRequired()
                         .HasMaxLength(1000);
 
                     b.Property<string>("PostName")
@@ -142,7 +110,8 @@ namespace Etkinlik.Migrations
                     b.Property<string>("ApplicationUserId")
                         .IsRequired();
 
-                    b.Property<int>("PostModelId");
+                    b.Property<int?>("PostModelId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -259,13 +228,6 @@ namespace Etkinlik.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Etkinlik.Models.AnswerModel", b =>
-                {
-                    b.HasOne("Etkinlik.Models.SurveyModel", "SurveyModel")
-                        .WithMany()
-                        .HasForeignKey("SurveyModelId");
                 });
 
             modelBuilder.Entity("Etkinlik.PostModel", b =>
