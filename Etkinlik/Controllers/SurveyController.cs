@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Etkinlik.Controllers
 {
+    [Route("Survey")]
     public class SurveyController : Controller
     {
         // GET: /<controller>/
