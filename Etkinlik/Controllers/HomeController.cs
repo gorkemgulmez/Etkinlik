@@ -16,18 +16,14 @@ namespace Etkinlik.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult AddActivity()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            return Redirect("/Post/add");
         }
 
-        public IActionResult Contact()
+        public IActionResult AddSurvey()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return Redirect("/Survey/add");
         }
 
         public IActionResult Error()
@@ -36,3 +32,15 @@ namespace Etkinlik.Controllers
         }
     }
 }
+
+/*
+@{
+    ViewData["Title"] = "Contact";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+
+ViewData["Message"] = "Your application description page."; 
+return View();
+*/
