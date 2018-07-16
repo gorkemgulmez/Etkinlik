@@ -15,6 +15,7 @@ namespace Etkinlik.Models.ActivityViewModels
         [Required]
         public string PostName { get; set; }
 
+        [Required]
         [MaxLength(1000)]
         public string PostDesc { get; set; }
 

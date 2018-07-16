@@ -19,7 +19,6 @@ namespace Etkinlik.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         #endregion
-
         //constructor
         public PostController(ApplicationDbContext context,
                               UserManager<ApplicationUser> userManager,
@@ -68,10 +67,9 @@ namespace Etkinlik.Controllers
         }
 
         [HttpPost]
-        [Route("update/{id:int}")]
-        public IActionResult UpdateActivity(UpdateActivityModel post, int? id)
+        public IActionResult UpdateActivity(UpdateActivityModel post)
         {
-            PostModel updPost = _applicationDbContext.Posts.First(p => p.Id == id);
+            PostModel updPost = _applicationDbContext.Posts.First(p => p.Id == post.Id);
             if (updPost == null)
                 return View("Index");
 
@@ -92,15 +90,21 @@ namespace Etkinlik.Controllers
 
         [HttpGet]
         [Route("update/{id:int}")]
-        public IActionResult UpdateActivity(int Id)
+        public IActionResult UpdateActivity(int id)
         {
             if (!_signInManager.IsSignedIn(HttpContext.User))
             {
-                return RedirectToAction("Index");
+                return Redirect("/Account/Login");
             }
-            PostModel pModel= _applicationDbContext.Posts.First(p => p.Id == Id);
-            if (pModel == null)
-                return RedirectToAction("Index");
+            PostModel pModel;
+            try
+            {
+                pModel = _applicationDbContext.Posts.First(p => p.Id == id);
+            }catch(Exception)
+            {
+                return Redirect("/");
+            }
+                
 
             UpdateActivityModel updateActivityModel = new UpdateActivityModel
             {
@@ -114,21 +118,28 @@ namespace Etkinlik.Controllers
         }
 
         [HttpPost]
-        [Route("update/{id:int}")]
-        public IActionResult DeleteActivity(UpdateActivityModel post, int? id)
+        public IActionResult DeleteActivity(UpdateActivityModel post)
         {
-            var delPost = _applicationDbContext.Posts.First(p => p.Id == id);
-            if(delPost == null)
-                return View("Index");
+            PostModel delPost;
+            try
+            {
+                delPost = _applicationDbContext.Posts.First(p => p.Id == post.Id);
+            }
+            catch (Exception)
+            {
+                return Redirect("/");
+            }
+            if (delPost == null)
+                return Redirect("");
 
             if (!delPost.ApplicationUser.Id.Equals(_userManager.GetUserId(User)))
-                return View("Index");                    
+                return Redirect("");                    
 
             _applicationDbContext.Remove(delPost);
             _applicationDbContext.SaveChanges();
-            return View();
+            return Redirect("/Post/add");
         }
-/*
+        /*
         /// <summary>
         /// PostUser methods (join or quit activity)
         /// </summary>
@@ -147,6 +158,7 @@ namespace Etkinlik.Controllers
             //if not logged in -> log in redirect
             //if user id and post id did match add post 
             //else u are not in that activity message
-        }*/
+        }
+        */
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Etkinlik.Data;
 using Etkinlik.Models;
 using Etkinlik.Services;
+using Etkinlik.Models.ActivityViewModels;
 
 namespace Etkinlik
 {
@@ -60,6 +61,7 @@ namespace Etkinlik
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<LayoutViewModel>();
+            services.AddTransient<UpdateActivityModel>();
             services.AddMvc();
         }
 
@@ -86,6 +88,9 @@ namespace Etkinlik
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                //routes.MapRoute("updateActivity", "{controller=Post}/{action=UpdateActivity}/{id?}");
+
             });
         }
     }
