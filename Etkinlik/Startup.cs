@@ -59,7 +59,7 @@ namespace Etkinlik
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-
+            services.AddTransient<LayoutViewModel>();
             services.AddMvc();
         }
 

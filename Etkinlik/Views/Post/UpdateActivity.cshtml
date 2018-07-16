@@ -1,10 +1,13 @@
-﻿@using Etkinlik.Models.ActivityViewModels
-@{
-    ViewData["Title"] = "AddActivity";
-}
+﻿@page
+@using Etkinlik.Models.ActivityViewModels
+@using Etkinlik.Models
+@using Etkinlik.Data
 
 @model UpdateActivityModel
+@inject ApplicationDbContext dbContext
 
+@{
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,16 +19,14 @@
 </head>
 
 <body>
-    <form method="post" asp-controller="Post" asp-action="AddActivity">
-
+    <form method="post" asp-controller="Post" asp-action="UpdateActivity">
         <table cellpadding="2" cellspacing="2">
-
             <tr>
                 <td>
                     Etkinlik Adı
                 </td>
                 <td>
-                    <input type="text" required autocomplete="off" asp-for="PostName" />
+                    <input type="text" required autocomplete="off" value="@Model.PostName" />
                 </td>
             </tr>
             <tr>
@@ -33,7 +34,7 @@
                     Etkinlik Detayı
                 </td>
                 <td>
-                    <input type="text" asp-for="PostDesc" />
+                    <input type="text" value="@Model.PostDesc" />
                 </td>
             </tr>
 
@@ -42,34 +43,23 @@
                     Tarih
                 </td>
                 <td>
-                    <input type="datetime-local" asp-for="PostTime" />
+                   <input type="datetime-local" value="@Model.PostTime" />
                 </td>
             </tr>
-            <tr>
-                
-            </tr>
+            <tr></tr>
 
             <tr>
                 <td>
                     &nbsp;
                 </td>
                 <td>
-                    <input type="submit" value="AddActivity" />
+                    <input type="submit" value="UpdateActivity" />
+                </td>
+                <td>
+                    <input asp-action="DeleteActivity" type="submit" value="del" />
                 </td>
             </tr>
-
-
-
-            <div id="footerr">
-                <footer>
-                    <p style="bottom:0px">&copy; 2018 - Etkinlik</p>
-
-                </footer>
-            </div>
-
         </table>
-
-
     </form>
 </body>
 </html>

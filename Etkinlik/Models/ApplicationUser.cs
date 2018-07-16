@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Etkinlik.Models
 {
@@ -12,7 +13,8 @@ namespace Etkinlik.Models
     {
         [Required]
         [MaxLength(25)]
-        public string FullName;
+        [BindProperty]
+        public string FullName { get; set; }
 
     }
 }

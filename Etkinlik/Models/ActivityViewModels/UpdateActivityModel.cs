@@ -1,12 +1,13 @@
-﻿using Etkinlik.Models;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Etkinlik
+namespace Etkinlik.Models.ActivityViewModels
 {
-    [Table("Posts")]
-    public class PostModel
+    public class UpdateActivityModel
     {
         public int Id { get; set; }
 
@@ -17,15 +18,8 @@ namespace Etkinlik
         [MaxLength(1000)]
         public string PostDesc { get; set; }
 
-
-        [DataType(DataType.DateTime)]
-        public DateTime PostCreateTime { get; set; }
-
-
         [DataType(DataType.DateTime)]
         public DateTime PostTime { get; set; }
-
-        public ApplicationUser ApplicationUser { get; set; }
-
+        
     }
 }
