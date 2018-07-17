@@ -89,8 +89,6 @@ namespace Etkinlik
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
-                //routes.MapRoute("updateActivity", "{controller=Post}/{action=UpdateActivity}/{id?}");
-
             });
         }
     }

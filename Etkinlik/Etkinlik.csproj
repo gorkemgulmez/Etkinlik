@@ -10,13 +10,22 @@
     <Compile Remove="Migrations\20180714111521_postMig.Designer.cs" />
     <Compile Remove="Migrations\20180714114327_postMig.cs" />
     <Compile Remove="Migrations\20180714114327_postMig.Designer.cs" />
+    <Compile Remove="Migrations\20180715174139_Survey.cs" />
+    <Compile Remove="Migrations\20180715174139_Survey.Designer.cs" />
+    <Compile Remove="Migrations\20180717073914_relation.cs" />
+    <Compile Remove="Migrations\20180717073914_relation.Designer.cs" />
+    <Compile Remove="Migrations\20180717074458_relation.cs" />
+    <Compile Remove="Migrations\20180717074458_relation.Designer.cs" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <PackageReference Include="Bootstrap.v3.Datetimepicker" Version="4.17.45" />
+    <PackageReference Include="Bootstrap.v3.Datetimepicker.CSS" Version="4.17.45" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
+    <PackageReference Include="Moment.js" Version="2.22.2" />
   </ItemGroup>
 
   <ItemGroup>

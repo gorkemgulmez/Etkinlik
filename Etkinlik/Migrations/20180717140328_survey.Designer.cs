@@ -11,8 +11,8 @@ using System;
 namespace Etkinlik.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180715174139_Survey")]
-    partial class Survey
+    [Migration("20180717140328_survey")]
+    partial class survey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace Etkinlik.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<int?>("SurveyModelId");
+                    b.Property<int>("SurveyModelId");
 
                     b.Property<int>("Vote");
 
@@ -140,8 +140,7 @@ namespace Etkinlik.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired();
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<int>("PostModelId");
 
@@ -266,7 +265,8 @@ namespace Etkinlik.Migrations
                 {
                     b.HasOne("Etkinlik.Models.SurveyModel", "SurveyModel")
                         .WithMany()
-                        .HasForeignKey("SurveyModelId");
+                        .HasForeignKey("SurveyModelId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Etkinlik.PostModel", b =>
@@ -280,8 +280,7 @@ namespace Etkinlik.Migrations
                 {
                     b.HasOne("Etkinlik.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("Etkinlik.PostModel", "PostModel")
                         .WithMany()

@@ -5,10 +5,20 @@ using System.Collections.Generic;
 
 namespace Etkinlik.Migrations
 {
-    public partial class Survey : Migration
+    public partial class survey : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_UserPosts_AspNetUsers_ApplicationUserId",
+                table: "UserPosts");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "ApplicationUserId",
+                table: "UserPosts",
+                nullable: true,
+                oldClrType: typeof(string));
+
             migrationBuilder.CreateTable(
                 name: "Surveys",
                 columns: table => new
@@ -29,7 +39,7 @@ namespace Etkinlik.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AnswerName = table.Column<string>(maxLength: 100, nullable: false),
-                    SurveyModelId = table.Column<int>(nullable: true),
+                    SurveyModelId = table.Column<int>(nullable: false),
                     Vote = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -40,22 +50,49 @@ namespace Etkinlik.Migrations
                         column: x => x.SurveyModelId,
                         principalTable: "Surveys",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_SurveyModelId",
                 table: "Answers",
                 column: "SurveyModelId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_UserPosts_AspNetUsers_ApplicationUserId",
+                table: "UserPosts",
+                column: "ApplicationUserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_UserPosts_AspNetUsers_ApplicationUserId",
+                table: "UserPosts");
+
             migrationBuilder.DropTable(
                 name: "Answers");
 
             migrationBuilder.DropTable(
                 name: "Surveys");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "ApplicationUserId",
+                table: "UserPosts",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldNullable: true);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_UserPosts_AspNetUsers_ApplicationUserId",
+                table: "UserPosts",
+                column: "ApplicationUserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
     }
 }

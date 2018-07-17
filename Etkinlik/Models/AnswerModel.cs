@@ -17,6 +17,7 @@ namespace Etkinlik.Models
         [Required]
         public int Vote { get; set; }
 
+        public int SurveyModelId { get; set; }
         public SurveyModel SurveyModel { get; set; }
     }
 }

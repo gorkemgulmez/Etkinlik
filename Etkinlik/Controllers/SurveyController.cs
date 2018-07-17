@@ -43,6 +43,11 @@ namespace Etkinlik.Controllers
             return View();
         }
 
+        public IActionResult DeleteSurvey(SurveyModel survey)
+        {
+            return View();
+        }
+
 
     }
 }

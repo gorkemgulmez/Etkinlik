@@ -1,6 +1,6 @@
-﻿
-@using Etkinlik.Models.ActivityViewModels
+﻿@using Etkinlik.Models.ActivityViewModels
 
+@using Etkinlik.Models.ActivityViewModels
 @{
     ViewData["Title"] = Model.PostName;
 }
@@ -14,11 +14,10 @@
 
     <link rel="stylesheet" type="text/css" href="~/css/StyleSheet.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>Diger</title>
 </head>
 
 <body>
-    <form method="post" asp-controller="Post" asp-action="UpdateActivity">
+    <form asp-controller="Post" >
         <table cellpadding="2" cellspacing="2">
             <tr>
                 <td>
@@ -52,10 +51,8 @@
                     &nbsp;
                 </td>
                 <td>
-                    <input type="submit" value="UpdateActivity" />
-                </td>
-                <td>
-                    <input asp-action="DeleteActivity" type="submit" value="DeleteActivity" />
+                    <input method="post" asp-action="UpdateActivity" type="submit" value="update" />
+                    <input method="delete" asp-action="DeleteActivity" type="submit" value="del" />
                 </td>
             </tr>
         </table>
