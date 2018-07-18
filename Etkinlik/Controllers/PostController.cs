@@ -97,6 +97,7 @@ namespace Etkinlik.Controllers
 
             _applicationDbContext.Posts.AddAsync(newPost);
             _applicationDbContext.SaveChanges();
+            AddUser(newPost);
             return Redirect("/");
         }
 
@@ -122,7 +123,7 @@ namespace Etkinlik.Controllers
             return Redirect("/");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("update/{id}")]
         public IActionResult DeleteActivity(int id)
         {
             ApplicationUser user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
@@ -158,24 +159,27 @@ namespace Etkinlik.Controllers
         [Authorize]
         public IActionResult AddUser(PostModel post)
         {
-            if (!_signInManager.IsSignedIn(HttpContext.User))
-                return Redirect("/Account/Login");
             var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
             if (!post.ApplicationUserId.Equals(user.Id))
                 return Redirect("/");
 
-            UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
-                         d.ApplicationUserId == user.Id && d.PostModelId == post.Id);
-            if (userPost != null)
-                return Redirect("/");
-
-            _applicationDbContext.UserPosts.Add(new UserPostModel
+            try
             {
-                ApplicationUserId = user.Id,
-                PostModelId = post.Id
-            });
-            _applicationDbContext.SaveChanges();
-            return View();
+                UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
+                         d.ApplicationUserId == user.Id && d.PostModelId == post.Id);
+            }catch(Exception) { 
+            
+                _applicationDbContext.UserPosts.Add(new UserPostModel
+                {
+                    ApplicationUserId = user.Id,
+                    PostModelId = post.Id
+                });
+                _applicationDbContext.SaveChanges();
+                return View();
+            }
+
+            return Redirect("/");
+
         }
 
         [Authorize]

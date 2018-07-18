@@ -6,16 +6,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180713125738_ApplicationUserFull.cs" />
+    <Compile Remove="Migrations\20180713125738_ApplicationUserFull.Designer.cs" />
     <Compile Remove="Migrations\20180714111521_postMig.cs" />
     <Compile Remove="Migrations\20180714111521_postMig.Designer.cs" />
     <Compile Remove="Migrations\20180714114327_postMig.cs" />
     <Compile Remove="Migrations\20180714114327_postMig.Designer.cs" />
+    <Compile Remove="Migrations\20180714142710_foreign.cs" />
+    <Compile Remove="Migrations\20180714142710_foreign.Designer.cs" />
+    <Compile Remove="Migrations\20180715120638_postDesc.cs" />
+    <Compile Remove="Migrations\20180715120638_postDesc.Designer.cs" />
     <Compile Remove="Migrations\20180715174139_Survey.cs" />
     <Compile Remove="Migrations\20180715174139_Survey.Designer.cs" />
     <Compile Remove="Migrations\20180717073914_relation.cs" />
     <Compile Remove="Migrations\20180717073914_relation.Designer.cs" />
     <Compile Remove="Migrations\20180717074458_relation.cs" />
     <Compile Remove="Migrations\20180717074458_relation.Designer.cs" />
+    <Compile Remove="Migrations\20180717140328_survey.cs" />
+    <Compile Remove="Migrations\20180717140328_survey.Designer.cs" />
   </ItemGroup>
 
 
