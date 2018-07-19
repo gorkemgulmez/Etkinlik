@@ -17,83 +17,111 @@
     <h2>Home Page</h2>
     <br />
     <br />
-   
-        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-            <div class="container">
-                
-                <div class="row">
-                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-                    
-                    
 
-                        <li>Etkinlik Adı</li>
+    <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        <div class="container">
 
-                        <li>Etkinlik Detayı</li>
-
-                        <li>Etkinlik Saat ve Tarihi</li>
-                    </ul>
-                       <br />
-                    <br />
-                </div>
-                <div class="liste">
-                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+            <div class="row">
+                <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
 
 
 
-                        <li>Gezi</li>
+                    <li>Etkinlik Adı</li>
 
-                        <li>Piknik</li>
+                    <li>Etkinlik Detayı</li>
 
-                        <li>Halı Saha</li>
-                        <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-1" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
-                       
-                            <p style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:0px; border-top-width:1px; width:77px" id="collapsible-1"  class="collapse"   > Etkinlik</p>
-                        
-                    </ul>
-                    <br />
-                    <br />
-                   
-                </div>
-                <div class="liste">
-                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+                    <li>Etkinlik Saat ve Tarihi</li>
+                </ul>
+                <br />
+                <br />
+                </div></div>
+                <div class="container">
+
+                    <div class="row">
+                        <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
 
 
-                        <li>Gezi</li>
 
-                        <li>Piknik</li>
+                            <li>Gezi</li>
 
-                        <li>Halı Saha</li>
-                        <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-1" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
+                            <li>Piknik</li>
 
-                        <p style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:0px; border-top-width:1px; width:77px" id="collapsible-1" class="collapse"> Etkinlik</p>
-
-                    </ul>
-                    <br />
-<br />
+                            <li>Halı Saha</li>
+                        </ul>
+                        <ul>
+                            <li class="panel">
+                                <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href="#firstLink">Katılımcılar</button>
+                                <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Update</button>
+                                <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Delete</button>
+                                <ul id="firstLink" class="collapse">
+                                    <li>SubTest1</li>
+                                    <li>SubTest1</li>
+                                    <li>SubTest1</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="liste">
-                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+        <div class="container">
 
-                        <li>Gezi</li>
+            <div class="row">
+                <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
 
-                        <li>Piknik</li>
 
-                        <li>Halı Saha</li>
-                        <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-1" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
 
-                       <p style="padding-top:0px; margin-left:1000px;  border-bottom-width: 100px; margin-bottom: 15px; margin-top: 15px;" id="collapsible-1" class="collapse"> Etkinlik</p>
-                    </ul>
-                </div>
-               
+                    <li>Gezi</li>
 
-            
-                   
-</div>
-            </form>
-  
+                    <li>Piknik</li>
+
+                    <li>Halı Saha</li>
+                </ul>
+                <ul>
+                    <li class="panel">
+                        <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href="#secondLink">Katılımcılar</button>
+                        <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Update</button>
+                        <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Delete</button>
+                        <ul id="secondLink" class="collapse">
+                            <li>sdfg</li>
+                            <li>SubTest1</li>
+                            <li>SubTest1</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="row">
+                <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+
+
+
+                    <li>Gezi</li>
+
+                    <li>Piknik</li>
+
+                    <li>Halı Saha</li>
+                </ul>
+                <ul>
+                    <li class="panel">
+                        <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href="#thirdLink">Katılımcılar</button>
+                        <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Update</button>
+                        <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Delete</button>
+                        <ul id="thirdLink" class="collapse">
+                            <li>SubTest1</li>
+                            <li>SubTest1</li>
+                            <li>SubTest1</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </form>
+
 
 
 </body>
 </html>
-

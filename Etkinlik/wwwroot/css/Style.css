@@ -61,8 +61,7 @@
         margin-right: 2px;
     }
 
-
-        #menu a:hover {
-         
-        }
+ul, ol {
+    list-style: none;
+}
 

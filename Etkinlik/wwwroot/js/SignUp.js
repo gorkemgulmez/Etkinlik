@@ -24,5 +24,3 @@ let validateBox = function(field, funcName) {
 		console.log(bool);
 	});
 }
-
-$("#button").on.
