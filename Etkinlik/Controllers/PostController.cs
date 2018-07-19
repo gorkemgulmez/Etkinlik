@@ -38,7 +38,8 @@ namespace Etkinlik.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var postList = _applicationDbContext.Posts.Where(p=> p.ApplicationUserId == _userManager.GetUserId(HttpContext.User)).ToList();
+            return View("Index", postList);
         }
 
         [HttpGet("add")]
