@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Etkinlik.Controllers
 {
     [Route("Post")]
+    [Authorize]
     public class PostController : Controller
     {
         #region
@@ -34,15 +35,13 @@ namespace Etkinlik.Controllers
         /// </summary>
         /// <param name="post"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("add")]
+        [HttpGet("add")]
         public IActionResult AddActivity()
         {
             return View("AddActivity", new UpdateActivityModel());
         }
 
-        [HttpGet]
-        [Route("update/{id}")]
+        [HttpGet("update/{id}")]
         public IActionResult UpdateActivity(int id)
         {
             if (!_signInManager.IsSignedIn(HttpContext.User))
@@ -72,9 +71,7 @@ namespace Etkinlik.Controllers
             return View("UpdateActivity", updateActivityModel);
         }
 
-        [HttpPost]
-        [Route("add")]
-        [Authorize]
+        [HttpPost("add")]
         public IActionResult AddActivity(UpdateActivityModel post)
         {
             if (post == null)
@@ -123,7 +120,7 @@ namespace Etkinlik.Controllers
             return Redirect("/");
         }
 
-        [HttpDelete("update/{id}")]
+        [HttpGet("delete/{id}")]
         public IActionResult DeleteActivity(int id)
         {
             ApplicationUser user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
@@ -156,7 +153,6 @@ namespace Etkinlik.Controllers
         /// PostUser methods (join or quit activity)
         /// </summary>
         /// <param name="User"></param>
-        [Authorize]
         public IActionResult AddUser(PostModel post)
         {
             var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
@@ -167,7 +163,7 @@ namespace Etkinlik.Controllers
             {
                 UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
                          d.ApplicationUserId == user.Id && d.PostModelId == post.Id);
-            }catch(Exception) { 
+            }catch(Exception) {
             
                 _applicationDbContext.UserPosts.Add(new UserPostModel
                 {
@@ -182,7 +178,6 @@ namespace Etkinlik.Controllers
 
         }
 
-        [Authorize]
         public IActionResult DeleteUser(PostModel post)
         {
             if (!_signInManager.IsSignedIn(HttpContext.User))

@@ -24,6 +24,10 @@
     <Compile Remove="Migrations\20180717074458_relation.Designer.cs" />
     <Compile Remove="Migrations\20180717140328_survey.cs" />
     <Compile Remove="Migrations\20180717140328_survey.Designer.cs" />
+    <Compile Remove="Migrations\20180718201341_userSurvey.cs" />
+    <Compile Remove="Migrations\20180718201341_userSurvey.Designer.cs" />
+    <Compile Remove="Migrations\20180718201601_userSurvey-v0.1.cs" />
+    <Compile Remove="Migrations\20180718201601_userSurvey-v0.1.Designer.cs" />
   </ItemGroup>
 
 
