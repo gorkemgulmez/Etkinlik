@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Etkinlik.Controllers
 {
     [Route("Post")]
+    [Authorize]
     public class PostController : Controller
     {
         #region
@@ -19,7 +20,6 @@ namespace Etkinlik.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         #endregion
-
         //constructor
         public PostController(ApplicationDbContext context,
                               UserManager<ApplicationUser> userManager,
@@ -35,47 +35,77 @@ namespace Etkinlik.Controllers
         /// </summary>
         /// <param name="post"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("add")]
-        [Authorize]
-        public IActionResult AddActivity(UpdateActivityModel post)
-        {
-            if(post == null )
-            {
-                return View();
-            }
-
-            var user = _applicationDbContext.Users.FirstOrDefault(e => e.Id == _userManager.GetUserId(HttpContext.User));
-
-            var newPost = new PostModel {
-                PostName = post.PostName,
-                PostDesc = post.PostDesc,
-                PostTime = post.PostTime,
-                PostCreateTime = DateTime.Now,
-                ApplicationUser = user
-            };
-
-            _applicationDbContext.Posts.AddAsync(newPost);
-            _applicationDbContext.SaveChanges();
-            return View();
-        }
-
-        [HttpGet]
-        [Route("add")]
+        [HttpGet("add")]
         public IActionResult AddActivity()
         {
             return View("AddActivity", new UpdateActivityModel());
         }
 
-        [HttpPost]
-        [Route("update/{id:int}")]
-        public IActionResult UpdateActivity(UpdateActivityModel post, int? id)
+        [HttpGet("update/{id}")]
+        public IActionResult UpdateActivity(int id)
+        {
+            if (!_signInManager.IsSignedIn(HttpContext.User))
+            {
+                return Redirect("/Account/Login");
+            }
+
+            PostModel pModel;
+            try
+            {
+                pModel = _applicationDbContext.Posts.First(p => p.Id == id);
+            }
+            catch (Exception)
+            {
+                return Redirect("/");
+            }
+
+
+            UpdateActivityModel updateActivityModel = new UpdateActivityModel
+            {
+                Id = pModel.Id,
+                PostName = pModel.PostName,
+                PostDesc = pModel.PostDesc,
+                PostTime = pModel.PostTime
+            };
+
+            return View("UpdateActivity", updateActivityModel);
+        }
+
+        [HttpPost("add")]
+        public IActionResult AddActivity(UpdateActivityModel post)
+        {
+            if (post == null)
+            {
+                //Mesaj gönder
+                return View();
+            }
+
+            var user = _applicationDbContext.Users.FirstOrDefault(e => e.Id == _userManager.GetUserId(HttpContext.User));
+
+            var newPost = new PostModel
+            {
+                PostName = post.PostName,
+                PostDesc = post.PostDesc,
+                PostTime = post.PostTime,
+                PostCreateTime = DateTime.Now,
+                ApplicationUser = user,
+                ApplicationUserId = user.Id
+            };
+
+            _applicationDbContext.Posts.AddAsync(newPost);
+            _applicationDbContext.SaveChanges();
+            AddUser(newPost);
+            return Redirect("/");
+        }
+
+        [HttpPost("update/{id}")]
+        public IActionResult UpdateActivity(int id, UpdateActivityModel post)
         {
             PostModel updPost = _applicationDbContext.Posts.First(p => p.Id == id);
             if (updPost == null)
                 return View("Index");
 
-            if (!_userManager.GetUserId(User).Equals(updPost.ApplicationUser.Id))
+            if (!_userManager.GetUserId(User).Equals(updPost.ApplicationUserId))
                 return View("Index");
 
             if (!post.PostName.Equals("") && !post.PostName.Equals(updPost.PostName))
@@ -87,66 +117,83 @@ namespace Etkinlik.Controllers
 
             _applicationDbContext.Posts.Update(updPost);
             _applicationDbContext.SaveChanges();
-            return View();
+            return Redirect("/");
         }
 
-        [HttpGet]
-        [Route("update/{id:int}")]
-        public IActionResult UpdateActivity(int Id)
+        [HttpGet("delete/{id}")]
+        public IActionResult DeleteActivity(int id)
         {
-            if (!_signInManager.IsSignedIn(HttpContext.User))
+            ApplicationUser user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
+            PostModel delPost;
+            try
             {
-                return RedirectToAction("Index");
+                delPost = _applicationDbContext.Posts.First(p => p.Id == id);
             }
-            PostModel pModel= _applicationDbContext.Posts.First(p => p.Id == Id);
-            if (pModel == null)
-                return RedirectToAction("Index");
-
-            UpdateActivityModel updateActivityModel = new UpdateActivityModel
+            catch (Exception)
             {
-                Id = pModel.Id,
-                PostName = pModel.PostName,
-                PostDesc = pModel.PostDesc,
-                PostTime = pModel.PostTime
-            };
-            
-            return View("UpdateActivity", updateActivityModel);
-        }
+                return Redirect("/");
+            }
+            if (delPost == null)
+                return Redirect("/");
 
-        [HttpPost]
-        [Route("update/{id:int}")]
-        public IActionResult DeleteActivity(UpdateActivityModel post, int? id)
-        {
-            var delPost = _applicationDbContext.Posts.First(p => p.Id == id);
-            if(delPost == null)
-                return View("Index");
-
-            if (!delPost.ApplicationUser.Id.Equals(_userManager.GetUserId(User)))
-                return View("Index");                    
-
+            try
+            {
+                if (delPost.ApplicationUserId != user.Id)
+                    return Redirect("/");
+            }
+            catch (Exception)
+            {
+                return Redirect("/");
+            }
             _applicationDbContext.Remove(delPost);
             _applicationDbContext.SaveChanges();
-            return View();
+            return Redirect("/Post/add");
         }
-/*
-        /// <summary>
+
         /// PostUser methods (join or quit activity)
         /// </summary>
         /// <param name="User"></param>
-        [Authorize]
-        public void AddUser(ApplicationUser User)
+        public IActionResult AddUser(PostModel post)
         {
-            //if not logged in -> log in redirect
-            //if user id and post id didnt match add post 
-            //else u are already in that activity message
+            var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
+            if (!post.ApplicationUserId.Equals(user.Id))
+                return Redirect("/");
+
+            try
+            {
+                UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
+                         d.ApplicationUserId == user.Id && d.PostModelId == post.Id);
+            }catch(Exception) {
+            
+                _applicationDbContext.UserPosts.Add(new UserPostModel
+                {
+                    ApplicationUserId = user.Id,
+                    PostModelId = post.Id
+                });
+                _applicationDbContext.SaveChanges();
+                return View();
+            }
+
+            return Redirect("/");
+
         }
 
-        [Authorize]
-        public void DeleteUser()
+        public IActionResult DeleteUser(PostModel post)
         {
-            //if not logged in -> log in redirect
-            //if user id and post id did match add post 
-            //else u are not in that activity message
-        }*/
+            if (!_signInManager.IsSignedIn(HttpContext.User))
+                return Redirect("/Account/Login");
+            var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
+            if (!post.ApplicationUserId.Equals(user.Id))
+                return Redirect("/");
+
+            UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
+                         d.ApplicationUserId == user.Id && d.PostModelId == post.Id);
+            if (userPost == null)
+                return Redirect("/");
+
+            _applicationDbContext.UserPosts.Remove(userPost);
+            _applicationDbContext.SaveChanges();
+            return View();
+        }
     }
 }

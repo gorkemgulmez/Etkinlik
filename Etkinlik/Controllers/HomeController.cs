@@ -10,10 +10,19 @@ using Etkinlik.Data;
 namespace Etkinlik.Controllers
 {
     public class HomeController : Controller
-    {        
+    {
+        private readonly ApplicationDbContext _applicationDbContext;
+        
+        public HomeController(ApplicationDbContext applicationDbContext)
+        {
+            _applicationDbContext = applicationDbContext;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var allPosts = _applicationDbContext.Posts.ToList();
+
+            return View(allPosts);
         }
 
         public IActionResult AddActivity()

@@ -18,6 +18,7 @@
 
     <script src="~/js/bootstrap-datetimepicker.js"></script>
     <title>Diger</title>
+
 </head>
 
 <body>
@@ -38,11 +39,9 @@
                         <div class="form-group">
                             <div class="input-group">
 
-
                                 <label>Activity Name</label>
                                 <input asp-for="PostName" class="form-control" type="text" placeholder="Enter Activity Name" />
-
-                            </div>
+       </div>
                             <span asp-validation-for="PostName" class="text-danger"></span>
                         </div>
                     </div>
@@ -55,6 +54,7 @@
 
                                 <label> Activity Detail</label>
                                 <input asp-for="PostDesc" class="form-control" type="text" placeholder="Enter Avtivity Detail" />
+
 
                             </div>
                             <span asp-validation-for="PostDesc" class="text-danger"></span>
@@ -107,6 +107,9 @@
         </form>
     </section>
 
+
+            </fieldset>
+        </form>
 
 </body>
 </html>
