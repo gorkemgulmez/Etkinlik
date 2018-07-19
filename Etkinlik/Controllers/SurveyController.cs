@@ -43,6 +43,16 @@ namespace Etkinlik.Controllers
             return View();
         }
 
+        public IActionResult DeleteSurvey(SurveyModel survey)
+        {
+            return View();
+        }
 
+        [Authorize]
+        public IActionResult JoinSurvey(AnswerModel answer)
+        {
+            answer.Vote += 1;
+            return View();
+        }
     }
 }

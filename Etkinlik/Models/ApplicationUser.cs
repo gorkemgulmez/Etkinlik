@@ -13,7 +13,6 @@ namespace Etkinlik.Models
     {
         [Required]
         [MaxLength(25)]
-        [BindProperty]
         public string FullName { get; set; }
 
     }

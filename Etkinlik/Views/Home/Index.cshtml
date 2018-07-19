@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
@@ -7,7 +6,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,83 +16,53 @@
     <h2>Home Page</h2>
     <br />
     <br />
-   
-        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-            <div class="container">
-                
-                <div class="row">
-                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-                    
-                    
+    <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        <div class="container">                
+            <div class="row">
+                <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+                    <li>Etkinlik Adı</li>
+                    <li>Etkinlik Detayı</li>
+                    <li>Etkinlik Saat ve Tarihi</li>
+                </ul>
+                <br />
+                <br />
+            </div>
+            <div class="liste">
+                <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+                    <li>Gezi</li>
+                    <li>Piknik</li>
+                    <li>Halı Saha</li>
+                    <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-1" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>       
+                    <p style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:0px; border-top-width:1px; width:77px" id="collapsible-1"  class="collapse"   > Etkinlik</p>    
+                </ul>
+                <br />
+                <br />
+            </div>
 
-                        <li>Etkinlik Adı</li>
+            <div class="liste">
+                <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+                    <li>Gezi</li>
+                    <li>Piknik</li>
+                    <li>Halı Saha</li>
+                    <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-1" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
+                    <p style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:0px; border-top-width:1px; width:77px" id="collapsible-1" class="collapse"> Etkinlik</p>
 
-                        <li>Etkinlik Detayı</li>
+                </ul>
+                <br />
+                <br />
+            </div>
 
-                        <li>Etkinlik Saat ve Tarihi</li>
-                    </ul>
-                       <br />
-                    <br />
-                </div>
-                <div class="liste">
-                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-
-
-
-                        <li>Gezi</li>
-
-                        <li>Piknik</li>
-
-                        <li>Halı Saha</li>
-                        <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-1" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
-                       
-                            <p style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:0px; border-top-width:1px; width:77px" id="collapsible-1"  class="collapse"   > Etkinlik</p>
-                        
-                    </ul>
-                    <br />
-                    <br />
-                   
-                </div>
-                <div class="liste">
-                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-
-
-                        <li>Gezi</li>
-
-                        <li>Piknik</li>
-
-                        <li>Halı Saha</li>
-                        <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-1" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
-
-                        <p style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:0px; border-top-width:1px; width:77px" id="collapsible-1" class="collapse"> Etkinlik</p>
-
-                    </ul>
-                    <br />
-<br />
-                </div>
-
-                <div class="liste">
-                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-
-                        <li>Gezi</li>
-
-                        <li>Piknik</li>
-
-                        <li>Halı Saha</li>
-                        <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-1" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
-
-                       <p style="padding-top:0px; margin-left:1000px;  border-bottom-width: 100px; margin-bottom: 15px; margin-top: 15px;" id="collapsible-1" class="collapse"> Etkinlik</p>
-                    </ul>
-                </div>
-               
-
-            
-                   
-</div>
-            </form>
-  
-
-
+            <div class="liste">
+                <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+                    <li>Gezi</li>
+                    <li>Piknik</li>
+                    <li>Halı Saha</li>
+                    <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-1" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
+                    <p style="padding-top:0px; margin-left:1000px;  border-bottom-width: 100px; margin-bottom: 15px; margin-top: 15px;" id="collapsible-1" class="collapse"> Etkinlik</p>
+                </ul>
+            </div>       
+        </div>
+    </form>
 </body>
 </html>
 

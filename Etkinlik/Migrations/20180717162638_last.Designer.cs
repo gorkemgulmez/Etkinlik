@@ -11,8 +11,8 @@ using System;
 namespace Etkinlik.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180713125738_ApplicationUserFull")]
-    partial class ApplicationUserFull
+    [Migration("20180717162638_last")]
+    partial class last
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,26 @@ namespace Etkinlik.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.3-rtm-10026")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Etkinlik.Models.AnswerModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AnswerName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<int>("SurveyModelId");
+
+                    b.Property<int>("Vote");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SurveyModelId");
+
+                    b.ToTable("Answers");
+                });
 
             modelBuilder.Entity("Etkinlik.Models.ApplicationUser", b =>
                 {
@@ -74,6 +94,63 @@ namespace Etkinlik.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Etkinlik.Models.SurveyModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Surveys");
+                });
+
+            modelBuilder.Entity("Etkinlik.PostModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<DateTime>("PostCreateTime");
+
+                    b.Property<string>("PostDesc")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("PostName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("PostTime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("Etkinlik.UserPostModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("PostModelId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("PostModelId");
+
+                    b.ToTable("UserPosts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -182,6 +259,33 @@ namespace Etkinlik.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Etkinlik.Models.AnswerModel", b =>
+                {
+                    b.HasOne("Etkinlik.Models.SurveyModel", "SurveyModel")
+                        .WithMany()
+                        .HasForeignKey("SurveyModelId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Etkinlik.PostModel", b =>
+                {
+                    b.HasOne("Etkinlik.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("Etkinlik.UserPostModel", b =>
+                {
+                    b.HasOne("Etkinlik.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Etkinlik.PostModel", "PostModel")
+                        .WithMany()
+                        .HasForeignKey("PostModelId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

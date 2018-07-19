@@ -1,13 +1,12 @@
-﻿@page
+﻿@using Etkinlik.Models.ActivityViewModels
+
 @using Etkinlik.Models.ActivityViewModels
-@using Etkinlik.Models
-@using Etkinlik.Data
+@{
+    ViewData["Title"] = Model.PostName;
+}
 
 @model UpdateActivityModel
-@inject ApplicationDbContext dbContext
 
-@{
-}
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,18 +14,17 @@
 
     <link rel="stylesheet" type="text/css" href="~/css/StyleSheet.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>Diger</title>
 </head>
 
 <body>
-    <form method="post" asp-controller="Post" asp-action="UpdateActivity">
+    <form asp-controller="Post" >
         <table cellpadding="2" cellspacing="2">
             <tr>
                 <td>
                     Etkinlik Adı
                 </td>
                 <td>
-                    <input type="text" required autocomplete="off" value="@Model.PostName" />
+                    <input type="text" required autocomplete="off" asp-for="PostName" />
                 </td>
             </tr>
             <tr>
@@ -34,7 +32,7 @@
                     Etkinlik Detayı
                 </td>
                 <td>
-                    <input type="text" value="@Model.PostDesc" />
+                    <input type="text" asp-for="PostDesc" />
                 </td>
             </tr>
 
@@ -43,7 +41,7 @@
                     Tarih
                 </td>
                 <td>
-                   <input type="datetime-local" value="@Model.PostTime" />
+                    <input type="datetime-local" asp-for="PostTime" />
                 </td>
             </tr>
             <tr></tr>
@@ -53,10 +51,8 @@
                     &nbsp;
                 </td>
                 <td>
-                    <input type="submit" value="UpdateActivity" />
-                </td>
-                <td>
-                    <input asp-action="DeleteActivity" type="submit" value="del" />
+                    <input method="delete" asp-page-handler="DeleteActivity" type="submit" value="del" />
+                    <a href="/Post/delete/@Model.Id"> sil</a>
                 </td>
             </tr>
         </table>
