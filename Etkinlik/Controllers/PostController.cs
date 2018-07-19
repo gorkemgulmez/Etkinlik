@@ -35,6 +35,12 @@ namespace Etkinlik.Controllers
         /// </summary>
         /// <param name="post"></param>
         /// <returns></returns>
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         [HttpGet("add")]
         public IActionResult AddActivity()
         {
@@ -153,6 +159,7 @@ namespace Etkinlik.Controllers
         /// PostUser methods (join or quit activity)
         /// </summary>
         /// <param name="User"></param>
+        [HttpGet("addUser")]
         public IActionResult AddUser(PostModel post)
         {
             var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
@@ -178,6 +185,7 @@ namespace Etkinlik.Controllers
 
         }
 
+        [HttpGet("delUser")]
         public IActionResult DeleteUser(PostModel post)
         {
             if (!_signInManager.IsSignedIn(HttpContext.User))
