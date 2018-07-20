@@ -143,3 +143,10 @@ div.input-group-multiple-select span.input-group-addon-remove {
 div.input-group-multiple-select {
     margin-bottom: 5px;
 }
+* {
+    .border-radius(0) !important;
+}
+
+#field {
+    margin-bottom: 20px;
+}

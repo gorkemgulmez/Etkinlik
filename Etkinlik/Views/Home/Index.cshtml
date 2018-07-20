@@ -12,7 +12,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
     <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css"/>
-    <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
+  <script src="jquery-2.1.4.min.js"></script>
+    <script src="chart.js"></script>
 </head>
 <body>
     <h2>Home Page</h2>
@@ -25,8 +26,6 @@
             <div class="row">
                 <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
 
-
-
                     <li>Etkinlik Adı</li>
 
                     <li>Etkinlik Detayı</li>
@@ -38,16 +37,10 @@
             </div>
         </div>
         <div class="container">
-
             <div class="row">
                 <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-
-
-
                     <li>Gezi</li>
-
                     <li>Piknik</li>
-
                     <li>Halı Saha</li>
                 </ul>
                 <ul>
@@ -120,10 +113,17 @@
                 </ul>
             </div>
         </div>
+        <div class="container">
+
+            <div class="row">
+                <canvas id="mycanvas" width="256" height="256">
+
+                </canvas>
+                <script>
+                    $(document).ready()
+                </script>
+                </div></div>
 
     </form>
-
-
-
 </body>
 </html>
