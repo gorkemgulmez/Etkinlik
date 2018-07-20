@@ -1,5 +1,5 @@
 ﻿@model List<PostModel>
-
+@inject  Etkinlik.Controllers.PostController PostController
 @{
     ViewData["Title"] = "Index";
 }
@@ -12,7 +12,6 @@
     <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <h2>Home Page</h2>
     <br />
     <br />
     @if (Model.Count == 0)
@@ -49,65 +48,15 @@
                                 <a href="/Post/update/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Update</a>
                                 <a href="/Post/delete/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Delete</a>
                                 <ul id=@linkName class="collapse">
-                                    @*Bir foreach de buraya gelecek*@
-                                    <li>
-                                        
-                                    </li>
+                                    @foreach (var userName in PostController.getUsers(post)) {
+                                        <li>@userName</li>
+                                    }
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </div>
             }
-            <div class="container">
-
-                <div class="row">
-                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-
-
-
-                        <li>Gezi</li>
-
-                        <li>Piknik</li>
-
-                        <li>Halı Saha</li>
-                    </ul>
-                    <ul>
-                        <li class="panel">
-                            <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href="#secondLink">Katılımcılar</button>
-                            <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Update</button>
-                            <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Delete</button>
-                            <ul id="secondLink" class="collapse">
-                                <li>sdfg</li>
-                                <li>SubTest1</li>
-                                <li>SubTest1</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-                        <li>Gezi</li>
-                        <li>Piknik</li>
-                        <li>Halı Saha</li>
-                    </ul>
-                    <ul>
-                        <li class="panel">
-                            <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href="#thirdLink">Katılımcılar</button>
-                            <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Update</button>
-                            <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Delete</button>
-                            <ul id="thirdLink" class="collapse">
-                                <li>SubTest1</li>
-                                <li>SubTest1</li>
-                                <li>SubTest1</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </form>
     }
 </body>

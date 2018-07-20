@@ -15,7 +15,7 @@ namespace Etkinlik.Controllers
     [Authorize]
     public class PostController : Controller
     {
-        #region
+        #region private-readonly
         private readonly ApplicationDbContext _applicationDbContext;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -157,52 +157,15 @@ namespace Etkinlik.Controllers
             return Redirect("/Post/add");
         }
 
-        /// PostUser methods (join or quit activity)
-        /// </summary>
-        /// <param name="User"></param>
-        [HttpGet("addUser")]
-        public IActionResult AddUser(PostModel post)
+        public List<string> getUsers(PostModel post)
         {
-            var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
-            if (!post.ApplicationUserId.Equals(user.Id))
-                return Redirect("/");
-
-            try
+            List<UserPostModel> users = _applicationDbContext.UserPosts.Where(up => up.PostModelId == post.Id).ToList();
+            List<string> userName = new List<string>();
+            foreach (var model in users)
             {
-                UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
-                         d.ApplicationUserId == user.Id && d.PostModelId == post.Id);
-            }catch(Exception) {
-            
-                _applicationDbContext.UserPosts.Add(new UserPostModel
-                {
-                    ApplicationUserId = user.Id,
-                    PostModelId = post.Id
-                });
-                _applicationDbContext.SaveChanges();
-                return View();
+                userName.Add(_applicationDbContext.Users.First(u => u.Id == model.ApplicationUserId).FullName);
             }
-
-            return Redirect("/");
-
-        }
-
-        [HttpGet("delUser")]
-        public IActionResult DeleteUser(PostModel post)
-        {
-            if (!_signInManager.IsSignedIn(HttpContext.User))
-                return Redirect("/Account/Login");
-            var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
-            if (!post.ApplicationUserId.Equals(user.Id))
-                return Redirect("/");
-
-            UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
-                         d.ApplicationUserId == user.Id && d.PostModelId == post.Id);
-            if (userPost == null)
-                return Redirect("/");
-
-            _applicationDbContext.UserPosts.Remove(userPost);
-            _applicationDbContext.SaveChanges();
-            return View();
+            return userName;
         }
     }
 }
