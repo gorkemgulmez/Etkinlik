@@ -64,6 +64,7 @@ namespace Etkinlik
             services.AddTransient<LayoutViewModel>();
             services.AddTransient<UpdateActivityModel>();
             services.AddTransient<PostController>();
+            services.AddTransient<HomeController>();
             services.AddMvc();
         }
 

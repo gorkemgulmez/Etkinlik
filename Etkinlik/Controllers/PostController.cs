@@ -101,7 +101,8 @@ namespace Etkinlik.Controllers
 
             _applicationDbContext.Posts.AddAsync(newPost);
             _applicationDbContext.SaveChanges();
-            AddUser(newPost);
+            //AddUser
+            AddUser(newPost.Id);
             return Redirect("/");
         }
 
@@ -166,6 +167,75 @@ namespace Etkinlik.Controllers
                 userName.Add(_applicationDbContext.Users.First(u => u.Id == model.ApplicationUserId).FullName);
             }
             return userName;
+        }
+
+        /// PostUser methods (join or quit activity)
+        /// </summary>
+        /// <param name="User"></param>
+        [HttpGet("join/{id}")]
+        public IActionResult AddUser(int id)
+        {
+            var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
+            PostModel post;
+            try
+            {
+                post = _applicationDbContext.Posts.First(p => p.Id == id);
+               
+            }
+            catch (Exception)
+            {
+                return Redirect("/");
+            }
+
+            try
+            {
+                UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
+                         d.ApplicationUserId == user.Id && d.PostModelId == id);
+            }
+            catch (Exception)
+            {
+
+                _applicationDbContext.UserPosts.Add(new UserPostModel
+                {
+                    ApplicationUserId = user.Id,
+                    PostModelId = id
+                });
+                _applicationDbContext.SaveChanges();
+                return Redirect("/");
+            }
+
+            return Redirect("/");
+        }
+
+        [HttpGet("quit/{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            if (!_signInManager.IsSignedIn(HttpContext.User))
+                return Redirect("/");
+            var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
+            PostModel post;
+            try {
+                post = _applicationDbContext.Posts.First(p => p.Id == id);
+            }
+            catch(Exception)
+            {
+                return Redirect("/");
+            }
+
+            UserPostModel userPost;
+            try
+            {
+                userPost = _applicationDbContext.UserPosts.First(d =>
+                             d.ApplicationUserId == user.Id && d.PostModelId == id);
+            }
+            catch (Exception)
+            {
+                return Redirect("/");
+            }
+
+            _applicationDbContext.UserPosts.Remove(userPost);
+            _applicationDbContext.SaveChanges();
+            return Redirect("/");
         }
     }
 }
