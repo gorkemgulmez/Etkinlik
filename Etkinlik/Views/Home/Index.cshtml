@@ -37,7 +37,8 @@
                                     string linkSharp = "#" + linkName;}
                                 <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
                                 @if(signInManager.IsSignedIn(User)) {
-                                    @if (!HomeController.HasIn(post))
+                                    bool result = await HomeController.HasInAsync(post);
+                                    @if (result)
                                     {
                                         <a href="Post/join/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Katıl</a>
                                     }
