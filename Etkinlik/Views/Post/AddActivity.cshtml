@@ -16,39 +16,29 @@
 </head>
 
 <body>
-
     <section>
-        <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+        <form method="post">
             <fieldset>
                 <hr />
-
                 <div class="container" style="margin-top:40px">
                     <div class="row">
-
                         <div class="col-sm-12 col-md-10  col-md-offset-1 ">
                             <div class="form-group">
                                 <div class="input-group">
-
-
                                     <label>Activity Name</label>
-                                    <input asp-for="PostName" class="form-control" type="text" placeholder="Enter Activity Name" />
-
+                                        <input asp-for="PostName" class="form-control" type="text" placeholder="Enter Activity Name" />
                                 </div>
                                 <span asp-validation-for="PostName" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
 
-
                     <div class="row">
                         <div class="col-sm-12 col-md-10  col-md-offset-1 ">
                             <div class="form-group">
                                 <div class="input-group">
-
-
                                     <label> Activity Detail</label>
-                                    <input asp-for="PostDesc" class="form-control" type="text" placeholder="Enter Avtivity Detail" />
-
+                                        <input asp-for="PostDesc" class="form-control" type="text" placeholder="Enter Activity Detail" />
                                 </div>
                                 <span asp-validation-for="PostDesc" class="text-danger"></span>
                             </div>
@@ -59,14 +49,12 @@
                         <div class="col-sm-12 col-md-10  col-md-offset-1 ">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="date" />
+                                    <input asp-for="PostDate" type="date" value="" />
                                 </div>
                                 <div class="input-group">
-                                    <input type="time" />
+                                    <input asp-for="PostTime" type="time" value="00:00" />
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
 
@@ -78,8 +66,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
                     <div class="navbar navbar-fixed-bottom">
                         <footer>
                             <p>&nbsp;&copy; 2018 - Etkinlik</p>

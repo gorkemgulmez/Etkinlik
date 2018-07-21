@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Etkinlik.Migrations
 {
-    public partial class last : Migration
+    public partial class postDateTimeMig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -176,9 +176,10 @@ namespace Etkinlik.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ApplicationUserId = table.Column<string>(nullable: true),
                     PostCreateTime = table.Column<DateTime>(nullable: false),
+                    PostDate = table.Column<DateTime>(nullable: false),
                     PostDesc = table.Column<string>(maxLength: 1000, nullable: true),
                     PostName = table.Column<string>(maxLength: 100, nullable: false),
-                    PostTime = table.Column<DateTime>(nullable: false)
+                    PostTime = table.Column<TimeSpan>(nullable: false)
                 },
                 constraints: table =>
                 {

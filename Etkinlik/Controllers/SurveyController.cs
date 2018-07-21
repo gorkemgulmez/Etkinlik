@@ -12,6 +12,7 @@ namespace Etkinlik.Controllers
     public class SurveyController : Controller
     {
         // GET: /<controller>/
+        [Authorize]
         public IActionResult Index()
         {
             return View();

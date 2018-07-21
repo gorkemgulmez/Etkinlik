@@ -11,8 +11,8 @@ using System;
 namespace Etkinlik.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180719070632_calisan")]
-    partial class calisan
+    [Migration("20180721114617_postDateTimeMig")]
+    partial class postDateTimeMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -119,6 +119,8 @@ namespace Etkinlik.Migrations
 
                     b.Property<DateTime>("PostCreateTime");
 
+                    b.Property<DateTime>("PostDate");
+
                     b.Property<string>("PostDesc")
                         .HasMaxLength(1000);
 
@@ -126,7 +128,7 @@ namespace Etkinlik.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<DateTime>("PostTime");
+                    b.Property<TimeSpan>("PostTime");
 
                     b.HasKey("Id");
 

@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width" />
 
 
+
     <link rel="stylesheet" type="text/css" href="~/css/StyleSheet.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -57,18 +58,12 @@
                     </div>
 
                     <div class="row">
-
                         <div class="col-sm-12 col-md-10  col-md-offset-1 ">
                             <div class="form-group">
-
-                                <label> Activity Date & Time</label>
-                                <div class="input-group date" id="datetimepicker1">
-
-                                    <input asp-for="PostTime" class="form-control" type="text" placeholder="Enter Activity Time" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
+                                <label>Date</label>
+                                    <input asp-for="PostDate" type="date"/>
+                                <label>Time</label>
+                                    <input asp-for="PostTime" type="time"/>
                             </div>
                         </div>
                     </div>
@@ -79,10 +74,8 @@
                             <div class="col-sm-12 col-md-10  col-md-offset-1 ">
                                 <div class="form-group">
                                     <div class="input-group">
-
                                         <input method="delete" asp-page-handler="DeleteActivity" class="btn btn-default" type="submit" value="Update Activity" />
                                         <a href="/Post/delete/@Model.Id" class="btn btn-default" type="submit"> Delete Activity</a>
-
                                     </div>
                                 </div>
                             </div>
