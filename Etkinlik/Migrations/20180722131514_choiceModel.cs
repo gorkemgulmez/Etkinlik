@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Etkinlik.Migrations
 {
-    public partial class surveyChoice : Migration
+    public partial class choiceModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -226,7 +226,7 @@ namespace Etkinlik.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Answers",
+                name: "SurveyChoices",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -237,9 +237,9 @@ namespace Etkinlik.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Answers", x => x.Id);
+                    table.PrimaryKey("PK_SurveyChoices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Answers_Surveys_SurveyModelId",
+                        name: "FK_SurveyChoices_Surveys_SurveyModelId",
                         column: x => x.SurveyModelId,
                         principalTable: "Surveys",
                         principalColumn: "Id",
@@ -271,11 +271,6 @@ namespace Etkinlik.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Answers_SurveyModelId",
-                table: "Answers",
-                column: "SurveyModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -322,6 +317,11 @@ namespace Etkinlik.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SurveyChoices_SurveyModelId",
+                table: "SurveyChoices",
+                column: "SurveyModelId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Surveys_ApplicationUserId",
                 table: "Surveys",
                 column: "ApplicationUserId");
@@ -350,9 +350,6 @@ namespace Etkinlik.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Answers");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -366,6 +363,9 @@ namespace Etkinlik.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "SurveyChoices");
 
             migrationBuilder.DropTable(
                 name: "UserPosts");

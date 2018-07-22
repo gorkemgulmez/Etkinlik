@@ -92,7 +92,7 @@ namespace Etkinlik.Migrations
 
                     b.HasIndex("SurveyModelId");
 
-                    b.ToTable("Answers");
+                    b.ToTable("SurveyChoices");
                 });
 
             modelBuilder.Entity("Etkinlik.Models.SurveyModel", b =>
@@ -287,7 +287,7 @@ namespace Etkinlik.Migrations
             modelBuilder.Entity("Etkinlik.Models.SurveyChoiceModel", b =>
                 {
                     b.HasOne("Etkinlik.Models.SurveyModel", "SurveyModel")
-                        .WithMany()
+                        .WithMany("SurveyChoiceModel")
                         .HasForeignKey("SurveyModelId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
