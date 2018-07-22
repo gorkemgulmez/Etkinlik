@@ -2,30 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Etkinlik.Data;
 using Etkinlik.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Etkinlik.Controllers
 {
     [Route("Survey")]
+    [Authorize]
     public class SurveyController : Controller
     {
-        // GET: /<controller>/
-        [Authorize]
-        public IActionResult Index()
+        private readonly ApplicationDbContext _applicationDbContext;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public SurveyController(ApplicationDbContext applicationDbContext,
+                            UserManager<ApplicationUser> userManager)
         {
-            return View();
+            _applicationDbContext = applicationDbContext;
+            _userManager = userManager;
         }
 
-        public IActionResult GetSurvey()
+        // GET: /<controller>/
+        [HttpGet]
+        public IActionResult Index()
         {
-            return View();
+            var surveyList = _applicationDbContext.Surveys.Where(
+                s=> s.ApplicationUserId == _userManager.GetUserId(HttpContext.User) ).ToList();
+
+            return View("Index", surveyList);
         }
 
         [HttpGet]
         [Route("add")]
-        [Authorize]
         public IActionResult AddSurvey()
         {
             return View("AddSurvey", new SurveyModel());
@@ -33,27 +43,61 @@ namespace Etkinlik.Controllers
 
         [HttpPost]
         [Route("add")]
-        [Authorize]
         public IActionResult AddSurvey(SurveyModel surveyModel)
         {
             if (surveyModel == null)
-                return View();
+                return Redirect("/");
 
-            if (surveyModel.Title == null)
-                return View();
-            return View();
+            if (surveyModel.SurveyTitle == null)
+                return Redirect("/");
+
+            surveyModel.ApplicationUserId = _userManager.GetUserId(HttpContext.User);
+            _applicationDbContext.Surveys.Add(surveyModel);
+            _applicationDbContext.SaveChanges();
+            return Redirect("/Survey");
         }
 
-        public IActionResult DeleteSurvey(SurveyModel survey)
+        [HttpGet("delete/{id}")]
+        public IActionResult DeleteSurvey(int id)
         {
+            ApplicationUser user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
+            SurveyModel delSurvey;
+            try
+            {
+                delSurvey = _applicationDbContext.Surveys.First(p => p.Id == id);
+            }
+            catch (Exception)
+            {
+                return Redirect("/");
+            }
+            if (delSurvey == null)
+                return Redirect("/");
+
+            try
+            {
+                if (delSurvey.ApplicationUserId != user.Id)
+                    return Redirect("/");
+            }
+            catch (Exception)
+            {
+                return Redirect("/");
+            }
+            _applicationDbContext.Remove(delSurvey);
+            _applicationDbContext.SaveChanges();
+            return Redirect("/Survey");
+        }
+        
+        public IActionResult JoinSurvey(SurveyChoiceModel selection)
+        {
+            selection.Vote += 1;
             return View();
         }
 
-        [Authorize]
-        public IActionResult JoinSurvey(AnswerModel answer)
+        public List<SurveyChoiceModel> getChoices(SurveyModel survey)
         {
-            answer.Vote += 1;
-            return View();
+            List<SurveyChoiceModel> choices = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == survey.Id).ToList();
+            return choices;
         }
+
     }
 }

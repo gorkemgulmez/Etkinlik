@@ -40,6 +40,12 @@
     <Compile Remove="Migrations\20180721114617_postDateTimeMig.Designer.cs" />
     <Compile Remove="Migrations\20180722105335_surveyChoice.cs" />
     <Compile Remove="Migrations\20180722105335_surveyChoice.Designer.cs" />
+    <Compile Remove="Migrations\20180722105609_surveyChoice.cs" />
+    <Compile Remove="Migrations\20180722105609_surveyChoice.Designer.cs" />
+    <Compile Remove="Migrations\20180722113352_surveyCollection.cs" />
+    <Compile Remove="Migrations\20180722113352_surveyCollection.Designer.cs" />
+    <Compile Remove="Migrations\20180722123347_surveyCollection.cs" />
+    <Compile Remove="Migrations\20180722123347_surveyCollection.Designer.cs" />
   </ItemGroup>
 
 
