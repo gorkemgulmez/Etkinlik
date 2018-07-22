@@ -6,6 +6,7 @@ using Etkinlik.Data;
 using Etkinlik.Models;
 using Etkinlik.Models.ActivityViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -123,6 +124,8 @@ namespace Etkinlik.Controllers
                 updPost.PostName = post.PostName;
             if (!post.PostDesc.Equals(updPost.PostName))
                 updPost.PostDesc = post.PostDesc;
+            if (post.PostDate != null && !post.PostDate.Equals(updPost.PostDate))
+                updPost.PostDate = post.PostDate;
             if (!(post.PostTime == null) && !post.PostTime.Equals(updPost.PostTime))
                 updPost.PostTime = post.PostTime;
 
@@ -241,5 +244,20 @@ namespace Etkinlik.Controllers
             return Redirect("/");
         }
 
+        public bool HasIn(PostModel post, string userId)
+        {
+            try
+            {
+                var user = _applicationDbContext.Users.First(u => u.Id.Equals(userId));
+                
+                UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
+                         d.ApplicationUserId == user.Id && d.PostModelId == post.Id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

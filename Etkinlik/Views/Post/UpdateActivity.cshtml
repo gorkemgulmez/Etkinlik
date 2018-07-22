@@ -25,7 +25,7 @@
 
 
         <section>
-            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+            <form method="post" asp-area="" asp-controller="Post" asp-action="UpdateActivity">
                 <fieldset>
                     <hr />
                     <div class="row">
@@ -68,14 +68,12 @@
                         </div>
                     </div>
 
-
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12 col-md-10  col-md-offset-1 ">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input method="delete" asp-page-handler="DeleteActivity" class="btn btn-default" type="submit" value="Update Activity" />
-                                        <a href="/Post/delete/@Model.Id" class="btn btn-default" type="submit"> Delete Activity</a>
+                                        <input class="btn btn-default" type="submit" value="Update Activity" />
                                     </div>
                                 </div>
                             </div>

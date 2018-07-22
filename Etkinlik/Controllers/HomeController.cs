@@ -49,24 +49,7 @@ namespace Etkinlik.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
-
-        public async Task<bool> HasInAsync(PostModel post)
-        {
-            try
-            {
-                if (!User.Identity.IsAuthenticated)
-                    return false;
-                var user = await GetCurrentUserAsync();
-                UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
-                         d.ApplicationUserId == user.Id && d.PostModelId == post.Id);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
-        }
+       
 
     }
 }

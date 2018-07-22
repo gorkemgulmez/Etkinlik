@@ -1,8 +1,7 @@
 ﻿@model List<PostModel>
 @using Etkinlik.Controllers
 @inject PostController PostController
-@inject HomeController HomeController
-@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
 @{
     ViewData["Title"] = "Index";
 }
@@ -36,17 +35,14 @@
                                 @{ string linkName = "link" + post.Id;
                                     string linkSharp = "#" + linkName;}
                                 <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
-                                @if(signInManager.IsSignedIn(User)) {
-                                    bool result = await HomeController.HasInAsync(post);
-                                    @if (result)
-                                    {
-                                        <a href="Post/join/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Katıl</a>
-                                    }
-                                    else
-                                    {
-                                        <a href="Post/quit/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Çık</a>
-                                    }   
-                                }   
+                                @if (! PostController.HasIn(post, userManager.GetUserId(User)))
+                                {
+                                    <a href="Post/join/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Katıl</a>
+                                }
+                                else
+                                {
+                                    <a href="Post/quit/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Çık</a>
+                                }
                                 <ul id=@linkName class="collapse">
                                     @foreach (var userName in PostController.getUsers(post))
                                     {
