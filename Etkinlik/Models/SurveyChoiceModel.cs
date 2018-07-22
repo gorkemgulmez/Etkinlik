@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Etkinlik.Models
 {
-    public class AnswerModel
+    public class SurveyChoiceModel
     {
         public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string AnswerName { get; set; }
+        public string ChoiceName { get; set; }
 
         [Required]
         public int Vote { get; set; }

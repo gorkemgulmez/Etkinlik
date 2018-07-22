@@ -36,6 +36,10 @@
     <Compile Remove="Migrations\20180719070632_calisan.Designer.cs" />
     <Compile Remove="Migrations\20180721113708_postDate.cs" />
     <Compile Remove="Migrations\20180721113708_postDate.Designer.cs" />
+    <Compile Remove="Migrations\20180721114617_postDateTimeMig.cs" />
+    <Compile Remove="Migrations\20180721114617_postDateTimeMig.Designer.cs" />
+    <Compile Remove="Migrations\20180722105335_surveyChoice.cs" />
+    <Compile Remove="Migrations\20180722105335_surveyChoice.Designer.cs" />
   </ItemGroup>
 
 
