@@ -27,10 +27,10 @@
         <div class="row">
             <div class="col-sm-6 col-md-4 col-md-offset-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <center>
                         <strong> Log in to continue</strong>
+                    </center>
                         <hr class="colorgraph">
-                    </div>
                     <div class="panel-body">
                      
                                 <section>
@@ -43,7 +43,7 @@
                                             <div class="row">
                                                 <div class="center-block">
                                                     <center>
-                                                        <i class="glyphicon glyphicon-user" style="font-size:100px">
+                                                        <i class="glyphicon glyphicon-user" style="font-size:80px">
 
                                                         </i>
                                                     </center>
@@ -59,7 +59,7 @@
                                                             </span>
                                                 
 
-                                                            <input asp-for="Email" class="form-control" placeholder ="Enter e-mail " style="background-color:darkgray; color:white;"/>
+                                                            <input asp-for="Email" class="form-control" placeholder ="Enter e-mail " s"/>
                                                             
                                                         </div>
                                                         <span asp-validation-for="Email" class="text-danger"></span>
@@ -78,8 +78,7 @@
                                                         </div>
                                                         <span asp-validation-for="Password" class="text-danger"></span>
                                                     </div>
-                                                    <button type="button" class="btn btn-info active" data-color="info"><i class="state-icon glyphicon glyphicon-check"></i>&nbsp;Remember Me</button>
-                                                 
+                                                   
                                                     <div class="form-group">
                                                         <div class="checkbox">
                                                             <label asp-for="RememberMe">
