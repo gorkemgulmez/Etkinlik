@@ -20,26 +20,6 @@ namespace Etkinlik.Migrations
                 .HasAnnotation("ProductVersion", "2.0.3-rtm-10026")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Etkinlik.Models.AnswerModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AnswerName")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<int>("SurveyModelId");
-
-                    b.Property<int>("Vote");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SurveyModelId");
-
-                    b.ToTable("Answers");
-                });
-
             modelBuilder.Entity("Etkinlik.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -95,18 +75,60 @@ namespace Etkinlik.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Etkinlik.Models.SurveyChoiceModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ChoiceName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<int>("SurveyModelId");
+
+                    b.Property<int>("Vote");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SurveyModelId");
+
+                    b.ToTable("SurveyChoices");
+                });
+
             modelBuilder.Entity("Etkinlik.Models.SurveyModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Title")
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("SurveyTitle")
                         .IsRequired()
                         .HasMaxLength(200);
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApplicationUserId");
+
                     b.ToTable("Surveys");
+                });
+
+            modelBuilder.Entity("Etkinlik.Models.UserSurveyModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("SurveyChoiceModelId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("SurveyChoiceModelId");
+
+                    b.ToTable("UserSurveys");
                 });
 
             modelBuilder.Entity("Etkinlik.PostModel", b =>
@@ -118,6 +140,8 @@ namespace Etkinlik.Migrations
 
                     b.Property<DateTime>("PostCreateTime");
 
+                    b.Property<DateTime>("PostDate");
+
                     b.Property<string>("PostDesc")
                         .HasMaxLength(1000);
 
@@ -125,7 +149,7 @@ namespace Etkinlik.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<DateTime>("PostTime");
+                    b.Property<TimeSpan>("PostTime");
 
                     b.HasKey("Id");
 
@@ -260,11 +284,30 @@ namespace Etkinlik.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Etkinlik.Models.AnswerModel", b =>
+            modelBuilder.Entity("Etkinlik.Models.SurveyChoiceModel", b =>
                 {
                     b.HasOne("Etkinlik.Models.SurveyModel", "SurveyModel")
-                        .WithMany()
+                        .WithMany("SurveyChoiceModel")
                         .HasForeignKey("SurveyModelId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Etkinlik.Models.SurveyModel", b =>
+                {
+                    b.HasOne("Etkinlik.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("Etkinlik.Models.UserSurveyModel", b =>
+                {
+                    b.HasOne("Etkinlik.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Etkinlik.Models.SurveyModel", "SurveyChoiceModel")
+                        .WithMany()
+                        .HasForeignKey("SurveyChoiceModelId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

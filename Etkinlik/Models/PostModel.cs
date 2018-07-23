@@ -22,8 +22,11 @@ namespace Etkinlik
         public DateTime PostCreateTime { get; set; }
 
 
-        [DataType(DataType.DateTime)]
-        public DateTime PostTime { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime PostDate { get; set; }
+
+        [DataType(DataType.Time)]
+        public TimeSpan PostTime { get; set; }
 
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

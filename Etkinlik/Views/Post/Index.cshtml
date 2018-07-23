@@ -1,7 +1,9 @@
-﻿@page
-@model IndexModel
+﻿@model List<PostModel>
+@inject  Etkinlik.Controllers.PostController PostController
 @{
+    ViewData["Title"] = "Index";
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,97 +15,52 @@
     <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <h2>Home Page</h2>
     <br />
     <br />
-
-    <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-        <div class="container">
-
-            <div class="row">
-                <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-
-
-
-                    <li>Etkinlik Adı</li>
-
-                    <li>Etkinlik Detayı</li>
-
-                    <li>Etkinlik Saat ve Tarihi</li>
-                </ul>
-                <br />
-                <br />
-
-                <div class="container">
-
-                    <div class="row">
-                        <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-
-
-
-                            <li>Gezi</li>
-
-                            <li>Piknik</li>
-
-                            <li>Halı Saha</li>
-                            <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-1" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
-
-                            <p id="collapsible-1" class="collapse"> asdf</p>
-
-                        </ul>
-                        <br />
-                        <br />
-
-                    </div>
-                </div>
-                <div class="container">
-
-                    <div class="row">
-                        <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-
-
-                            <li>Gezi</li>
-
-                            <li>Piknik</li>
-
-                            <li>Halı Saha</li>
-                            <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-2" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
-
-                            <p id="collapsible-2" class="collapse"> dsfgg</p>
-
-                        </ul>
-                        <br />
-                        <br />
-                    </div>
-                </div>
-                <div class="container">
-
-                    <div class="row">
-                        <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-
-                            <li>Gezi</li>
-
-                            <li>Piknik</li>
-
-                            <li>Halı Saha</li>
-                            <libutton button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapsible-3" data-parent="#myAccordion" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;border-top-width: 1px;width: 77px;">Katılımcılar </libutton>
-
-                            <p id="collapsible-3" class="collapse"> Etkinlik</p>
-                        </ul>
-                    </div>
-
+    @if (Model.Count == 0)
+    {<p>Bomboş</p>}
+    else
+    {
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <div class="container">
+                <div class="row">
+                    <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+                        <li>Etkinlik Adı</li>
+                        <li>Etkinlik Detayı</li>
+                        <li>Etkinlik Saat ve Tarihi</li>
+                    </ul>
+                    <br />
+                    <br />
                 </div>
             </div>
-        </div>
-        <div class="container">
 
-            <div class="row">
-                <button type="submit" class="btn btn-default">Update</button>
-                <button type="submit" class="btn btn-default">Delete</button>
-                    </div></div>
-    </form>
-
-
-
+            @foreach (var post in Model)
+            {
+                <div class="container">
+                    <div class="row">
+                        <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+                            <li>@post.PostName</li>
+                            <li>@post.PostDesc</li>
+                            <li>@post.PostDate.Day:@post.PostDate.Month:@post.PostDate.Year @post.PostTime</li>
+                        </ul>
+                        <ul>
+                            <li class="panel">
+                                @{ string linkName = "link" + post.Id;
+                                    string linkSharp = "#" + linkName;}
+                                <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
+                                <a href="/Post/update/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Update</a>
+                                <a href="/Post/delete/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Delete</a>
+                                <ul id=@linkName class="collapse">
+                                    @foreach (var userName in PostController.getUsers(post)) {
+                                        <li>@userName</li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </form>
+    }
 </body>
 </html>

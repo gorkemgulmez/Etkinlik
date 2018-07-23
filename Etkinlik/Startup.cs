@@ -12,6 +12,7 @@ using Etkinlik.Data;
 using Etkinlik.Models;
 using Etkinlik.Services;
 using Etkinlik.Models.ActivityViewModels;
+using Etkinlik.Controllers;
 
 namespace Etkinlik
 {
@@ -62,6 +63,9 @@ namespace Etkinlik
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<LayoutViewModel>();
             services.AddTransient<UpdateActivityModel>();
+            services.AddTransient<PostController>();
+            services.AddTransient<HomeController>();
+            services.AddTransient<SurveyController>();
             services.AddMvc();
         }
 

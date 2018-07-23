@@ -13,7 +13,8 @@ namespace Etkinlik.Data
         public DbSet<PostModel> Posts { get; set; }
         public DbSet<UserPostModel> UserPosts { get; set; }
         public DbSet<SurveyModel> Surveys { get; set; }
-        public DbSet<AnswerModel> Answers { get; set; }
+        public DbSet<SurveyChoiceModel> SurveyChoices { get; set; }
+        public DbSet<UserSurveyModel> UserSurveys { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

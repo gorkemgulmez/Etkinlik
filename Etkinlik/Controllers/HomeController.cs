@@ -6,16 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Etkinlik.Models;
 using Etkinlik.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Etkinlik.Controllers
 {
     public class HomeController : Controller
     {
+        #region private-readonly
         private readonly ApplicationDbContext _applicationDbContext;
-        
-        public HomeController(ApplicationDbContext applicationDbContext)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        #endregion
+        //constructor
+        public HomeController(ApplicationDbContext context,
+                              UserManager<ApplicationUser> userManager,
+                              SignInManager<ApplicationUser> signInManager)
         {
-            _applicationDbContext = applicationDbContext;
+            _applicationDbContext = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -39,7 +48,7 @@ namespace Etkinlik.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-       
+        
     }
 }
 

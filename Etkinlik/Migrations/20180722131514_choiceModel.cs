@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Etkinlik.Migrations
 {
-    public partial class last : Migration
+    public partial class choiceModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,19 +47,6 @@ namespace Etkinlik.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Surveys",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(maxLength: 200, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Surveys", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -176,9 +163,10 @@ namespace Etkinlik.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ApplicationUserId = table.Column<string>(nullable: true),
                     PostCreateTime = table.Column<DateTime>(nullable: false),
+                    PostDate = table.Column<DateTime>(nullable: false),
                     PostDesc = table.Column<string>(maxLength: 1000, nullable: true),
                     PostName = table.Column<string>(maxLength: 100, nullable: false),
-                    PostTime = table.Column<DateTime>(nullable: false)
+                    PostTime = table.Column<TimeSpan>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -192,24 +180,23 @@ namespace Etkinlik.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Answers",
+                name: "Surveys",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AnswerName = table.Column<string>(maxLength: 100, nullable: false),
-                    SurveyModelId = table.Column<int>(nullable: false),
-                    Vote = table.Column<int>(nullable: false)
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    SurveyTitle = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Answers", x => x.Id);
+                    table.PrimaryKey("PK_Surveys", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Answers_Surveys_SurveyModelId",
-                        column: x => x.SurveyModelId,
-                        principalTable: "Surveys",
+                        name: "FK_Surveys_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -238,10 +225,52 @@ namespace Etkinlik.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Answers_SurveyModelId",
-                table: "Answers",
-                column: "SurveyModelId");
+            migrationBuilder.CreateTable(
+                name: "SurveyChoices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ChoiceName = table.Column<string>(maxLength: 100, nullable: false),
+                    SurveyModelId = table.Column<int>(nullable: false),
+                    Vote = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SurveyChoices", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SurveyChoices_Surveys_SurveyModelId",
+                        column: x => x.SurveyModelId,
+                        principalTable: "Surveys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserSurveys",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    SurveyChoiceModelId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSurveys", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserSurveys_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserSurveys_Surveys_SurveyChoiceModelId",
+                        column: x => x.SurveyChoiceModelId,
+                        principalTable: "Surveys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -288,6 +317,16 @@ namespace Etkinlik.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SurveyChoices_SurveyModelId",
+                table: "SurveyChoices",
+                column: "SurveyModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Surveys_ApplicationUserId",
+                table: "Surveys",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserPosts_ApplicationUserId",
                 table: "UserPosts",
                 column: "ApplicationUserId");
@@ -296,13 +335,20 @@ namespace Etkinlik.Migrations
                 name: "IX_UserPosts_PostModelId",
                 table: "UserPosts",
                 column: "PostModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSurveys_ApplicationUserId",
+                table: "UserSurveys",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSurveys_SurveyChoiceModelId",
+                table: "UserSurveys",
+                column: "SurveyChoiceModelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Answers");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -319,16 +365,22 @@ namespace Etkinlik.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "SurveyChoices");
+
+            migrationBuilder.DropTable(
                 name: "UserPosts");
 
             migrationBuilder.DropTable(
-                name: "Surveys");
+                name: "UserSurveys");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Posts");
+
+            migrationBuilder.DropTable(
+                name: "Surveys");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
