@@ -31,7 +31,7 @@ namespace Etkinlik.Controllers
         {
             var allPosts = _applicationDbContext.Posts.ToList();
 
-            return View(allPosts);
+            return View("EtkinlikAnaSayfa",allPosts);
         }
 
         public IActionResult AddActivity()

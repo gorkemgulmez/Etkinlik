@@ -1,0 +1,21 @@
+﻿body {
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+ul {
+    list-style-type: none;
+}
+.menu {
+    list-style-type: none;
+    padding-left: 0;
+}
+* {
+    box-sizing: border-box;
+}
+.btn{
+    padding:2px;
+}
