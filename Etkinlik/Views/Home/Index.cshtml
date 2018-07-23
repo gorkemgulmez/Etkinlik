@@ -12,6 +12,9 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <script src="jquery-2.1.4.min.js"></script>
+    <script src="chart.js"></script>
 </head>
 <body>
     <h2>Home Page</h2>
@@ -21,20 +24,33 @@
     <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
         <div class="container">
 
-            @foreach (var post in Model)
+            <div class="row">
+                <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+
+                    <li>Etkinlik Adı</li>
+
+                    <li>Etkinlik Detayı</li>
+
+                    <li>Etkinlik Saat ve Tarihi</li>
+                </ul>
+                <br />
+                <br />
+            </div>
+        </div>
+              @foreach (var post in Model)
             {
-                <div class="container">
-                    <div class="row">
-                        <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
-                            <li>@post.PostName</li>
-                            <li>@post.PostDesc</li>
-                            <li>@post.PostDate.Day:@post.PostDate.Month:@post.PostDate.Year @post.PostTime</li>
-                        </ul>
-                        <ul>
-                            <li class="panel">
-                                @{ string linkName = "link" + post.Id;
+        <div class="container">
+            <div class="row">
+                <ul id="menu" style="float:left; list-style:none; margin-left:20px;">
+                    <li>@post.PostName</li>
+                    <li>@post.PostDesc</li>
+                    <li>@post.PostDate.Day:@post.PostDate.Month:@post.PostDate.Year @post.PostTime</li>
+                </ul>
+                <ul>
+                    <li class="panel">
+                      @{ string linkName = "link" + post.Id;
                                     string linkSharp = "#" + linkName;}
-                                <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
+                        <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
                                 @if (! PostController.HasIn(post, userManager.GetUserId(User)))
                                 {
                                     <a href="Post/join/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Katıl</a>
@@ -49,11 +65,10 @@
                                         <li>@userName</li>
                                     }
                                 </ul>
-                            </li>
                         </ul>
-                    </div>
-                </div>
-            }
+                    </li>
+                </ul>
+            </div>
         </div>
     </form>
 </body>

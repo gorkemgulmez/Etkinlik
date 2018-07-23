@@ -1,7 +1,13 @@
-﻿body {
-    background-color: white;
+﻿.body-content {
+  background-color:darkgray;
 }
-
+.colorgraph {
+    height: 5px;
+    border-top: 0;
+    background: #c4e17f;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4)
+}
 .image {
     position: absolute;
     width: 2%;
@@ -47,15 +53,20 @@
     bottom: 0px;
     position: fixed;
 }
+
 .panel-heading {
     padding: 5px 15px;
+    background-color: #A9A9A9;
 }
 
-.panel-footer {
-    padding: 1px 15px;
-    color: #A0A0A0;
+.panel-body {
+    padding: 5px 15px;
+    background-color: white;
 }
-
+.panel-default {
+    padding: 5px 15px;
+    background-color: #A9A9A9;
+}
 .profile-img {
     width: 96px;
     height: 96px;
@@ -65,6 +76,7 @@
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
+
 .divider-text {
     position: relative;
     text-align: center;
@@ -88,6 +100,7 @@
         left: 0;
         z-index: 1;
     }
+
 ul {
     list-style-type: none;
 }
@@ -143,6 +156,7 @@ div.input-group-multiple-select span.input-group-addon-remove {
 div.input-group-multiple-select {
     margin-bottom: 5px;
 }
+
 * {
     .border-radius(0) !important;
 }

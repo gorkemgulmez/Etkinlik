@@ -6,56 +6,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20180713125738_ApplicationUserFull.cs" />
-    <Compile Remove="Migrations\20180713125738_ApplicationUserFull.Designer.cs" />
     <Compile Remove="Migrations\20180714111521_postMig.cs" />
     <Compile Remove="Migrations\20180714111521_postMig.Designer.cs" />
     <Compile Remove="Migrations\20180714114327_postMig.cs" />
     <Compile Remove="Migrations\20180714114327_postMig.Designer.cs" />
-    <Compile Remove="Migrations\20180714142710_foreign.cs" />
-    <Compile Remove="Migrations\20180714142710_foreign.Designer.cs" />
-    <Compile Remove="Migrations\20180715120638_postDesc.cs" />
-    <Compile Remove="Migrations\20180715120638_postDesc.Designer.cs" />
-    <Compile Remove="Migrations\20180715174139_Survey.cs" />
-    <Compile Remove="Migrations\20180715174139_Survey.Designer.cs" />
-    <Compile Remove="Migrations\20180716075155_gulcan.cs" />
-    <Compile Remove="Migrations\20180716075155_gulcan.Designer.cs" />
-    <Compile Remove="Migrations\20180717073914_relation.cs" />
-    <Compile Remove="Migrations\20180717073914_relation.Designer.cs" />
-    <Compile Remove="Migrations\20180717074458_relation.cs" />
-    <Compile Remove="Migrations\20180717074458_relation.Designer.cs" />
-    <Compile Remove="Migrations\20180717140328_survey.cs" />
-    <Compile Remove="Migrations\20180717140328_survey.Designer.cs" />
-    <Compile Remove="Migrations\20180717162638_last.cs" />
-    <Compile Remove="Migrations\20180717162638_last.Designer.cs" />
-    <Compile Remove="Migrations\20180718201341_userSurvey.cs" />
-    <Compile Remove="Migrations\20180718201341_userSurvey.Designer.cs" />
-    <Compile Remove="Migrations\20180718201601_userSurvey-v0.1.cs" />
-    <Compile Remove="Migrations\20180718201601_userSurvey-v0.1.Designer.cs" />
-    <Compile Remove="Migrations\20180719070632_calisan.cs" />
-    <Compile Remove="Migrations\20180719070632_calisan.Designer.cs" />
-    <Compile Remove="Migrations\20180721113708_postDate.cs" />
-    <Compile Remove="Migrations\20180721113708_postDate.Designer.cs" />
-    <Compile Remove="Migrations\20180721114617_postDateTimeMig.cs" />
-    <Compile Remove="Migrations\20180721114617_postDateTimeMig.Designer.cs" />
-    <Compile Remove="Migrations\20180722105335_surveyChoice.cs" />
-    <Compile Remove="Migrations\20180722105335_surveyChoice.Designer.cs" />
-    <Compile Remove="Migrations\20180722105609_surveyChoice.cs" />
-    <Compile Remove="Migrations\20180722105609_surveyChoice.Designer.cs" />
-    <Compile Remove="Migrations\20180722113352_surveyCollection.cs" />
-    <Compile Remove="Migrations\20180722113352_surveyCollection.Designer.cs" />
-    <Compile Remove="Migrations\20180722123347_surveyCollection.cs" />
-    <Compile Remove="Migrations\20180722123347_surveyCollection.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\js\Pagination.js" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <PackageReference Include="Bootstrap.Datepicker" Version="1.7.1" />
     <PackageReference Include="Bootstrap.v3.Datetimepicker" Version="4.17.45" />
     <PackageReference Include="Bootstrap.v3.Datetimepicker.CSS" Version="4.17.45" />
+    <PackageReference Include="JezekT.AspNetCore.Bootstrap.Datepicker" Version="2.0.0-beta" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
-    <PackageReference Include="Moment.js" Version="2.22.2" />
   </ItemGroup>
 
   <ItemGroup>
