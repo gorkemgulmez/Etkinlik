@@ -18,9 +18,9 @@ function regexEmail(email) {
     return reg.test(String(email).toLowerCase());
 }
 
-let validateBox = function (field, funcName) {
-    field.on("keyup", function () {
-        var bool = funcName(field.val());
-        console.log(bool);
-    });
-};
+let validateBox = function(field, funcName) {
+	field.on("keyup", function() {
+		var bool = funcName(field.val());
+		console.log(bool);
+	});
+}
