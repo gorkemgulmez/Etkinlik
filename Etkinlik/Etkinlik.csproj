@@ -6,28 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20180713125738_ApplicationUserFull.cs" />
-    <Compile Remove="Migrations\20180713125738_ApplicationUserFull.Designer.cs" />
     <Compile Remove="Migrations\20180714111521_postMig.cs" />
     <Compile Remove="Migrations\20180714111521_postMig.Designer.cs" />
     <Compile Remove="Migrations\20180714114327_postMig.cs" />
     <Compile Remove="Migrations\20180714114327_postMig.Designer.cs" />
-    <Compile Remove="Migrations\20180714142710_foreign.cs" />
-    <Compile Remove="Migrations\20180714142710_foreign.Designer.cs" />
-    <Compile Remove="Migrations\20180715120638_postDesc.cs" />
-    <Compile Remove="Migrations\20180715120638_postDesc.Designer.cs" />
-    <Compile Remove="Migrations\20180715174139_Survey.cs" />
-    <Compile Remove="Migrations\20180715174139_Survey.Designer.cs" />
-    <Compile Remove="Migrations\20180717073914_relation.cs" />
-    <Compile Remove="Migrations\20180717073914_relation.Designer.cs" />
-    <Compile Remove="Migrations\20180717074458_relation.cs" />
-    <Compile Remove="Migrations\20180717074458_relation.Designer.cs" />
-    <Compile Remove="Migrations\20180717140328_survey.cs" />
-    <Compile Remove="Migrations\20180717140328_survey.Designer.cs" />
-    <Compile Remove="Migrations\20180718201341_userSurvey.cs" />
-    <Compile Remove="Migrations\20180718201341_userSurvey.Designer.cs" />
-    <Compile Remove="Migrations\20180718201601_userSurvey-v0.1.cs" />
-    <Compile Remove="Migrations\20180718201601_userSurvey-v0.1.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,12 +18,13 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Bootstrap.Datepicker" Version="1.7.1" />
     <PackageReference Include="Bootstrap.v3.Datetimepicker" Version="4.17.45" />
     <PackageReference Include="Bootstrap.v3.Datetimepicker.CSS" Version="4.17.45" />
+    <PackageReference Include="JezekT.AspNetCore.Bootstrap.Datepicker" Version="2.0.0-beta" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
-    <PackageReference Include="Moment.js" Version="2.22.2" />
   </ItemGroup>
 
   <ItemGroup>

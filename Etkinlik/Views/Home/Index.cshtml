@@ -6,11 +6,12 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
+
     <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css"/>
   <script src="jquery-2.1.4.min.js"></script>
     <script src="chart.js"></script>
@@ -30,10 +31,12 @@
 
                     <li>Etkinlik Detayı</li>
 
+
                     <li>Etkinlik Saat ve Tarihi</li>
                 </ul>
                 <br />
                 <br />
+
             </div>
         </div>
         <div class="container">
@@ -53,10 +56,20 @@
                             <li>SubTest1</li>
                             <li>SubTest1</li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                        <ul>
+                            <li class="panel">
+                                <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href="#firstLink">Katılımcılar</button>
+                                <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Update</button>
+                                <button button type="submit" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1">Delete</button>
+                                <ul id="firstLink" class="collapse">
+                                    <li>SubTest1</li>
+                                    <li>SubTest1</li>
+                                    <li>SubTest1</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
         <div class="container">
 
@@ -123,6 +136,7 @@
                     $(document).ready()
                 </script>
                 </div></div>
+
 
     </form>
 </body>
