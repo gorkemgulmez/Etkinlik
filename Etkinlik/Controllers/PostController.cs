@@ -53,10 +53,10 @@ namespace Etkinlik.Controllers
         [HttpGet("update/{id}")]
         public IActionResult UpdateActivity(int id)
         {
-            if (!_signInManager.IsSignedIn(HttpContext.User))
+            /*if (!_signInManager.IsSignedIn(HttpContext.User))
             {
                 return Redirect("/Account/Login");
-            }
+            }*/
 
             PostModel pModel;
             try
@@ -68,6 +68,8 @@ namespace Etkinlik.Controllers
                 return Redirect("/");
             }
 
+            if (!pModel.ApplicationUserId.Equals(_userManager.GetUserId(HttpContext.User)))
+                return Redirect("/");
 
             UpdateActivityModel updateActivityModel = new UpdateActivityModel
             {
@@ -89,7 +91,7 @@ namespace Etkinlik.Controllers
                 //Mesaj gönder
                 return View();
             }
-
+            
             var user = _applicationDbContext.Users.FirstOrDefault(e => e.Id == _userManager.GetUserId(HttpContext.User));
 
             var newPost = new PostModel
@@ -115,10 +117,10 @@ namespace Etkinlik.Controllers
         {
             PostModel updPost = _applicationDbContext.Posts.First(p => p.Id == id);
             if (updPost == null)
-                return View("Index");
+                return Redirect("/");
 
             if (!_userManager.GetUserId(User).Equals(updPost.ApplicationUserId))
-                return View("Index");
+                return Redirect("/");
 
             if (!post.PostName.Equals("") && !post.PostName.Equals(updPost.PostName))
                 updPost.PostName = post.PostName;
@@ -147,8 +149,6 @@ namespace Etkinlik.Controllers
             {
                 return Redirect("/");
             }
-            if (delPost == null)
-                return Redirect("/");
 
             try
             {
