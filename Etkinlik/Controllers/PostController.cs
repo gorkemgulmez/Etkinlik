@@ -37,7 +37,6 @@ namespace Etkinlik.Controllers
         /// <param name="post"></param>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
         public IActionResult Index()
         {
             var postList = _applicationDbContext.Posts.Where(p=> p.ApplicationUserId == _userManager.GetUserId(HttpContext.User)).ToList();
@@ -94,6 +93,11 @@ namespace Etkinlik.Controllers
             
             var user = _applicationDbContext.Users.FirstOrDefault(e => e.Id == _userManager.GetUserId(HttpContext.User));
 
+            if (post.PostName == null || post.PostDesc == null || post.PostDate == new DateTime())
+            {
+                return Redirect("/");
+            }
+
             var newPost = new PostModel
             {
                 PostName = post.PostName,
@@ -126,7 +130,7 @@ namespace Etkinlik.Controllers
                 updPost.PostName = post.PostName;
             if (!post.PostDesc.Equals(updPost.PostName))
                 updPost.PostDesc = post.PostDesc;
-            if (post.PostDate != null && !post.PostDate.Equals(updPost.PostDate))
+            if (post.PostDate != null && post.PostDate != new DateTime() && !post.PostDate.Equals(updPost.PostDate))
                 updPost.PostDate = post.PostDate;
             if (!(post.PostTime == null) && !post.PostTime.Equals(updPost.PostTime))
                 updPost.PostTime = post.PostTime;
