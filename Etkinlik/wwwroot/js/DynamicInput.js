@@ -1,14 +1,22 @@
-﻿$(function () {
+﻿var modelIndex = 0;
+$(function () {
 
     $(document).on('focus', 'div.form-group-options div.input-group-option:last-child input', function () {
-        console.log($(this))
-        var i = 0;
-        var id = '"SurveyChoiceModel_"' + i + '"__ChoiceName"';
+        
         var sInputGroupHtml = $(this).parent().html();
         var sInputGroupClasses = $(this).parent().attr('class');
+        
+        idString = 'SurveyChoiceModel_' + modelIndex + '__ChoiceName'
+        nameString = 'SurveyChoiceModel[' + modelIndex + '].ChoiceName';
+        
+        $(this).attr('name', nameString);
+        $(this).attr('id', idString);
+        console.log($(this).attr('name'));
+
+        modelIndex++;
+
         $(this).parent().parent().append('<div class="' + sInputGroupClasses + '">' + sInputGroupHtml + '</div>');
-        this.id = id;
-        //console.log(this.id);
+        
     });
 
     $(document).on('click', 'div.form-group-options .input-group-addon-remove', function () {
@@ -16,7 +24,7 @@
         $(this).parent().remove();
 
     });
-
+    
 });
 
 
