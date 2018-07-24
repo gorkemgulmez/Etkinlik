@@ -1,15 +1,14 @@
 ﻿@model List<SurveyModel>
 @inject Etkinlik.Controllers.SurveyController SurveyController
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Anket";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
+    <title>Anket</title>
+    @Html.Partial("~/Views/metaTag.cshtml")
 </head>
 <body>
     <br />

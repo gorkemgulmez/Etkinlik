@@ -3,18 +3,14 @@
 @inject PostController PostController
 @inject UserManager<ApplicationUser> userManager
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ana Sayfa";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
-    <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />
-    <script src="jquery-2.1.4.min.js"></script>
-    <script src="chart.js"></script>
+    <title>Ana Sayfa</title>
+    @Html.Partial("~/Views/metaTag.cshtml")
 </head>
 <body>
     <h2>Home Page</h2>
@@ -48,7 +44,7 @@
                     </ul>
                     <ul>
                         <li class="panel">
-                            @{ string linkName = "link" + post.Id;
+                            @{  string linkName = "link" + post.Id;
                                 string linkSharp = "#" + linkName;}
                             <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
                             @if (!PostController.HasIn(post, userManager.GetUserId(User)))
