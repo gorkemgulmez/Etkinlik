@@ -11,7 +11,6 @@ $(function () {
         
         $(this).attr('name', nameString);
         $(this).attr('id', idString);
-        console.log($(this).attr('name'));
 
         modelIndex++;
 
