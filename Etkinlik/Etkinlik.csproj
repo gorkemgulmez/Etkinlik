@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\Style.css" />
+    <Content Remove="wwwroot\css\StyleSheet1.css" />
     <Content Remove="wwwroot\js\Pagination.js" />
   </ItemGroup>
 
