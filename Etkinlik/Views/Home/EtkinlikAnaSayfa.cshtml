@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <link href="~/css/EtkinlikStyle.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
    
@@ -23,63 +24,73 @@
             <div class="col-lg-6 col-md-12">
 
                 <div class="panel panel-default">
-
-                    <center>
-                        <strong style="color:gray">Etkinlik Tablosu</strong>
-                    </center>
-                    <hr>
+                    <div class="heading">
+                        <center>
+                            <strong style="color:white">Etkinlik Tablosu</strong>
+                        </center>
+                        <hr>
+                    </div>
 
 
                     <div class="card-body table-responsive">
                         <table class="table table-hover">
                             <thead class="text-warning" style="color:gray">
                                 <tr>
-                                   
+
                                     <th>Etkinlik Adı</th>
                                     <th>Etkinlik Ayrıntısı</th>
                                     <th>Etkinlik Saat ve Tarihi</th>
-                                  
+
                                 </tr>
                             </thead>
                             <tbody>
-@foreach (var post in Model)
-{
-                                <tr>
-                                    <td>@post.PostName</td>
-                                    <td>@post.PostDesc</td>
-                                    <td>@post.PostDate.Day:@post.PostDate.Month:@post.PostDate.Year @post.PostTime</td>
+                                @foreach (var post in Model)
+                                {
+                                    <tr>
+                                        <td>@post.PostName</td>
+                                        <td>@post.PostDesc</td>
+                                        <td>@post.PostDate.Day:@post.PostDate.Month:@post.PostDate.Year @post.PostTime</td>
 
-                                    @{ string linkName = "link" + post.Id;
-                                        string linkSharp = "#" + linkName;}
-                                    <td class="td-actions text-right">
-                                        <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
-                                        @if (!PostController.HasIn(post, userManager.GetUserId(User)))
-                                        {
-                                            <a href="Post/join/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Katıl</a>
-                                        }
-                                        else
-                                        {
-                                            <a href="Post/quit/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">Çık</a>
-                                        }
+                                        @{ string linkName = "link" + post.Id;
+                                            string linkSharp = "#" + linkName;}
+                                        <td class="td-actions text-right">
+                                            <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
+                                            @if (!PostController.HasIn(post, userManager.GetUserId(User)))
+                                            {
+                                                <a href="Post/join/@post.Id" button type="submit" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
 
-                                        
-                                        <ul id=@linkName class="collapse">
-                                    @foreach (var userName in PostController.getUsers(post))
-                                    {
-                                        <li>@userName</li>
-                                    }
-                                </ul>
-                                    </td>
+                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="Post/quit/@post.Id" button type="submit" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                    <div class="ripple-container"></div>
+
+                                                </a>
+
+                                            }
 
 
-                                </tr>
-}
+                                            <ul id=@linkName class="collapse">
+                                                @foreach (var userName in PostController.getUsers(post))
+                                                {
+                                                    <li>@userName</li>
+                                                }
+                                            </ul>
+                                        </td>
+
+
+                                    </tr>
+                                            }
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            
+
 
             <div class="col-lg-6 col-md-12">
                 <div class="panel panel-default">
@@ -113,23 +124,98 @@
                     </div>
                 </div>
             </div>
-            </div>
-        </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
+
+
+
+
+            <div class="col-lg-6 col-md-12">
+
                 <div class="panel panel-default">
+                    <div class="heading">
+                        <center>
+                            <strong style="color:white">Etkinlik Tablosu</strong>
+                        </center>
+                        <hr>
+                    </div>
 
-                    <p>dsf</p>
+
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning" style="color:gray">
+                                <tr>
+
+                                    <th>Etkinlik Adı</th>
+                                    <th>Etkinlik Ayrıntısı</th>
+                                    <th>Etkinlik Saat ve Tarihi</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var post in Model)
+                                {
+                                    <tr>
+                                        <td>@post.PostName</td>
+                                        <td>@post.PostDesc</td>
+                                        <td>@post.PostDate.Day:@post.PostDate.Month:@post.PostDate.Year @post.PostTime</td>
+
+                                        @{ string linkName = "link" + post.Id;
+                                            string linkSharp = "#" + linkName;}
+                                        <td class="td-actions text-right">
+                                            <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
+                                            @if (!PostController.HasIn(post, userManager.GetUserId(User)))
+                                            {
+                                                <a href="Post/join/@post.Id" button type="submit" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
+
+                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="Post/quit/@post.Id" button type="submit" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                    <div class="ripple-container"></div>
+
+                                                </a>
+
+                                            }
+
+
+                                            <ul id=@linkName class="collapse">
+                                                @foreach (var userName in PostController.getUsers(post))
+                                                {
+                                                    <li>@userName</li>
+                                                }
+                                            </ul>
+                                        </td>
+
+
+                                    </tr>
+                                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-6 col-md-12">
+
+                <div class="panel panel-default">
+                    <div class="heading">
+                        <center>
+                            <strong style="color:white">Etkinlik Tablosu</strong>
+                        </center>
+                        <hr>
+                    </div>
+
 
                 </div>
-        
-           
-                </div>
-          
-        </div>
-    </div>
-    </body>
+
+            </div>
+
+</body>
 
 
 </html>

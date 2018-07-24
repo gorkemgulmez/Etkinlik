@@ -19,3 +19,16 @@ ul {
 .btn{
     padding:2px;
 }
+.heading {
+    background: linear-gradient(60deg,#ab47bc,#8e24aa);
+    margin: 0px;
+    padding: 0;
+    position: relative;
+}
+.btn.btn-primary.btn-link, .btn.btn-primary.btn-link:active, .btn.btn-primary.btn-link:focus, .btn.btn-primary.btn-link:hover {
+    background-color: transparent;
+    color: #9c27b0;
+
+   
+    
+}
