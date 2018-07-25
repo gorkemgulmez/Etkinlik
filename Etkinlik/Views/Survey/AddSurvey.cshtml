@@ -134,8 +134,8 @@
                                     <div class="col-sm-12 col-md-10  col-md-offset-1 ">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <label>Activity Name</label>
-                                                <input asp-for="SurveyTitle" class="form-control" type="text" placeholder="Enter Activity Name" />
+                                                <label>Anket Name</label>
+                                                <input asp-for="SurveyTitle" class="form-control" type="text" placeholder="Enter Survey Title" />
                                             </div>
                                             <span asp-validation-for="SurveyTitle" class="text-danger"></span>
                                         </div>
@@ -145,10 +145,10 @@
                                     <div class="col-sm-12 col-md-10  col-md-offset-1 ">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <label> Activity Detail</label>
+                                                <label> Anket Detail</label>
 
 
-                                                <input asp-for="SurveyChoiceModel[0].ChoiceName" name="option[]" class="form-control" type="text" placeholder="Enter Activity Detail" />
+                                                <input asp-for="SurveyChoiceModel[0].ChoiceName" name="option[]" class="form-control" type="text" placeholder="Enter Survey Choicename" />
                                             </div>
                                             <span asp-validation-for="SurveyChoiceModel" class="text-danger"></span>
                                         </div>
