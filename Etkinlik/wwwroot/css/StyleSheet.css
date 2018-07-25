@@ -245,12 +245,12 @@ btn.btn-default {
             transform: translateX(10px) rotate(360deg);
         }
         .icon .link.plus {
-            background-color: #3B5998;
+            background-color: red;
             color: white;
         }
 
         .icon .link.pluss {
-            background-color: #3B5998;
+            background-color: red;
             color: white;
         }
 .headingg {
@@ -292,4 +292,11 @@ btn.btn-default {
 
 .i.fa.fa-user-plus {
     margin-right: 20px;
+}
+.error-msg {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 3px 3px 3px 3px;
+    color: #D8000C;
+    background-color: #FFBABA;
 }

@@ -33,7 +33,7 @@
 
                             <section>
                                 <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                                    <fieldset>
+                                   
                                         <h4>Use a local account to log in.</h4>
 
 
@@ -89,7 +89,8 @@
                                                         <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
                                                     </p>
                                                 </div>
-                                                <div class="fab">
+                                                <div class="fab" title="Click for signup form" >
+
                                                     <a href="Register" button type="button" class="button" style="margin-left: 20px;">
 
                                                         <i class="fa fa-user-plus" style="margin-top:20px; clear:both; overflow:auto"></i>
@@ -97,7 +98,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </fieldset>
+                                   
                                     <div class=" navbar navbar-fixed-bottom ">
                                         <footer>
                                             <p>&copy; 2018 - Etkinlik</p>
