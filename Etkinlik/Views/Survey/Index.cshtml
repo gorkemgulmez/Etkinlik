@@ -13,45 +13,40 @@
     @Html.Partial("~/Views/metaTag.cshtml")
 </head>
 <body>
-  @if (Model.Count == 0)
-  {
-    <div class="icon">
-        <a href=Survey/Add class="link pluss" target="">
-            <span class="fa fa-plus-circle"></span>
-        </a>
+    @if (Model.Count == 0)
+    {
+        <div class="icon">
+            <a href=Survey/Add class="link pluss" target="">
+                <span class="fa fa-plus-circle"></span>
+            </a>
+        </div>
 
-
-    </div>
-
-  }
-  else
-  {
-
-    <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-
+    }
+    else
+    {
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
         @foreach (var survey in Model)
-        {
-            <div class="container" style="margin-top:40px">
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
+            {   
+                <div class="container" style="margin-top:40px">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+    
+                            <div class="panel panel-default">
+                                <div class="heading">
+                                    <center>
+                                        <strong style="color:white">Anket Tablosu</strong>
+                                    </center>
+                                    <hr>
+                                </div>
 
-                        <div class="panel panel-default">
-                            <div class="heading">
-                                <center>
-                                    <strong style="color:white">Anket Tablosu</strong>
-                                </center>
-                                <hr>
-                            </div>
-                            <div class="card-body table-responsive">
-                                <table class="table table-hover">
-                                    <thead class="text-warning" style="color:gray">
-                                        <tr>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="text-warning" style="color:gray">
+                                            <tr>
+                                                <th>Anket Sorusu</th>
+                                            </tr>
+                                        </thead>
 
-                                            <th>Anket Sorusu</th>
-
-
-                                        </tr>
-                                    </thead>
                                     <tbody>
                                         @foreach (var post in Model)
                                         {
@@ -59,25 +54,22 @@
                                                 <td>@survey.SurveyTitle</td>
 
                                                 @{ string linkName = "link" + survey.Id;
-                                                    string linkSharp = "#" + linkName;}
+                                                string linkSharp = "#" + linkName;}
                                                 <td class="td-actions text-right">
-
                                                     <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
                                                     <a href="/Survey/delete/@survey.Id" button type="submit" class="btn btn-primary btn-link btn-sm" data-parent="#accordion1">
-
-
                                                         <i class="glyphicon glyphicon-remove"></i>
-                                                        <div class="ripple-container"></div>
                                                     </a>
+                                                        
                                                     <ul id=@linkName class="collapse">
                                                         @foreach (var choice in SurveyController.getChoices(survey))
                                                         {
-                                                    <td>@choice.ChoiceName @choice.Vote</td>
+                                                            <li>@choice.ChoiceName @choice.Vote</li>
                                                         }
-                                                        </ul></td>
-                                                    </tr>
-
-                                                    }
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        }
                                     </tbody>
 
                                 </table>
@@ -89,9 +81,8 @@
                 </div>
 
             </div>
-          }
+        }
     </form>
-   }
-
-        </body>
-                            </html>
+    }
+</body>
+</html>
