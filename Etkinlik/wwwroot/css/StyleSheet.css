@@ -170,7 +170,14 @@ ul {
 .btn {
     padding: 2px;
 }
-
+.btnn {
+  background: red;
+  height: 40px;
+    text-align: center;
+    line-height: 40px;
+    text-transform: uppercase;
+    color: white;
+}
 .heading {
     background: white;
     margin: 0px;
@@ -180,7 +187,11 @@ ul {
 
 .btn.btn-primary.btn-link, .btn.btn-primary.btn-link:active, .btn.btn-primary.btn-link:focus, .btn.btn-primary.btn-link:hover {
     background-color: transparent;
-    color: #9c27b0;
+    color: red;
+}
+btn.btn-default {
+    background-color: transparent;
+    color: red;
 }
 
 .colorgraph {
@@ -188,7 +199,10 @@ ul {
     border-top: 0;
     background: #c4e17f;
     border-radius: 5px;
-    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4)
+    background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
 
 
@@ -236,11 +250,46 @@ ul {
         }
 
         .icon .link.pluss {
-            background-color: red;
+            background-color: #3B5998;
             color: white;
         }
-       
+.headingg {
+    border-radius: 3px;
+    margin: -35px auto 0 auto;
+    padding: 8px 0;
+    position: absolute;
+    background: red;
+    width: 90%;
+    text-align: center;
+    right: 0;
+    left: 0;
+   
+}
+.fab {
+    display: block;
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #ff9800;
+    cursor: pointer;
+    top: -270px;
+    right: -45px;
+    z-index: 1000;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: all 0.4s ease-in-out;
+}
+
+    .fab > i {
+        color: #fff;
+        line-height: 56px;
+        font-size: 2em;
+        transition: all 0.4s ease-in-out;
+        margin-right: 80px;
+        float: right;
+    }
 
 
-
-
+.i.fa.fa-user-plus {
+    margin-right: 20px;
+}
