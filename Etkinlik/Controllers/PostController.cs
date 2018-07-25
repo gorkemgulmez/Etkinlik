@@ -37,7 +37,6 @@ namespace Etkinlik.Controllers
         /// <param name="post"></param>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
         public IActionResult Index()
         {
             var postList = _applicationDbContext.Posts.Where(p=> p.ApplicationUserId == _userManager.GetUserId(HttpContext.User)).ToList();
@@ -53,10 +52,10 @@ namespace Etkinlik.Controllers
         [HttpGet("update/{id}")]
         public IActionResult UpdateActivity(int id)
         {
-            if (!_signInManager.IsSignedIn(HttpContext.User))
+            /*if (!_signInManager.IsSignedIn(HttpContext.User))
             {
                 return Redirect("/Account/Login");
-            }
+            }*/
 
             PostModel pModel;
             try
@@ -68,6 +67,8 @@ namespace Etkinlik.Controllers
                 return Redirect("/");
             }
 
+            if (!pModel.ApplicationUserId.Equals(_userManager.GetUserId(HttpContext.User)))
+                return Redirect("/");
 
             UpdateActivityModel updateActivityModel = new UpdateActivityModel
             {
@@ -89,8 +90,13 @@ namespace Etkinlik.Controllers
                 //Mesaj gönder
                 return View();
             }
-
+            
             var user = _applicationDbContext.Users.FirstOrDefault(e => e.Id == _userManager.GetUserId(HttpContext.User));
+
+            if (post.PostName == null || post.PostDesc == null || post.PostDate == new DateTime())
+            {
+                return Redirect("/");
+            }
 
             var newPost = new PostModel
             {
@@ -115,16 +121,16 @@ namespace Etkinlik.Controllers
         {
             PostModel updPost = _applicationDbContext.Posts.First(p => p.Id == id);
             if (updPost == null)
-                return View("Index");
+                return Redirect("/");
 
             if (!_userManager.GetUserId(User).Equals(updPost.ApplicationUserId))
-                return View("Index");
+                return Redirect("/");
 
             if (!post.PostName.Equals("") && !post.PostName.Equals(updPost.PostName))
                 updPost.PostName = post.PostName;
             if (!post.PostDesc.Equals(updPost.PostName))
                 updPost.PostDesc = post.PostDesc;
-            if (post.PostDate != null && !post.PostDate.Equals(updPost.PostDate))
+            if (post.PostDate != null && post.PostDate != new DateTime() && !post.PostDate.Equals(updPost.PostDate))
                 updPost.PostDate = post.PostDate;
             if (!(post.PostTime == null) && !post.PostTime.Equals(updPost.PostTime))
                 updPost.PostTime = post.PostTime;
@@ -147,8 +153,6 @@ namespace Etkinlik.Controllers
             {
                 return Redirect("/");
             }
-            if (delPost == null)
-                return Redirect("/");
 
             try
             {

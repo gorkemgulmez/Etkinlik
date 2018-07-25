@@ -3,20 +3,14 @@
 
 @inject UserManager<ApplicationUser> userManager
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Anket";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />
-
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>Anket</title>
+    @Html.Partial("~/Views/metaTag.cshtml")
 </head>
 <body>
   @if (Model.Count == 0)
@@ -70,7 +64,7 @@
 
                                                     <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
                                                     <a href="/Survey/delete/@survey.Id" button type="submit" class="btn btn-primary btn-link btn-sm" data-parent="#accordion1">
-                                                        
+
 
                                                         <i class="glyphicon glyphicon-remove"></i>
                                                         <div class="ripple-container"></div>
@@ -93,11 +87,11 @@
 
                     </div>
                 </div>
-                
+
             </div>
           }
     </form>
    }
-        
+
         </body>
                             </html>

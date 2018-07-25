@@ -1,24 +1,14 @@
 ﻿@model List<PostModel>
-@inject  Etkinlik.Controllers.PostController PostController
-
-@inject UserManager<ApplicationUser> userManager
+@inject Etkinlik.Controllers.PostController PostController
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Etkinlik";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />    
-
-    <link rel="stylesheet" href="~/fontawesome-free-5.1.1-web/css/all.min.css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+    <title>Etkinlik</title>
+    @Html.Partial("~/Views/metaTag.cshtml")
 </head>
 <body>
     <br />
@@ -28,8 +18,8 @@
         <div class="icon">
             <a href=Post/Add class="link plus" target="">
             <span class="fa fa-plus-circle"></span></a>
-       
-            
+
+
         </div>
     }
     else
@@ -46,7 +36,7 @@
                                 <center>
                                     <strong style="color:white">Etkinlik Tablosu</strong>
                                 </center>
-                               
+
                             </div>
 
 
@@ -72,13 +62,13 @@
                                                 @{ string linkName = "link" + post.Id;
                                                     string linkSharp = "#" + linkName;}
                                                 <td class="td-actions text-right">
-                                                   
+
                                                         <i class="glyphicon glyphicon-user" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp></i>
-                                                       
+
                                                             <a href="Post/update/@post.Id" button type="submit" class="btn btn-primary btn-link btn-sm" data-parent="#accordion1">
 
                                                                 <i class="glyphicon glyphicon-pencil"></i>
-                                                          
+
                                                                 <div class="ripple-container"></div>
                                                             </a>
                                                             <a href="Post/delete/@post.Id" button type="submit" class="btn btn-primary btn-link btn-sm" data-parent="#accordion1">
@@ -102,7 +92,7 @@
                                     </tbody>
                                 </table>
 
-                               
+
                             </div>
                         </div><a href="Post/Add"
    button class="btn btn-default">
@@ -112,7 +102,7 @@
 
 
                     </div></div>
-                    
+
 
 
         </form>

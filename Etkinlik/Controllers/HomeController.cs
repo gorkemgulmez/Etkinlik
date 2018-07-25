@@ -48,7 +48,19 @@ namespace Etkinlik.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        
+     
+        [HttpGet("/test")]
+        public IActionResult test() 
+        {
+            var surveyList = _applicationDbContext.Surveys.Where(s=> true).ToList();
+            foreach(var survey in surveyList)
+            {
+                survey.SurveyChoiceModel = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == survey.Id).ToList();
+                
+            }
+            
+            return View("PostDetail", surveyList);
+        }
     }
 }
 

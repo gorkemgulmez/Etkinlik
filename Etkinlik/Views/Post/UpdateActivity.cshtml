@@ -1,24 +1,16 @@
 ﻿@using Etkinlik.Models.ActivityViewModels
+@model UpdateActivityModel
 
 @using Etkinlik.Models.ActivityViewModels
 @{
-    ViewData["Title"] = Model.PostName;
+    ViewData["Title"] = "Etkinlik Güncelle";
 }
-
-@model UpdateActivityModel
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-
-    <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <title>Diger</title>
+    <title>Etkinlik Güncelle</title>
+    @Html.Partial("~/Views/metaTag.cshtml")
 </head>
 
 <body>
@@ -106,6 +98,6 @@
 
         </form>
     </div>
-    
+
 </body>
 </html>
