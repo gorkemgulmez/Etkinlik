@@ -14,9 +14,10 @@
 </head>
 <body>
   @if (Model.Count == 0)
-  { <div class="error-msg">
+  {
+    <div class="error-msg">
         <i class="fa fa-times-circle"></i>
-        Please click the below button for the add new activity...
+        Please click the below button for the add new survey...
     </div>
     <div class="icon">
         <a href=Survey/Add class="link pluss" target="">
@@ -29,7 +30,6 @@
   }
   else
   {
-
     <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
 
         @foreach (var survey in Model)
@@ -65,7 +65,7 @@
                                                     string linkSharp = "#" + linkName;}
                                                 <td class="td-actions text-right">
 
-                                                    <button button type="button" class="btn btn-default" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
+                                                    <button button type="button" class="btnnn" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
                                                     <a href="/Survey/delete/@survey.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">
 
 
@@ -87,7 +87,9 @@
                                 </table>
                             </div>
 
-                        </div><a href="Survey/Add" button class="btn btn-default">Add Survey</a>
+                        </div>
+                        
+                        <a href="Survey/Add" button class="btnn">Add Survey</a>
 
                     </div>
                 </div>
