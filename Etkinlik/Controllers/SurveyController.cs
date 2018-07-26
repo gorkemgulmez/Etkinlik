@@ -138,7 +138,7 @@ namespace Etkinlik.Controllers
         }
 
         [Authorize]
-        [HttpGet("/vote/{id}")]
+        [HttpGet("vote/{id}")]
         public IActionResult JoinSurvey(int id)
         {
             UserSurveyModel userVote;
@@ -150,13 +150,14 @@ namespace Etkinlik.Controllers
             catch(Exception)
             {
                 SurveyChoiceModel option = _applicationDbContext.SurveyChoices.First(o => o.Id == id);
-                List<SurveyChoiceModel> modelList = _applicationDbContext.SurveyChoices.Where(sc => sc).ToList();
+                List<SurveyChoiceModel> modelList = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == option.SurveyModelId).ToList();
                 foreach(var model in modelList) { 
                     if (_applicationDbContext.UserSurveys.Any(us => us.SurveyChoiceModelId == model.Id && us.ApplicationUserId == userId))
                     {
                         var delVote = _applicationDbContext.UserSurveys.First(us => us.SurveyChoiceModelId == model.Id && us.ApplicationUserId == userId);
                         _applicationDbContext.UserSurveys.Remove(delVote);
                         model.Vote -= 1;
+                        _applicationDbContext.SurveyChoices.Update(model);
                     }
                 }
                 _applicationDbContext.UserSurveys.Add(new UserSurveyModel
@@ -165,6 +166,7 @@ namespace Etkinlik.Controllers
                     SurveyChoiceModelId = option.Id
                 });
                 option.Vote += 1;
+                _applicationDbContext.SurveyChoices.Update(option);
                 _applicationDbContext.SaveChanges();
                 return Redirect("/");
             }
