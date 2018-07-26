@@ -309,3 +309,29 @@ btn.btn-default {
     color: #D8000C;
     background-color: #FFBABA;
 }
+.col-md-3 {
+   
+}
+.account-wrapper {
+   
+}
+    .account-wrapper .account-button-list .account-button-line a {
+        border-radius: 4px;
+        float: none;
+        background-color: red;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        color: white;
+        margin-left: -10px;
+        padding-left: 10px;
+        margin-top: 2px;
+        margin-left: 0;
+    }
+.account-button-line {
+    width:80px;
+}
+    .account-wrapper .account-button-list .account-button-line a:hover {
+        background-color: blue;
+        color: white;
+    }
