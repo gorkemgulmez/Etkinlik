@@ -53,8 +53,6 @@
                                             <th>Anket Sorusu</th>
 
 
-                                        </tr>
-                                    </thead>
                                     <tbody>
                                         @foreach (var post in Model)
                                         {
@@ -62,7 +60,7 @@
                                                 <td>@survey.SurveyTitle</td>
 
                                                 @{ string linkName = "link" + survey.Id;
-                                                    string linkSharp = "#" + linkName;}
+                                                string linkSharp = "#" + linkName;}
                                                 <td class="td-actions text-right">
 
                                                     <button button type="button" class="btnnn" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
@@ -70,7 +68,6 @@
 
 
                                                         <i class="glyphicon glyphicon-remove"></i>
-                                                        <div class="ripple-container"></div>
                                                     </a>
                                                     <ul id=@linkName class="collapse"></ul>
                                                     @foreach (var choice in SurveyController.getChoices(survey))
@@ -81,23 +78,22 @@
                                                     </td>
                                                 </tr>
                                                     }
-                                                   
+
                                     </tbody>
 
                                 </table>
                             </div>
 
                         </div>
-                        
+
                         <a href="Survey/Add" button class="btnn">Add Survey</a>
 
                     </div>
                 </div>
 
             </div>
-          }
+        }
     </form>
-   }
-
-        </body>
-                            </html>
+    }
+</body>
+</html>

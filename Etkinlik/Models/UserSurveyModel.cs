@@ -10,7 +10,7 @@ namespace Etkinlik.Models
         public int Id { get; set; }
 
         public int SurveyChoiceModelId {get; set;}
-        public SurveyModel SurveyChoiceModel { get; set; }
+        public SurveyChoiceModel SurveyChoiceModel { get; set; }
 
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

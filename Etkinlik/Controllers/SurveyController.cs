@@ -29,7 +29,7 @@ namespace Etkinlik.Controllers
         public IActionResult Index()
         {
             var surveyList = _applicationDbContext.Surveys.Where(
-                s=> s.ApplicationUserId == _userManager.GetUserId(HttpContext.User) ).ToList();
+                s => s.ApplicationUserId == _userManager.GetUserId(HttpContext.User)).ToList();
 
             return View("Index", surveyList);
         }
@@ -39,6 +39,35 @@ namespace Etkinlik.Controllers
         public IActionResult AddSurvey()
         {
             return View("AddSurvey", new SurveyModel());
+        }
+
+        [HttpGet("update/{id}")]
+        [Authorize]
+        public IActionResult UpdateSurvey(int id)
+        {
+            SurveyModel sModel;
+            try
+            {
+                sModel = _applicationDbContext.Surveys.First(s => s.Id == id);
+            }
+            catch (Exception)
+            {
+                return Redirect("/");
+            }
+
+            if (!sModel.ApplicationUserId.Equals(_userManager.GetUserId(HttpContext.User)))
+                return Redirect("/");
+
+            sModel.SurveyChoiceModel = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == sModel.Id).ToList();
+
+            SurveyModel updateActivityModel = new SurveyModel
+            {
+                Id = sModel.Id,
+                SurveyTitle = sModel.SurveyTitle,
+                SurveyChoiceModel = sModel.SurveyChoiceModel
+            };
+
+            return View("UpdateSurvey", updateActivityModel);
         }
 
         [HttpPost]
@@ -86,11 +115,66 @@ namespace Etkinlik.Controllers
             _applicationDbContext.SaveChanges();
             return Redirect("/Survey");
         }
-        
-        public IActionResult JoinSurvey(SurveyChoiceModel selection)
+
+        [Authorize]
+        [HttpPost("update/{id}")]
+        public IActionResult UpdateSurvey(int id, SurveyModel survey)
         {
-            selection.Vote += 1;
-            return View();
+            SurveyModel updSurvey = _applicationDbContext.Surveys.First(s => s.Id == id);
+            if (updSurvey == null)
+                return Redirect("/");
+
+            if (!_userManager.GetUserId(User).Equals(updSurvey.ApplicationUserId))
+                return Redirect("/");
+
+            if (!survey.SurveyTitle.Equals("") && !survey.SurveyTitle.Equals(updSurvey.SurveyTitle))
+                updSurvey.SurveyTitle = survey.SurveyTitle;
+            if (!survey.SurveyChoiceModel.Equals(updSurvey.SurveyChoiceModel))
+                updSurvey.SurveyChoiceModel = survey.SurveyChoiceModel;
+
+            _applicationDbContext.Surveys.Update(updSurvey);
+            _applicationDbContext.SaveChanges();
+            return Redirect("/");
+        }
+
+        [Authorize]
+        [HttpGet("vote/{id}")]
+        public IActionResult JoinSurvey(int id)
+        {
+            UserSurveyModel userVote;
+            var userId = _userManager.GetUserId(HttpContext.User);
+            try
+            {
+                userVote = _applicationDbContext.UserSurveys.First(us => us.SurveyChoiceModelId == id && us.ApplicationUserId == userId);
+            }
+            catch(Exception)
+            {
+                SurveyChoiceModel option = _applicationDbContext.SurveyChoices.First(o => o.Id == id);
+                List<SurveyChoiceModel> modelList = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == option.SurveyModelId).ToList();
+                foreach(var model in modelList) { 
+                    if (_applicationDbContext.UserSurveys.Any(us => us.SurveyChoiceModelId == model.Id && us.ApplicationUserId == userId))
+                    {
+                        var delVote = _applicationDbContext.UserSurveys.First(us => us.SurveyChoiceModelId == model.Id && us.ApplicationUserId == userId);
+                        _applicationDbContext.UserSurveys.Remove(delVote);
+                        model.Vote -= 1;
+                        _applicationDbContext.SurveyChoices.Update(model);
+                    }
+                }
+                _applicationDbContext.UserSurveys.Add(new UserSurveyModel
+                {
+                    ApplicationUserId = userId,
+                    SurveyChoiceModelId = option.Id
+                });
+                option.Vote += 1;
+                _applicationDbContext.SurveyChoices.Update(option);
+                _applicationDbContext.SaveChanges();
+                return Redirect("/");
+            }
+
+            _applicationDbContext.SurveyChoices.First(sc => sc.Id == id).Vote -= 1; 
+            _applicationDbContext.UserSurveys.Remove(userVote);
+            _applicationDbContext.SaveChanges();
+            return Redirect("/");
         }
 
         public List<SurveyChoiceModel> getChoices(SurveyModel survey)
