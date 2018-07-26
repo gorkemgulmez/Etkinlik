@@ -18,212 +18,148 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+    <script>
 
+        jQuery(document).ready(function ($) {
+            var slideCount = $('#slider ul li').length;
+            var slideWidth = $('#slider ul li').width();
+            var slideHeight = $('#slider ul li').height();
+            var sliderUlWidth = slideCount * slideWidth;
+
+            $('#slider').css({ width: slideWidth, height: slideHeight });
+
+            $('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+
+            $('#slider ul li:last-child').prependTo('#slider ul');
+
+            function moveLeft() {
+                $('#slider ul').animate({
+                    left: + slideWidth
+                }, 200, function () {
+                    $('#slider ul li:last-child').prependTo('#slider ul');
+                    $('#slider ul').css('left', '');
+                });
+            };
+
+            function moveRight() {
+                $('#slider ul').animate({
+                    left: - slideWidth
+                }, 200, function () {
+                    $('#slider ul li:first-child').appendTo('#slider ul');
+                    $('#slider ul').css('left', '');
+                });
+            };
+
+            $('a.control_prev').click(function () {
+                moveLeft();
+            });
+
+            $('a.control_next').click(function () {
+                moveRight();
+            });
+
+        });    
+
+    </script>
+          
+            
 </head>
 <body>
     
 
     <div class="container" style="margin-top:80px">
-        <div class="row">
+        <div class="row no-gutter">
+            <div class="col-lg-6">
+                <div class="col-height left">
+                    <div class="col-text text">
+                        <div class="panel panel-default">
+                            <div class="heading">
+                                <div class="headingg">
+                                    <strong style="color:white">Etkinlik Tablosu</strong>
+                                </div>
+
+                            </div>
 
 
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning" style="color:gray">
+                                        <tr>
 
-            <div class="col-lg-6 col-md-12">
+                                            <th>Etkinlik Adı</th>
+                                            <th>Etkinlik Ayrıntısı</th>
+                                            <th>Etkinlik Saat ve Tarihi</th>
 
-                <div class="panel panel-default">
-                    <div class="heading">
-                        <div  class="headingg"> 
-                            <strong style="color:white">Etkinlik Tablosu</strong>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var post in Model)
+                                        {
+                                            <tr>
+                                                <td>@post.PostName</td>
+                                                <td>@post.PostDesc</td>
+                                                <td>@post.PostDate.Day:@post.PostDate.Month:@post.PostDate.Year @post.PostTime</td>
+
+                                                @{ string linkName = "link" + post.Id;
+                                                    string linkSharp = "#" + linkName;}
+                                                <td class="td-actions text-right">
+
+                                                    <button button type="button" class="btnnn" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
+                                                    @if (!PostController.HasIn(post, userManager.GetUserId(User)))
+                                                    {
+                                                        <a href="Post/join/@post.Id" button type="button" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
+
+                                                            <i class="glyphicon glyphicon-plus"></i>
+
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="Post/quit/@post.Id" button type="button" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
+                                                            <i class="glyphicon glyphicon-remove"></i>
+
+
+                                                        </a>
+
+                                                    }
+
+
+                                                    <ul id=@linkName class="collapse">
+                                                        @foreach (var userName in PostController.getUsers(post))
+                                                        {
+                                                            <li>@userName</li>
+                                                        }
+                                                    </ul>
+                                                </td>
+
+
+                                            </tr>
+                                                    }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                       
-                    </div>
-
-
-                    <div class="card-body table-responsive">
-                        <table class="table table-hover">
-                            <thead class="text-warning" style="color:gray">
-                                <tr>
-
-                                    <th>Etkinlik Adı</th>
-                                    <th>Etkinlik Ayrıntısı</th>
-                                    <th>Etkinlik Saat ve Tarihi</th>
-
-                                </tr>
-                            </thead>
-                            <tbody >
-                                @foreach (var post in Model)
-                                {
-                                    <tr>
-                                        <td>@post.PostName</td>
-                                        <td>@post.PostDesc</td>
-                                        <td>@post.PostDate.Day:@post.PostDate.Month:@post.PostDate.Year @post.PostTime</td>
-
-                                        @{ string linkName = "link" + post.Id;
-                                            string linkSharp = "#" + linkName;}
-                                        <td class="td-actions text-right">
-                                          
-                                            <button button type="button" class="btnnn" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
-                                            @if (!PostController.HasIn(post, userManager.GetUserId(User)))
-                                            {
-                                                <a href="Post/join/@post.Id" button type="button" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
-
-                                                    <i class="glyphicon glyphicon-plus"></i>
-                                                    
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <a href="Post/quit/@post.Id" button type="button" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
-                                                    <i class="glyphicon glyphicon-remove"></i>
-                                                   
-
-                                                </a>
-
-                                            }
-
-
-                                            <ul id=@linkName class="collapse">
-                                                @foreach (var userName in PostController.getUsers(post))
-                                                {
-                                                    <li>@userName</li>
-                                                }
-                                            </ul>
-                                        </td>
-
-
-                                    </tr>
-                                            }
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
-
-
-            <div class="col-lg-6 col-md-12">
-                <div class="panel panel-default">
-                     <div class="heading">
-                        <center>
-                            <strong style="color:white">Etkinlik Tablosu</strong>
-                        </center>
-                        <hr>
-                    </div>
-
-
-                    <div class="card-body table-responsive">
-                        <table class="table table-hover">
-                            <thead class="text-warning" style="color:gray">
-                                <tr>
-                                    <th>Etkinlik Adı</th>
-                                    <th>Etkinlik Ayrıntısı</th>
-                                    <th>Etkinlik Saat ve Tarihi</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>dfg</td>
-                                    <td>Dakota</td>
-                                    <td>dfg</td>
-
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+           
+            <div id="slider">
+                <a href="#" class="control_next">>></a>
+                <a href="#" class="control_prev"><</a>
+                <ul>
+                    <li style="background: #aaa;">
+                        <h1>H1 Başlık</h1><h1>H1 Başlık</h1><h1>H1 Başlık</h1><h1>H1 Başlık</h1><h1>H1 Başlık</h1><h1>H1 Başlık</h1><h1>H1 Başlık</h1><h1>H1 Başlık</h1><h1>H1 Başlık</h1><h1>H1 Başlık</h1><h1>H1 Başlık</h1><h1>H1 Başlık</h1>
+                        
+                    </li>
+                   
+                    <li style="background: #aaa;">SLIDE 2</li>
+                    <li style="background: #aaa;">SLIDE 3</li>
+                    <li style="background: #aaa;">SLIDE 4</li>
+                </ul>
             </div>
 
-
-
-
-            <div class="col-lg-6 col-md-12">
-
-                <div class="panel panel-default">
-                    <div class="heading">
-                        <center>
-                            <strong style="color:white">Etkinlik Tablosu</strong>
-                        </center>
-                        <hr>
-                    </div>
-
-
-                    <div class="card-body table-responsive">
-                        <table class="table table-hover" style="width:110px">
-                            <thead class="text-warning" style="color:gray">
-                                <tr>
-
-                                    <th>Etkinlik Adı</th>
-                                    <th>Etkinlik Ayrıntısı</th>
-                                    <th>Etkinlik Saat ve Tarihi</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var post in Model)
-                                {
-                                    <tr>
-                                        <td>@post.PostName</td>
-                                        <td>@post.PostDesc</td>
-                                        <td>@post.PostDate.Day:@post.PostDate.Month:@post.PostDate.Year @post.PostTime</td>
-
-                                        @{ string linkName = "link" + post.Id;
-                                            string linkSharp = "#" + linkName;}
-                                        <td class="td-actions text-right">
-                                            <button button type="button" class="btn btn-default" data-toggle="collapse" #accordion1" href=@linkSharp>Katılımcılar</button>
-                                            @if (!PostController.HasIn(post, userManager.GetUserId(User)))
-                                            {
-                                                <a href="Post/join/@post.Id" button type="submit" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
-
-                                                    <i class="glyphicon glyphicon-plus"></i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <a href="Post/quit/@post.Id" button type="submit" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
-                                                    <i class="glyphicon glyphicon-remove"></i>
-                                                    <div class="ripple-container"></div>
-
-                                                </a>
-
-                                            }
-
-
-                                            <ul id=@linkName class="collapse">
-                                                @foreach (var userName in PostController.getUsers(post))
-                                                {
-                                                    <li>@userName</li>
-                                                }
-                                            </ul>
-                                        </td>
-
-
-                                    </tr>
-                                            }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="col-lg-6 col-md-12">
-
-                <div class="panel panel-default">
-                    <div class="heading">
-                        <center>
-                            <strong style="color:white">Etkinlik Tablosu</strong>
-                        </center>
-                        <hr>
-                    </div>
-
-
-                </div>
-
-            </div>
-            </div></div>
+           
+        </div></div>
 </body>
 
 

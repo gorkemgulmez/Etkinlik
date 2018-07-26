@@ -45,6 +45,7 @@
     bottom: 0px;
     position: fixed;
 }
+
 .panel-heading {
     padding: 5px 15px;
 }
@@ -63,6 +64,7 @@
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
+
 .divider-text {
     position: relative;
     text-align: center;
@@ -136,6 +138,7 @@ div.input-group-multiple-select span.input-group-addon-remove {
 div.input-group-multiple-select {
     margin-bottom: 5px;
 }
+
 * {
     .border-radius(0) !important;
 }
@@ -143,6 +146,7 @@ div.input-group-multiple-select {
 #field {
     margin-bottom: 20px;
 }
+
 body {
     background-color: white;
 }
@@ -170,23 +174,26 @@ ul {
 .btn {
     padding: 2px;
 }
+
 .btnn {
-  background: red;
-  height: 50px;
+    background: red;
+    height: 50px;
     text-align: center;
     line-height: 50px;
     text-transform: uppercase;
     color: white;
 }
+
 .btnnn {
     background: red;
     height: 30px;
     text-align: center;
     line-height: 20px;
     color: white;
-  margin-left:-10px;
-    padding-left:10px;
+    margin-left: -10px;
+    padding-left: 10px;
 }
+
 .heading {
     background: white;
     margin: 0px;
@@ -198,6 +205,7 @@ ul {
     background-color: transparent;
     color: red;
 }
+
 btn.btn-default {
     background-color: transparent;
     color: red;
@@ -222,6 +230,7 @@ btn.btn-default {
     text-align: center;
     transform: translateY(-50%);
 }
+
     .icon .link {
         display: inline-block;
         vertical-align: middle;
@@ -247,12 +256,14 @@ btn.btn-default {
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
         .icon .link:hover {
             padding: 20px;
             color: white;
             margin-left: -5px;
             transform: translateX(10px) rotate(360deg);
         }
+
         .icon .link.plus {
             background-color: red;
             color: white;
@@ -262,6 +273,7 @@ btn.btn-default {
             background-color: red;
             color: white;
         }
+
 .headingg {
     border-radius: 3px;
     margin: -35px auto 0 auto;
@@ -272,8 +284,8 @@ btn.btn-default {
     text-align: center;
     right: 0;
     left: 0;
-   
 }
+
 .fab {
     display: block;
     position: absolute;
@@ -302,10 +314,141 @@ btn.btn-default {
 .i.fa.fa-user-plus {
     margin-right: 20px;
 }
+
 .error-msg {
     margin: 10px 0;
     padding: 10px;
     border-radius: 3px 3px 3px 3px;
     color: #D8000C;
     background-color: #FFBABA;
+}
+
+.col-md-3 {
+}
+
+.account-wrapper {
+}
+
+    .account-wrapper .account-button-list .account-button-line a {
+        border-radius: 4px;
+        float: none;
+        background-color: red;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        color: white;
+        margin-left: -10px;
+        padding-left: 10px;
+        margin-top: 2px;
+        margin-left: 0;
+    }
+
+.account-button-line {
+    width: 80px;
+}
+
+.account-wrapper .account-button-list .account-button-line a:hover {
+    background-color: blue;
+    color: white;
+}
+
+.chart {
+    position: relative;
+    height: 20vh;
+    width: 40vw;
+    margin-left: 700px;
+    padding-right: 100px;
+    margin-top: 120px;
+}
+
+.chartjs-size-monitor {
+    position: absolute;
+    padding-right: 10px;
+    padding-left: 50px;
+    background-size: 10px;
+}
+
+.add-survey {
+    height: 0px;
+    text-align: center;
+    line-height: 50px;
+    text-transform: uppercase;
+    color: white;
+    padding-right: 10px;
+    padding-left: 300px;
+    margin-top: -170px;
+}
+
+.a.btn.btn-default {
+    position: absolute;
+    padding-top: -500px;
+    padding-right: 500px;
+    padding-left: 500px;
+}
+#slider {
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto 0 auto;
+    border-radius: 4px;
+}
+
+    #slider ul {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        height: 200px;
+        list-style: none;
+    }
+
+        #slider ul li {
+            position: relative;
+            display: block;
+            float: left;
+            margin: 0;
+            padding: 0;
+            width: 500px;
+            height: 300px;
+            background: #ccc;
+            text-align: center;
+            line-height: 300px;
+        }
+
+a.control_prev,
+a.control_next {
+    position: absolute;
+    top: 40%;
+    z-index: 999;
+    display: block;
+    padding: 4% 3%;
+    width: auto;
+    height: auto;
+    background: #2a2a2a;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+    a.control_prev:hover,
+    a.control_next:hover {
+        opacity: 1;
+        -webkit-transition: all 0.2s ease;
+    }
+
+a.control_prev {
+    border-radius: 0 2px 2px 0;
+}
+
+a.control_next {
+    right: 0;
+    border-radius: 2px 0 0 2px;
+}
+
+.slider_option {
+    position: relative;
+    margin: 10px auto;
+    width: 160px;
+    font-size: 18px;
 }
