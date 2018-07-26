@@ -363,7 +363,14 @@ btn.btn-default {
     padding-right: 100px;
     margin-top: 120px;
 }
-
+.chartt {
+    position: relative;
+    height: 40vh;
+    width: 70vw;
+    margin-left: 700px;
+    padding-right: 500px;
+    margin-top:-400px;
+}
 .chartjs-size-monitor {
     position: absolute;
     padding-right: 10px;
@@ -409,7 +416,7 @@ btn.btn-default {
             position: relative;
             display: block;
             float: left;
-            clear:both;
+           
             margin: 0;
             padding: 0;
             width: 500px;
