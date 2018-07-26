@@ -3,13 +3,23 @@
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
+<div class="model">
 
-<ul class="nav nav-pills nav-stacked">
-    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-action="Index">Profile</a></li>
-    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a asp-action="ChangePassword">Password</a></li>
-    @if (hasExternalLogins)
-    {
-        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a asp-action="ExternalLogins">External logins</a></li>
-    }
-</ul>
+    <ul class="nav nav-pills nav-stacked">
+        <li class="@ManageNavPages.IndexNavClass(ViewContext)">
+            <a asp-action="Index" style="background-color:red;  color:white">Profile</a>
+
+        </li>
+        <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)">
+            <a asp-action="ChangePassword" style="background-color:red; color:white">Password</a>
+        </li>
+        @if (hasExternalLogins)
+        {
+            <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)">
+                <a asp-action="ExternalLogins">External logins</a>
+            </li>
+        }
+    </ul>
+</div>
+
 
