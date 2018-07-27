@@ -1,6 +1,4 @@
-﻿
-
-function getData(id) {
+﻿function getData(id) {
     $.ajax({
         type: 'GET',
         url: '/Survey/surveyVote/'+id,
@@ -13,11 +11,22 @@ function getData(id) {
 function dataRender(jinfo) {
     var label = [];
     var data = [];
+    var color = [];
+
     for(var i in jinfo) {
         label.push(jinfo[i].choiceName);
         data.push(jinfo[i].vote);
+        color.push(randomColorString());
     }
-    //label = [jinfo[0].choiceName, jinfo[1].choiceName];
-    //data = [jinfo[0].vote, jinfo[1].vote];
-    renderChart(label, data);
+
+    renderChart(label, data, color);
+}
+
+function randomColorString() {
+    var color = 'rgba(' + randomNumber(0, 255) + ', ' + randomNumber(0, 255) + ', ' + randomNumber(0, 255) + ', 1)';
+    console.log(color);
+}
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }

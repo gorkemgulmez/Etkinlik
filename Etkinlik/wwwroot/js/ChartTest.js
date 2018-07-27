@@ -1,20 +1,6 @@
 ﻿var ctx = document.getElementById("myChart").getContext('2d');
 
-function bgColor(num) {
-    var rbgColor = [];
-
-    while (num > 0) {
-        var stri = 'rgba(' + randomNumber(0, 255) + ', ' + randomNumber(0, 255) + ', ' + randomNumber(0, 255) + ', 1)';
-        rbgColor.push(stri);
-    }
-    return rbgColor;
-}
-
-function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-function renderChart(alabel, adata) {
+function renderChart(alabel, adata, abgColor) {
     var mychart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -22,7 +8,7 @@ function renderChart(alabel, adata) {
             datasets: [{
                 label: 'Oy Sayısı',
                 data: adata,
-                backgroundColor: bgColor(alabel.length),
+                backgroundColor: abgColor,
                 borderWidth: 1
             }]
         }, options: {
