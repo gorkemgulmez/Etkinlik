@@ -45,9 +45,9 @@
                                     <thead class="text-warning" style="color:gray">
                                         <tr>
 
-                                            <th>Etkinlik Adı</th>
-                                            <th>Etkinlik Ayrıntısı</th>
-                                            <th>Etkinlik Saat ve Tarihi</th>
+                                            <td>Etkinlik Adı</td>
+                                            <td>Etkinlik Ayrıntısı</td>
+                                            <td>Etkinlik Saat ve Tarihi</td>
 
                                         </tr>
                                     </thead>
@@ -63,14 +63,14 @@
                                                     string linkSharp = "#" + linkName;}
                                                 <td class="td-actions text-right">
 
-                                                    <i class="glyphicon glyphicon-user" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp></i>
+                                                    <i class="glyphicon glyphicon-user" style="color:gray;right: 15px;" data-toggle="collapse"  data-parent="#accordion1" href=@linkSharp></i>
 
-                                                    <a href="Post/update/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">
+                                                    <a href="Post/update/@post.Id"  button type="submit" data-parent="#accordion1">
 
-                                                        <i class="glyphicon glyphicon-pencil"></i>
+                                                        <i class="glyphicon glyphicon-pencil"  style="color:gray;right: 5px;"></i>
 
                                                     </a>
-                                                    <a href="Post/delete/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">
+                                                    <a href="Post/delete/@post.Id" style="color:gray;"  button type="submit" data-parent="#accordion1">
                                                         <i class="glyphicon glyphicon-remove"></i>
 
                                                     </a>

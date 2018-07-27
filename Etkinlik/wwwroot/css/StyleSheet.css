@@ -369,12 +369,14 @@ btn.btn-default {
     width: 70vw;
     margin-left: 700px;
     padding-right: 500px;
-    margin-top:-400px;
+
 }
 .chartjs-size-monitor {
-    position: absolute;
+    position: fixed;
+    clear: both;
+    height: 500px;
     padding-right: 10px;
-    padding-left: 50px;
+    padding-left: 300px;
     background-size: 10px;
 }
 
@@ -390,6 +392,13 @@ btn.btn-default {
     padding-left: 300px;
     /* margin-top: -170px;*/
 }
+#canvas.myChart.chartjs-render-monitor {
+    position: fixed;
+    clear: both;
+    height: 100px;
+}
+
+
 
 .a.btn.btn-default {
     position: absolute;
