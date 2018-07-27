@@ -12,6 +12,7 @@
     <title>Anket</title>
     @Html.Partial("~/Views/metaTag.cshtml")
     <script src="~/lib/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="~/js/SurveyIndex.js"></script>
 </head>
 <body>
     @if (Model.Count == 0)
@@ -61,7 +62,7 @@
                                                     string linkSharp = "#" + linkName;}
                                                 <td class="td-actions text-right">
 
-                                                    <button button type="button" class="btnnn" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
+                                                    <button onclick="getData(@survey.Id)" button type="button" class="btnnn" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
                                                     <a href="/Survey/delete/@survey.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">
                                                         <i class="glyphicon glyphicon-remove"></i>
                                                     </a>
@@ -93,45 +94,11 @@
 
             <canvas id="myChart"></canvas>
 
-            <script>
-                var ctx = document.getElementById("myChart").getContext('2d');
-                var mychart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                        datasets: [{
-                            label: '# of Votes',
-                            data: [12, 19, 3, 5, 2, 3],
-                            backgroundColor: [
-                                'rgba(255, 99, 132,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderColor: [
-                                'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1,
-                            options: {
-                                legend: {
-                                    display: false
-                                }
-                            },
-                        }]
-                    },
-
-                });
-            </script>
+            
         </div>
     }
-
+    
+    <script type="text/javascript" src="~/js/ChartTest.js"></script>
 </body>
 
 </html>

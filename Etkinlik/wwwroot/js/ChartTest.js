@@ -9,7 +9,8 @@ function renderChart(alabel, adata, abgColor) {
                 label: 'Oy Sayısı',
                 data: adata,
                 backgroundColor: abgColor,
-                borderWidth: 1
+                borderColor: abgColor,
+                borderWidth: 0.6
             }]
         }, options: {
             legend: {
@@ -18,4 +19,3 @@ function renderChart(alabel, adata, abgColor) {
         }
     });
 }
-

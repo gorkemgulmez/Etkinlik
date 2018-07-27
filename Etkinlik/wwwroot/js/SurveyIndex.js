@@ -18,13 +18,13 @@ function dataRender(jinfo) {
         data.push(jinfo[i].vote);
         color.push(randomColorString());
     }
-
+    console.log(color)
     renderChart(label, data, color);
 }
 
 function randomColorString() {
     var color = 'rgba(' + randomNumber(0, 255) + ', ' + randomNumber(0, 255) + ', ' + randomNumber(0, 255) + ', 1)';
-    console.log(color);
+    return color;
 }
 
 function randomNumber(min, max) {
