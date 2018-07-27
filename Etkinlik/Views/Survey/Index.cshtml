@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div class="add-survey">
-                        <a href="Survey/Add" class="btn btn-default" style="margin-top:10px; margin-left:770px; clear:both">Add Survey</a>
+                        <a href="Survey/Add" class="btn btn-default" style="margin-top:-100px; margin-left:770px;">Add Survey</a>
                     </div>
 
                 </div>
@@ -86,10 +86,9 @@
             </div>
         </form>
 
-        <div class="chart" style=" position: fixed;
-    clear: both; ">
+        <div class="chart">
 
-            <canvas id="myChart"></canvas>
+            <canvas id="myChart" style="width:300px; height:300px;margin-top:-50px"></canvas>
 
             <script>
                 var ctx = document.getElementById("myChart").getContext('2d');
@@ -117,14 +116,13 @@
                                 'rgba(255, 159, 64, 1)'
                             ],
                             borderWidth: 1,
-                            options: {
-                                legend: {
-                                    display: false
-                                }
-                            },
-                        }]
-                    },
 
+                        }]
+                    }, options: {
+                        legend: {
+                            display: false
+                        }
+                    }
                 });
             </script>
         </div>

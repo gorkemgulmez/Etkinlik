@@ -357,33 +357,34 @@ btn.btn-default {
 
 .chart {
     position: relative;
-    height: 20vh;
-    width: 40vw;
+    height: 120vh;
+    width: 70vw;
     margin-left: 700px;
     padding-right: 100px;
-    margin-top: 120px;
+    margin-top:-40px;
 }
 
 .chartt {
-    position: relative;
-    height: 40vh;
+    position: absolute;
+    height: 120vh;
     width: 70vw;
-    margin-left: 700px;
-    padding-right: 500px;
+    margin-left: 0px;
+    margin-right:-100px;
+    padding-right: 300px;
 }
 
 .chartjs-size-monitor {
     position: fixed;
     clear: both;
-    height: 500px;
     padding-right: 10px;
     padding-left: 300px;
     background-size: 10px;
+    width: 500px;
+    height:500px;
 }
 
 .add-survey {
-    position: fixed;
-    clear: both;
+  
     height: 0px;
     text-align: center;
     line-height: 50px;
