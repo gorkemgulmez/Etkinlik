@@ -49,6 +49,7 @@
                                 </div>
                             </div>
 
+                            <div class="card-body table-responsive">
                                 <table class="table table-hover">
                                     <thead class="text-warning" style="color:gray">
                                         <tr>
@@ -66,10 +67,9 @@
                                                     string linkSharp = "#" + linkName;}
                                                 <td class="td-actions text-right">
 
-
-                                                    <i class="glyphicon glyphicon-user" style="color:gray;right: 15px;" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp></i>
-                                                    <a href="/Survey/delete/@survey.Id" style="color:gray"  button type="submit" data-parent="#accordion1">
-                                                        <i class="glyphicon glyphicon-remove" ></i>
+                                                    <button onclick="getData(@survey.Id)" button type="button" class="btnnn" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
+                                                    <a href="/Survey/delete/@survey.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">
+                                                        <i class="glyphicon glyphicon-remove"></i>
                                                     </a>
                                                     <ul id=@linkName class="collapse">
                                                         @foreach (var choice in SurveyController.getChoices(survey))
@@ -84,17 +84,18 @@
                                 </table>
                             </div>
                         </div>
+
+
+                    </div>
+
                     <div class="add-survey">
-                        <a href="Survey/Add" class="btn btn-default" style="margin-top:10px; margin-left:770px; clear:both">Add Survey</a>
+                        <a href="Survey/Add" class="btn btn-default" style="margin-top:-70px; margin-left:770px">Add Survey</a>
                     </div>
-
-                    </div>
-
                 </div>
+            </div>
         </form>
 
-        <div class="chart" style=" position: fixed;
-    clear: both; ">
+        <div class="chart">
 
             <canvas id="myChart"></canvas>
 
