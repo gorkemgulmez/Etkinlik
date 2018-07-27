@@ -9,21 +9,19 @@
 <head>
     <title>Etkinlik</title>
     @Html.Partial("~/Views/metaTag.cshtml")
-    
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
-  
+
     @if (Model.Count == 0)
     {
         <div class="error-msg">
             <i class="fa fa-times-circle"></i>
-           Please click the below button for the add new activity...
+            Please click the below button for the add new activity...
         </div>
         <div class="icon">
             <a href=Post/Add class="link plus" target="">
-            <span class="fa fa-plus-circle"></span></a>
+                <span class="fa fa-plus-circle"></span>
+            </a>
 
 
         </div>
@@ -35,19 +33,19 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <div class="panel panel-default">
-                          
-                                <div class="headingg">
-                                    <strong style="color:white">Etkinlik Tablosu</strong>
-                                </div>
+
+                            <div class="headingg">
+                                <strong style="color:white">Etkinlik Tablosu</strong>
+                            </div>
 
                             <div>
                                 <table class="table table-hover">
                                     <thead class="text-warning" style="color:gray">
                                         <tr>
 
-                                            <th>Etkinlik Adı</th>
-                                            <th>Etkinlik Ayrıntısı</th>
-                                            <th>Etkinlik Saat ve Tarihi</th>
+                                            <td>Etkinlik Adı</td>
+                                            <td>Etkinlik Ayrıntısı</td>
+                                            <td>Etkinlik Saat ve Tarihi</td>
 
                                         </tr>
                                     </thead>
@@ -63,14 +61,14 @@
                                                     string linkSharp = "#" + linkName;}
                                                 <td class="td-actions text-right">
 
-                                                    <i class="glyphicon glyphicon-user" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp></i>
+                                                    <i class="glyphicon glyphicon-user" style="color:gray;right: 15px;" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp></i>
 
-                                                    <a href="Post/update/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">
+                                                    <a href="Post/update/@post.Id" button type="submit" data-parent="#accordion1">
 
-                                                        <i class="glyphicon glyphicon-pencil"></i>
+                                                        <i class="glyphicon glyphicon-pencil" style="color:gray;right: 5px;"></i>
 
                                                     </a>
-                                                    <a href="Post/delete/@post.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">
+                                                    <a href="Post/delete/@post.Id" style="color:gray;" button type="submit" data-parent="#accordion1">
                                                         <i class="glyphicon glyphicon-remove"></i>
 
                                                     </a>
@@ -86,14 +84,14 @@
 
 
                                             </tr>
-                                                    }
+                                        }
                                     </tbody>
                                 </table>
 
 
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div class="add-survey">
@@ -105,7 +103,7 @@
 
 
         </form>
-                                                    }
+    }
 
 </body>
 </html>
