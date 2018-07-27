@@ -90,9 +90,9 @@
                                     <thead class="text-warning" style="color:gray">
                                         <tr>
 
-                                            <th>Etkinlik Adı</th>
-                                            <th>Etkinlik Ayrıntısı</th>
-                                            <th>Etkinlik Saat ve Tarihi</th>
+                                            <td>Etkinlik Adı</td>
+                                            <td>Etkinlik Ayrıntısı</td>
+                                            <td>Etkinlik Saat ve Tarihi</td>
 
                                         </tr>
                                     </thead>
@@ -108,10 +108,10 @@
                                                     string linkSharp = "#" + linkName;}
                                                 <td class="td-actions text-right">
 
-                                                    <button button type="button" class="btnnn" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp>Katılımcılar</button>
+                                                    <i class="glyphicon glyphicon-user" style="color:gray" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp></i>
                                                     @if (!PostController.HasIn(post, userManager.GetUserId(User)))
                                                     {
-                                                        <a href="Post/join/@post.Id" button type="button" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
+                                                        <a href="Post/join/@post.Id" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
 
                                                             <i class="glyphicon glyphicon-plus"></i>
 
@@ -119,7 +119,7 @@
                                                     }
                                                     else
                                                     {
-                                                        <a href="Post/quit/@post.Id" button type="button" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
+                                                        <a href="Post/quit/@post.Id" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
                                                             <i class="glyphicon glyphicon-remove"></i>
 
 
