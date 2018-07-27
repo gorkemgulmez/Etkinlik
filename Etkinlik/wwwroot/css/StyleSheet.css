@@ -5,7 +5,7 @@
     width: 2%;
     height: 1px;
     float: left;
-    clear:both;
+    clear: both;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -309,7 +309,7 @@ btn.btn-default {
         transition: all 0.4s ease-in-out;
         margin-right: 80px;
         float: right;
-        clear:both;
+        clear: both;
     }
 
 
@@ -334,7 +334,7 @@ btn.btn-default {
     .account-wrapper .account-button-list .account-button-line a {
         border-radius: 4px;
         float: none;
-        clear:both;
+        clear: both;
         background-color: red;
         height: 30px;
         text-align: center;
@@ -363,18 +363,21 @@ btn.btn-default {
     padding-right: 100px;
     margin-top: 120px;
 }
+
 .chartt {
     position: relative;
     height: 40vh;
     width: 70vw;
     margin-left: 700px;
     padding-right: 500px;
-    margin-top:-400px;
 }
+
 .chartjs-size-monitor {
-    position: absolute;
+    position: fixed;
+    clear: both;
+    height: 500px;
     padding-right: 10px;
-    padding-left: 50px;
+    padding-left: 300px;
     background-size: 10px;
 }
 
@@ -391,12 +394,21 @@ btn.btn-default {
     /* margin-top: -170px;*/
 }
 
+#canvas.myChart.chartjs-render-monitor {
+    position: fixed;
+    clear: both;
+    height: 100px;
+}
+
+
+
 .a.btn.btn-default {
     position: absolute;
     padding-top: -500px;
     padding-right: 500px;
     padding-left: 500px;
 }
+
 #slider {
     position: relative;
     overflow: hidden;
@@ -416,7 +428,6 @@ btn.btn-default {
             position: relative;
             display: block;
             float: left;
-           
             margin: 0;
             padding: 0;
             width: 500px;
