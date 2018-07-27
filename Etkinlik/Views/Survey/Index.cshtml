@@ -71,12 +71,12 @@
                                                     <a href="/Survey/delete/@survey.Id" button type="submit" class="btn btn-default" data-parent="#accordion1">
                                                         <i class="glyphicon glyphicon-remove"></i>
                                                     </a>
-                                                    <ul id=@linkName class="collapse"></ul>
-                                                    @foreach (var choice in SurveyController.getChoices(survey))
-                                                    {
-                                                        <a>@choice.ChoiceName @choice.Vote</a>
-                                                    }
-
+                                                    <ul id=@linkName class="collapse">
+                                                        @foreach (var choice in SurveyController.getChoices(survey))
+                                                        {
+                                                            <li>@choice.ChoiceName @choice.Vote</li>
+                                                        }
+                                                    </ul>
                                                 </td>
                                             </tr>
                                         }
