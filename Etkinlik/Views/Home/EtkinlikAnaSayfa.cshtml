@@ -12,7 +12,7 @@
     <title>Ana Sayfa</title>
     @Html.Partial("~/Views/metaTag.cshtml")
     <script type="text/javascript" src="~/lib/Chart.bundle.min.js"></script>
-    <script type="text/javascript" src="~/js/HomeIndex.js"></script>
+    <script type="text/javascript" src="~/js/SurveyIndex.js"></script>
 </head>
 <body>
     <div class="container" style="margin-top:80px">
@@ -90,17 +90,25 @@
             </div>
 
             <div class="col-lg-6">
-                <div style="position:absolute">
-                    <h1> Soru1 </h1>
-                    <h2>Cevap1</h2>
-                    <h2>Cevap2</h2>
+                <div class="survey-result">
+                    <h2>Soru11</h2>
+                    <h5>Cevap1</h5>
+                    <h5>Cevap2</h5>
+                    <h5>Cevap3</h5>
+                    <h5>Cevap4</h5>
+                    <h5>Cevap5</h5>
+                    <h5>Cevap6</h5>
+                    <h5>Cevap4</h5>
+                    <h5>Cevap5</h5>
+                    <h5>Cevap6</h5>
                 </div>
+
                 <div class="chartt"> <canvas id="myChart"></canvas> </div>
             </div>
         </div>
     </div>
-    <script>getLastSurvey();</script>
 
     <script type="text/javascript" src="~/js/ChartTest.js"></script>
+    <script>getData(24);</script>
 </body>
 </html>

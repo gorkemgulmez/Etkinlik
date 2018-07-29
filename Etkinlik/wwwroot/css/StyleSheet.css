@@ -361,7 +361,7 @@ btn.btn-default {
     width: 70vw;
     margin-left: 700px;
     padding-right: 100px;
-    margin-top:-40px;
+    margin-top: -40px;
 }
 
 .chartt {
@@ -369,9 +369,19 @@ btn.btn-default {
     height: 120vh;
     width: 70vw;
     margin-left: 0px;
-    margin-right:-100px;
+    margin-right: -100px;
     padding-right: 300px;
+    padding-top: 50px;
 }
+
+.survey-result {
+    position: inherit;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-right: 150px;
+    padding-left: 150px;
+}
+
 
 .chartjs-size-monitor {
     position: fixed;
@@ -380,11 +390,10 @@ btn.btn-default {
     padding-left: 300px;
     background-size: 10px;
     width: 500px;
-    height:500px;
+    height: 500px;
 }
 
 .add-survey {
-  
     height: 0px;
     text-align: center;
     line-height: 50px;
