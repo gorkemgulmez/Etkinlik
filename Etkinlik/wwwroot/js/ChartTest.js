@@ -1,6 +1,16 @@
-﻿var ctx = document.getElementById("myChart").getContext('2d');
+﻿function dataRender(jinfo) {
+    var label = [];
+    var data = [];
+    var color = [];
 
-
+    for (var i in jinfo) {
+        label.push(jinfo[i].choiceName);
+        data.push(jinfo[i].vote);
+        color.push(randomColorString());
+    }
+    console.log(color);
+    renderChart(label, data, color);
+}
 
 function randomColorString() {
     var color = 'rgba(' + randomNumber(0, 255) + ', ' + randomNumber(0, 255) + ', ' + randomNumber(0, 255) + ', 1)';
@@ -12,7 +22,9 @@ function randomNumber(min, max) {
 }
 
 function renderChart(alabel, adata, abgColor) {
-    
+    $('#myChart').remove(); // this is my <canvas> element
+    $('#canvasDiv').append('<canvas id="myChart"><canvas>');
+    var ctx = document.getElementById("myChart").getContext('2d');
     var mychart = new Chart(ctx, {
         type: 'pie',
         data: {

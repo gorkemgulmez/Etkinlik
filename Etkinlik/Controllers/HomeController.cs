@@ -65,8 +65,12 @@ namespace Etkinlik.Controllers
         [HttpGet("getLastSurvey")]
         public IActionResult getLastSurvey()
         {
+            var item = _applicationDbContext.Surveys.Last(e => true);
+            item.SurveyChoiceModel = null;
+            _applicationDbContext.Update(item);
+            _applicationDbContext.SaveChanges();
             var list = _applicationDbContext.SurveyChoices.Where
-                (sc => sc.SurveyModelId == (_applicationDbContext.Surveys.Last(e => true)).Id).ToList();
+                (sc => sc.SurveyModelId == item.Id).ToList();
             return Json(list);
         }
     }
