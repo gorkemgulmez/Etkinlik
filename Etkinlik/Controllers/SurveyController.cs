@@ -138,7 +138,7 @@ namespace Etkinlik.Controllers
         }
 
         [Authorize]
-        [HttpGet("vote/{id}")]
+        [HttpPost("vote/{id}")]
         public IActionResult JoinSurvey(int id)
         {
             UserSurveyModel userVote;

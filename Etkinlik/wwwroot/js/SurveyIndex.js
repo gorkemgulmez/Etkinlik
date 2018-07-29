@@ -7,3 +7,14 @@
         success: dataRender
     });
 }
+
+function voteSurvey(id) {
+    $.ajax({
+        type: "POST",
+        url: "/Survey/vote/" + id,
+        data: { id: id },
+        success: function () {
+            alert("oldu");
+        }
+    });
+}
