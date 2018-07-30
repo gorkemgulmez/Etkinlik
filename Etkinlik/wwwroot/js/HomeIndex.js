@@ -15,3 +15,27 @@ function voteSurvey(id) {
         }
     });
 }
+
+function join(id) {
+    $.ajax({
+        type: "POST",
+        url: "Post/join/" + id,
+        data: { id: id },
+        success: function () {
+            document.getElementById("joinSpan").style.display = 'none';
+            document.getElementById("quitSpan").style.display = 'inline';
+        }
+    });
+}
+
+function quit(id) {
+    $.ajax({
+        type: "POST",
+        url: "Post/quit/" + id,
+        data: { id: id },
+        success: function () {
+            document.getElementById("joinSpan").style.display = 'inline';
+            document.getElementById("quitSpan").style.display = 'none';
+        }
+    })
+}

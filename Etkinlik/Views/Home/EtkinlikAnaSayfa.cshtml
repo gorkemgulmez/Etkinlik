@@ -42,6 +42,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @{ var id = userManager.GetUserId(User);}
                                         @foreach (var post in Model)
                                         {
                                             <tr>
@@ -54,24 +55,35 @@
                                                 <td class="td-actions text-right">
 
                                                     <i class="glyphicon glyphicon-user" style="color:gray" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp></i>
-                                                    @if (!PostController.HasIn(post, userManager.GetUserId(User)))
+
+                                                    @if (!PostController.HasIn(post, id))
                                                     {
-                                                        <a href="Post/join/@post.Id" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
+                                                        <span id="joinSpan" style="display:inline">
+                                                            <a onclick="join(@post.Id)" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
+                                                                <i class="glyphicon glyphicon-plus"></i>
+                                                            </a>
+                                                        </span>
 
-                                                            <i class="glyphicon glyphicon-plus"></i>
-
-                                                        </a>
+                                                        <span id="quitSpan" style="display:none">
+                                                            <a onclick="quit(@post.Id)" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
+                                                                <i class="glyphicon glyphicon-remove"></i>
+                                                            </a>
+                                                        </span>
                                                     }
                                                     else
                                                     {
-                                                        <a href="Post/quit/@post.Id" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
-                                                            <i class="glyphicon glyphicon-remove"></i>
+                                                        <span id="joinSpan" style="display:none">
+                                                            <a onclick="join(@post.Id)" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
+                                                                <i class="glyphicon glyphicon-plus"></i>
+                                                            </a>
+                                                        </span>
 
-
-                                                        </a>
-
+                                                        <span id="quitSpan" style="display:inline">
+                                                            <a onclick="quit(@post.Id)" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
+                                                                <i class="glyphicon glyphicon-remove"></i>
+                                                            </a>
+                                                        </span>
                                                     }
-
 
                                                     <ul id=@linkName class="collapse">
                                                         @foreach (var userName in PostController.getUsers(post))

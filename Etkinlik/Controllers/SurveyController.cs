@@ -139,7 +139,7 @@ namespace Etkinlik.Controllers
 
         [Authorize]
         [HttpPost("vote/{id}")]
-        public IActionResult JoinSurvey(int id)
+        public void JoinSurvey(int id)
         {
             UserSurveyModel userVote;
             var userId = _userManager.GetUserId(HttpContext.User);
@@ -168,13 +168,13 @@ namespace Etkinlik.Controllers
                 option.Vote += 1;
                 _applicationDbContext.SurveyChoices.Update(option);
                 _applicationDbContext.SaveChanges();
-                return Redirect("/");
+                Redirect("/");
+                return;
             }
 
             _applicationDbContext.SurveyChoices.First(sc => sc.Id == id).Vote -= 1; 
             _applicationDbContext.UserSurveys.Remove(userVote);
             _applicationDbContext.SaveChanges();
-            return Redirect("/");
         }
 
         public List<SurveyChoiceModel> getChoices(SurveyModel survey)

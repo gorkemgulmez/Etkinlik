@@ -8,7 +8,6 @@
         data.push(jinfo[i].vote);
         color.push(randomColorString());
     }
-    console.log(color);
     renderChart(label, data, color);
 }
 

@@ -182,8 +182,8 @@ namespace Etkinlik.Controllers
         /// PostUser methods (join or quit activity)
         /// </summary>
         /// <param name="User"></param>
-        [HttpGet("join/{id}")]
-        public IActionResult AddUser(int id)
+        [HttpPost("join/{id}")]
+        public void AddUser(int id)
         {
             var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
             PostModel post;
@@ -194,7 +194,8 @@ namespace Etkinlik.Controllers
             }
             catch (Exception)
             {
-                return Redirect("/");
+                Redirect("/");
+                return;
             }
 
             try
@@ -211,17 +212,16 @@ namespace Etkinlik.Controllers
                     PostModelId = id
                 });
                 _applicationDbContext.SaveChanges();
-                return Redirect("/");
+                Redirect("/");
+                return;
             }
 
-            return Redirect("/");
+            return;
         }
 
-        [HttpGet("quit/{id}")]
-        public IActionResult DeleteUser(int id)
+        [HttpPost("quit/{id}")]
+        public void DeleteUser(int id)
         {
-            if (!_signInManager.IsSignedIn(HttpContext.User))
-                return Redirect("/");
             var user = _applicationDbContext.Users.First(u => u.Id == _userManager.GetUserId(HttpContext.User));
             PostModel post;
             try {
@@ -229,7 +229,8 @@ namespace Etkinlik.Controllers
             }
             catch(Exception)
             {
-                return Redirect("/");
+                Redirect("/");
+                return;
             }
 
             UserPostModel userPost;
@@ -240,12 +241,13 @@ namespace Etkinlik.Controllers
             }
             catch (Exception)
             {
-                return Redirect("/");
+                Redirect("/");
+                return;
             }
 
             _applicationDbContext.UserPosts.Remove(userPost);
             _applicationDbContext.SaveChanges();
-            return Redirect("/");
+            return;
         }
 
         public bool HasIn(PostModel post, string userId)
