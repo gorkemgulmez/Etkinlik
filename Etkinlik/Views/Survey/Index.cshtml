@@ -34,8 +34,8 @@
         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
 
             <div class="container" style="margin-top:80px">
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                <div class="modal-body row">
+                    <div class="col-lg-6">
 
                         <div class="panel panel-default">
                             <div class="heading">
@@ -78,21 +78,22 @@
                             </table>
                         </div>
                     </div>
-                    <div class="add-survey">
-                        <a href="Survey/Add" class="btn btn-default" style="margin-top:-100px; margin-left:770px;">Add Survey</a>
-                    </div>
+                    <div class="add-survey col-lg-6">
+                        <a href="Survey/Add" class="btn btn-default" >Anket Ekle</a>
+                        <div id="canvasDiv" class="chartt">
 
+                            <canvas id="myChart"></canvas>
+
+                            <script type="text/javascript" src="~/js/ChartTest.js"></script>
+                        </div>
+                    </div>
+                    
                 </div>
 
             </div>
         </form>
 
-        <div id="canvasDiv" class="chartt">
-
-            <canvas id="myChart" ></canvas>
-
-            <script type="text/javascript" src="~/js/ChartTest.js"></script>
-        </div>
+        
     }
 
 </body>
