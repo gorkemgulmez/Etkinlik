@@ -365,12 +365,9 @@ btn.btn-default {
 }
 
 .chartt {
-    position: absolute;
-    height: 120vh;
-    width: 70vw;
-    margin-left: 0px;
-    margin-right: -100px;
-    padding-right: 300px;
+    position: relative;
+    height: auto;
+    width: 100%;
     padding-top: 50px;
 }
 
@@ -384,6 +381,12 @@ btn.btn-default {
 
 
 .chartjs-size-monitor {
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: -1;
+
     position: fixed;
     clear: both;
     padding-right: 10px;
