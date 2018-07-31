@@ -69,6 +69,40 @@ namespace Etkinlik.Controllers
             item.SurveyChoiceModel = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == item.Id).ToList();
             return item;
         }
+
+        public bool HasIn(PostModel post, string userId)
+        {
+            try
+            {
+                var user = _applicationDbContext.Users.First(u => u.Id.Equals(userId));
+
+                UserPostModel userPost = _applicationDbContext.UserPosts.First(d =>
+                         d.ApplicationUserId == user.Id && d.PostModelId == post.Id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public List<string> getUsers(PostModel post)
+        {
+            List<UserPostModel> users = _applicationDbContext.UserPosts.Where(up => up.PostModelId == post.Id).ToList();
+            List<string> userName = new List<string>();
+            foreach (var model in users)
+            {
+                userName.Add(_applicationDbContext.Users.First(u => u.Id == model.ApplicationUserId).FullName);
+            }
+            return userName;
+        }
+
+        [HttpGet("surveyVote/{id}")]
+        public IActionResult SurveyVote(int id)
+        {
+            var list = _applicationDbContext.SurveyChoices.Where(c => c.SurveyModelId == id).ToList();
+            return Json(list);
+        }
     }
 }
 

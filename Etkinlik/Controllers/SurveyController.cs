@@ -183,11 +183,5 @@ namespace Etkinlik.Controllers
             return choices;
         }
 
-        [HttpGet("surveyVote/{id}")]
-        public IActionResult SurveyVote(int id)
-        {
-            var list = _applicationDbContext.SurveyChoices.Where(c => c.SurveyModelId == id).ToList();
-            return Json(list);
-        }
     }
 }

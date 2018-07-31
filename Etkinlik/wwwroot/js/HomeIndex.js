@@ -19,7 +19,7 @@ function voteSurvey(id) {
 function join(id) {
     $.ajax({
         type: "POST",
-        url: "Post/join/" + id,
+        url: "/Post/join/" + id,
         data: { id: id },
         success: function () {
             document.getElementById("joinSpan").style.display = 'none';
@@ -31,7 +31,7 @@ function join(id) {
 function quit(id) {
     $.ajax({
         type: "POST",
-        url: "Post/quit/" + id,
+        url: "/Post/quit/" + id,
         data: { id: id },
         success: function () {
             document.getElementById("joinSpan").style.display = 'inline';

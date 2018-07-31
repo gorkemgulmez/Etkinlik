@@ -1,6 +1,5 @@
 ﻿@model List<PostModel>
 @using Etkinlik.Controllers
-@inject PostController PostController
 @inject HomeController HomeController
 @inject UserManager<ApplicationUser> userManager
 @{
@@ -56,7 +55,7 @@
 
                                                     <i class="glyphicon glyphicon-user" style="color:gray" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp></i>
 
-                                                    @if (!PostController.HasIn(post, id))
+                                                    @if (!HomeController.HasIn(post, id))
                                                     {
                                                         <span id="joinSpan" style="display:inline">
                                                             <a onclick="join(@post.Id)" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
@@ -86,7 +85,7 @@
                                                     }
 
                                                     <ul id=@linkName class="collapse">
-                                                        @foreach (var userName in PostController.getUsers(post))
+                                                        @foreach (var userName in HomeController.getUsers(post))
                                                         {
                                                             <li>@userName</li>
                                                         }
