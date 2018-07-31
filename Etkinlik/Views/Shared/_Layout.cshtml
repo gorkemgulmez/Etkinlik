@@ -61,7 +61,7 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
                 </ul>
                 <div class="dropdown">
-                    <a class="link" asp-area="" asp-controller="Post" asp-action="Index">Etkinlik</a>
+                    <a class="btn btn-block link">Etkinlik</a>
                     <div class="dropdown-content">
                         <a class="link" asp-area="" asp-controller="Post" asp-action="AddActivity">Etkinlik Ekle</a>
                     </div>
@@ -70,12 +70,8 @@
                 <div class="dropdown">
                     <a class="btn btn-block link" >Anket</a>
                     <div class="dropdown-content">
-                        <ul>
-                        <li><a class="link" asp-area="" asp-controller="Survey" asp-action="Index">Anket Sayfam</a></li>
-                        <li><a class="link" asp-area="" asp-controller="Survey" asp-action="AddSurvey">Anket Ekle</a></li>
-                        </ul>
-                        
-                        
+                        <a class="btn-block link" asp-area="" asp-controller="Survey" asp-action="Index">Anket Sayfam</a>
+                        <a class="btn-block link" asp-area="" asp-controller="Survey" asp-action="AddSurvey">Anket Ekle</a>
                     </div>
                 </div>
 
