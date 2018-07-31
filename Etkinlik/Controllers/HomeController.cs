@@ -31,7 +31,7 @@ namespace Etkinlik.Controllers
         {
             var allPosts = _applicationDbContext.Posts.ToList();
 
-            return View("EtkinlikAnaSayfa",allPosts);
+            return View("EtkinlikAnaSayfa", allPosts);
         }
 
         public IActionResult AddActivity()
@@ -48,17 +48,17 @@ namespace Etkinlik.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-     
+
         [HttpGet("/test")]
-        public IActionResult test() 
+        public IActionResult test()
         {
-            var surveyList = _applicationDbContext.Surveys.Where(s=> true).ToList();
-            foreach(var survey in surveyList)
+            var surveyList = _applicationDbContext.Surveys.Where(s => true).ToList();
+            foreach (var survey in surveyList)
             {
                 survey.SurveyChoiceModel = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == survey.Id).ToList();
-                
+
             }
-            
+
             return View("PostDetail", surveyList);
         }
 
@@ -102,6 +102,20 @@ namespace Etkinlik.Controllers
         {
             var list = _applicationDbContext.SurveyChoices.Where(c => c.SurveyModelId == id).ToList();
             return Json(list);
+        }
+
+        [HttpGet("getVote/{id}")]
+        public List<SurveyChoiceModel> getChoices(int id)
+        {
+            List<SurveyChoiceModel> choices = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == id).ToList();
+            return choices;
+        }
+
+        [HttpGet("getLastSurveyVote")]
+        public List<SurveyChoiceModel> getLastSurveyVote()
+        {
+            var lastSurvey = _applicationDbContext.Surveys.Last(e => true);
+            return getChoices(lastSurvey.Id);
         }
     }
 }

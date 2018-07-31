@@ -1,5 +1,6 @@
 ﻿@model List<PostModel>
 @inject Etkinlik.Controllers.PostController PostController
+@inject  Etkinlik.Controllers.HomeController HomeController
 @{
     ViewData["Title"] = "Etkinlik";
 }
@@ -75,7 +76,7 @@
 
 
                                                     <ul id=@linkName class="collapse">
-                                                        @foreach (var userName in PostController.getUsers(post))
+                                                        @foreach (var userName in HomeController.getUsers(post))
                                                         {
                                                             <li>@userName</li>
                                                         }

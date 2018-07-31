@@ -1,11 +1,14 @@
 ﻿function getLastSurvey() {
     $.ajax({
         type: 'GET',
-        url: '/getLastSurvey'
+        url: '/getLastSurveyVote',
+        dataType: "json",
+        success: dataRender
     });
 }
 
 function voteSurvey(id) {
+    
     $.ajax({
         type: "POST",
         url: "/Survey/vote/" + id,

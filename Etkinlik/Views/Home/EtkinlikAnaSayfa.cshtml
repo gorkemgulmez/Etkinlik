@@ -109,7 +109,7 @@
                     <h2 class="center-block">@lastSurvey.SurveyTitle</h2>
                     @foreach (var choice in lastSurvey.SurveyChoiceModel)
                     {
-                    <label class="btn-block"><input type="radio" name="optradio"  style="color:black; background-color:rgba(219, 219, 219, 0.59)" onclick="voteSurvey(@choice.Id)">@choice.ChoiceName</label>
+                        <label class="btn-block"><input type="radio" name="optradio"  style="color:black; background-color:rgba(219, 219, 219, 0.59)" onclick="voteSurvey(@choice.Id)">@choice.ChoiceName</label>
                     }
                 </div>
 
@@ -119,6 +119,6 @@
     </div>
 
     <script type="text/javascript" src="~/js/ChartTest.js"></script>
-    <script>getData(9);</script>
+    <script>getLastSurvey();</script>
 </body>
 </html>

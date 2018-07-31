@@ -20,12 +20,21 @@
             position: relative;
             display: inline-block;
             color: #9d9d9d;
-            background-color: #101010;
+            background-color: transparent;
+        }
+        
+        .collapse a:hover {
+            text-decoration: none!important;
         }
 
         .link {
             color: #9d9d9d;
-            background-color: transparent;
+            padding: 15px 15px!important;
+            text-transform: none;
+        }
+
+            a.link:hover {
+                color: #9d9d9d;
         }
 
         .dropdown-content {
@@ -57,12 +66,12 @@
             </div>
             <div class="navbar-collapse collapse">
 
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
-                </ul>
+                    <a class="link" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                
                 <div class="dropdown">
                     <a class="btn btn-block link">Etkinlik</a>
                     <div class="dropdown-content">
+                        <a class="link" asp-area="" asp-controller="Post" asp-action="Index">Etkinlik Sayfam</a>
                         <a class="link" asp-area="" asp-controller="Post" asp-action="AddActivity">Etkinlik Ekle</a>
                     </div>
                 </div>
