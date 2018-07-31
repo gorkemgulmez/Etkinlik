@@ -110,7 +110,7 @@
                     <h2 class="center-block">@lastSurvey.SurveyTitle</h2>
                     @foreach (var choice in lastSurvey.SurveyChoiceModel)
                     {
-                        <a class="btn btn-block" style="color:black; background-color:rgba(219, 219, 219, 0.59)" onclick="voteSurvey(@choice.Id)"><h5 onclick="voteSurvey(id)">@choice.ChoiceName</h5></a>
+                    <label class="btn-block"><input type="radio" name="optradio"  style="color:black; background-color:rgba(219, 219, 219, 0.59)" onclick="voteSurvey(@choice.Id)">@choice.ChoiceName</label>
                     }
                 </div>
 
