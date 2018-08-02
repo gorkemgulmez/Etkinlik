@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Etkinlik.Models;
 using Etkinlik.Data;
 using Microsoft.AspNetCore.Identity;
+using Etkinlik.Models.SurveyViewModels;
 
 namespace Etkinlik.Controllers
 {
@@ -101,21 +102,24 @@ namespace Etkinlik.Controllers
         public IActionResult SurveyVote(int id)
         {
             var list = _applicationDbContext.SurveyChoices.Where(c => c.SurveyModelId == id).ToList();
-            return Json(list);
-        }
-
-        [HttpGet("getVote/{id}")]
-        public List<SurveyChoiceModel> getChoices(int id)
-        {
-            List<SurveyChoiceModel> choices = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == id).ToList();
-            return choices;
+            var newList = new List<AjaxSurveyChoiceModel>();
+            foreach(var item in list)
+            {
+                newList.Add(new AjaxSurveyChoiceModel{
+                    Id = item.Id,
+                    SurveyModelId = item.SurveyModelId,
+                    ChoiceName = item.ChoiceName,
+                    Vote = item.Vote
+                });
+            }
+            return Json(newList);
         }
 
         [HttpGet("getLastSurveyVote")]
-        public List<SurveyChoiceModel> getLastSurveyVote()
+        public IActionResult GetLastSurveyVote()
         {
-            var lastSurvey = _applicationDbContext.Surveys.Last(e => true);
-            return getChoices(lastSurvey.Id);
+            var lastSurveyId = _applicationDbContext.Surveys.Last(e=> true).Id;
+            return SurveyVote(lastSurveyId);
         }
     }
 }

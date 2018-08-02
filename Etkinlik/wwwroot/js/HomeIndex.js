@@ -1,7 +1,7 @@
 ﻿function getLastSurvey() {
     $.ajax({
         type: 'GET',
-        url: '/getLastSurveyVote',
+        url: '/GetLastSurveyVote',
         dataType: "json",
         success: dataRender
     });

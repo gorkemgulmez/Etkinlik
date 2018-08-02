@@ -1,7 +1,7 @@
 ﻿function getData(id) {
     $.ajax({
         type: 'GET',
-        url: '/getVote/' + id,
+        url: '/surveyVote/' + id,
         data: { id: id },
         dataType: "json",
         success: dataRender
