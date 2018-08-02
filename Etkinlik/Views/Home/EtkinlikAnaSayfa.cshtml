@@ -103,16 +103,17 @@
             </div>
 
             <div class="col-lg-6">
-                <div class="survey-result">
-                    @{ var lastSurvey = HomeController.getLastSurvey();}
+                <div class="card">
+                    <div class="survey-result">
+                        @{ var lastSurvey = HomeController.getLastSurvey();}
 
-                    <h2 class="center-block">@lastSurvey.SurveyTitle</h2>
-                    @foreach (var choice in lastSurvey.SurveyChoiceModel)
-                    {
-                        <label class="btn-block"><input type="radio" name="optradio"  style="color:black; background-color:rgba(219, 219, 219, 0.59)" onclick="voteSurvey(@choice.Id)">@choice.ChoiceName</label>
-                    }
+                        <h2 class="center-block soru" >@lastSurvey.SurveyTitle</h2>
+                        @foreach (var choice in lastSurvey.SurveyChoiceModel)
+                        {
+                            <label class="btn-block"><input type="radio" name="optradio" class="radio-option" background-color:rgba(219, 219, 219, 0.59)" onclick="voteSurvey(@choice.Id)">@choice.ChoiceName</label>
+                        }
+                    </div>
                 </div>
-
                 <div id="canvasDiv" class="chartt"> <canvas id="myChart"></canvas> </div>
             </div>
         </div>

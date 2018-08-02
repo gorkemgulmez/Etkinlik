@@ -389,15 +389,12 @@ btn.btn-default {
     position: relative;
     height: auto;
     width: 100%;
-    padding-top: 50px;
+    padding-top: 150px;
 }
 
 .survey-result {
     position: inherit;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-right: 150px;
-    padding-left: 150px;
+    padding-left: 20%;
 }
 
 
@@ -509,4 +506,23 @@ a.control_next {
     margin: 10px auto;
     width: 160px;
     font-size: 18px;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 25px;
+    background: linear-gradient(50deg, #d0d0d8ba, #f3f3f3);
+    box-shadow: 0 4px 20px 0 #00000038, 0 7px 10px -5px rgb(103, 103, 175);
+}
+
+.radio-option {
+    color: black;
+    padding-right: 12px;
+}
+
+.soru {
+    font-size: 24px;
+    white-space: normal;
+    width: 100%;
+    display: inline-block;
 }
