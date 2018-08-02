@@ -177,7 +177,16 @@ ul {
 }
 
 .btnn {
-    background: red;
+    background: #bb2828;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.btn-survey {
+    background: #5454d0;
     height: 50px;
     text-align: center;
     line-height: 50px;
@@ -280,7 +289,19 @@ btn.btn-default {
     margin: -35px auto 0 auto;
     padding: 8px 0;
     position: absolute;
-    background: red;
+    background: #bb2828;
+    width: 90%;
+    text-align: center;
+    right: 0;
+    left: 0;
+}
+
+.survey-heading {
+    border-radius: 3px;
+    margin: -35px auto 0 auto;
+    padding: 8px 0;
+    position: absolute;
+    background: #5454d0;
     width: 90%;
     text-align: center;
     right: 0;

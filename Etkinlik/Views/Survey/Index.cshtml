@@ -39,7 +39,7 @@
 
                         <div class="panel panel-default">
                             <div class="heading">
-                                <div class="headingg">
+                                <div class="survey-heading">
                                     <strong style="color:white">Anket Tablosu</strong>
                                 </div>
                             </div>
@@ -60,7 +60,11 @@
                                             @{ string linkName = "link" + survey.Id;
                                                 string linkSharp = "#" + linkName;}
                                             <td class="td-actions text-right">
+                                                <a href="Survey/update/@survey.Id" button type="submit" data-parent="#accordion1">
 
+                                                    <i class="glyphicon glyphicon-pencil" style="color:gray;right: 5px;"></i>
+
+                                                </a>
                                                 <i onclick="getData(@survey.Id)" class="fa fa-chart-pie" style="color:gray;right: 15px;" data-toggle="collapse" data-parent="#accordion1" href=@linkSharp></i>
                                                 <a href="/Survey/delete/@survey.Id" style="color:gray" button type="submit" data-parent="#accordion1">
                                                     <i class="glyphicon glyphicon-remove"></i>
