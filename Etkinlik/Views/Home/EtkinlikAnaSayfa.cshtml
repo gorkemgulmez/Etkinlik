@@ -57,13 +57,13 @@
 
                                                     @if (!HomeController.HasIn(post, id))
                                                     {
-                                                        <span id="joinSpan" style="display:inline">
+                                                        <span id="joinSpa@(post.Id)n" style="display:inline">
                                                             <a onclick="join(@post.Id)" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
                                                                 <i class="glyphicon glyphicon-plus"></i>
                                                             </a>
                                                         </span>
 
-                                                        <span id="quitSpan" style="display:none">
+                                                        <span id="quitSpan@(post.Id)" style="display:none">
                                                             <a onclick="quit(@post.Id)" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
                                                                 <i class="glyphicon glyphicon-remove"></i>
                                                             </a>
@@ -71,13 +71,13 @@
                                                     }
                                                     else
                                                     {
-                                                        <span id="joinSpan" style="display:none">
+                                                        <span id="joinSpan@(post.Id)" style="display:none">
                                                             <a onclick="join(@post.Id)" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Katıl" data-parent="#accordion1">
                                                                 <i class="glyphicon glyphicon-plus"></i>
                                                             </a>
                                                         </span>
 
-                                                        <span id="quitSpan" style="display:inline">
+                                                        <span id="quitSpan@(post.Id)" style="display:inline">
                                                             <a onclick="quit(@post.Id)" button type="button" style="color:gray;right: 15px;" class="btn btn-primary btn-link btn-sm" data-original-title="Çık" data-parent="#accordion1">
                                                                 <i class="glyphicon glyphicon-remove"></i>
                                                             </a>
@@ -110,7 +110,7 @@
                         <h2 class="center-block soru" >@lastSurvey.SurveyTitle</h2>
                         @foreach (var choice in lastSurvey.SurveyChoiceModel)
                         {
-                            <label class="btn-block"><input type="radio" name="optradio" class="radio-option" background-color:rgba(219, 219, 219, 0.59)" onclick="voteSurvey(@choice.Id)">@choice.ChoiceName</label>
+                            <label class="btn-block"><input type="radio" name="optradio" class="radio-option" onclick="voteSurvey(@choice.Id)">@choice.ChoiceName</label>
                         }
                     </div>
                 </div>
