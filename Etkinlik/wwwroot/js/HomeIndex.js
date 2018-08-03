@@ -14,7 +14,7 @@ function voteSurvey(id) {
         url: "/Survey/vote/" + id,
         data: { id: id },
         success: function () {
-            alert("oldu");
+            getLastSurvey();
         }
     });
 }
@@ -25,8 +25,8 @@ function join(id) {
         url: "/Post/join/" + id,
         data: { id: id },
         success: function () {
-            document.getElementById("joinSpan").style.display = 'none';
-            document.getElementById("quitSpan").style.display = 'inline';
+            document.getElementById("joinSpan" + id).style.display = 'none';
+            document.getElementById("quitSpan" + id).style.display = 'inline';
         }
     });
 }
@@ -37,8 +37,8 @@ function quit(id) {
         url: "/Post/quit/" + id,
         data: { id: id },
         success: function () {
-            document.getElementById("joinSpan").style.display = 'inline';
-            document.getElementById("quitSpan").style.display = 'none';
+            document.getElementById("joinSpan" + id).style.display = 'inline';
+            document.getElementById("quitSpan" + id).style.display = 'none';
         }
     })
 }

@@ -1,4 +1,7 @@
 ﻿var modelIndex = 0;
+function setIndex(i) {
+    modelIndex = i;
+}
 $(function () {
 
     $(document).on('focus', 'div.form-group-options div.input-group-option:last-child input', function () {
