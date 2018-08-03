@@ -95,7 +95,7 @@ namespace Etkinlik.Controllers
 
             if (post.PostName == null || post.PostDesc == null || post.PostDate == new DateTime())
             {
-                return Redirect("/");
+                return Redirect("/Post");
             }
 
             var newPost = new PostModel
@@ -113,18 +113,28 @@ namespace Etkinlik.Controllers
             _applicationDbContext.SaveChanges();
             //AddUser
             AddUser(newPost.Id);
-            return Redirect("/");
+            return Redirect("/Post");
         }
 
         [HttpPost("update/{id}")]
         public IActionResult UpdateActivity(int id, UpdateActivityModel post)
         {
+            if (post != null && post.PostName != null && post.PostDate != null && post.PostTime != null)
+            {
+
+            }
+            else
+            {
+
+                return Redirect("/Post");
+            }
+
             PostModel updPost = _applicationDbContext.Posts.First(p => p.Id == id);
             if (updPost == null)
-                return Redirect("/");
+                return Redirect("/Post");
 
             if (!_userManager.GetUserId(User).Equals(updPost.ApplicationUserId))
-                return Redirect("/");
+                return Redirect("/Post");
 
             if (!post.PostName.Equals("") && !post.PostName.Equals(updPost.PostName))
                 updPost.PostName = post.PostName;
@@ -137,7 +147,7 @@ namespace Etkinlik.Controllers
 
             _applicationDbContext.Posts.Update(updPost);
             _applicationDbContext.SaveChanges();
-            return Redirect("/");
+            return Redirect("/Post");
         }
 
         [HttpGet("delete/{id}")]
@@ -183,7 +193,7 @@ namespace Etkinlik.Controllers
             }
             catch (Exception)
             {
-                Redirect("/");
+                Redirect("/Post");
                 return;
             }
 
@@ -201,7 +211,7 @@ namespace Etkinlik.Controllers
                     PostModelId = id
                 });
                 _applicationDbContext.SaveChanges();
-                Redirect("/");
+                Redirect("/Post");
                 return;
             }
 
@@ -218,7 +228,7 @@ namespace Etkinlik.Controllers
             }
             catch(Exception)
             {
-                Redirect("/");
+                Redirect("/Post");
                 return;
             }
 
@@ -230,7 +240,7 @@ namespace Etkinlik.Controllers
             }
             catch (Exception)
             {
-                Redirect("/");
+                Redirect("/Post");
                 return;
             }
 

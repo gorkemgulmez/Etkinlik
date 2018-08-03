@@ -70,15 +70,27 @@ namespace Etkinlik.Controllers
             return View("UpdateSurvey", updateActivityModel);
         }
 
+        [HttpGet]
+        [Route("SurveyVotePage")]
+        public IActionResult SurveyVotePage()
+        {
+            var list = _applicationDbContext.Surveys.Where(e => true).ToList();
+            return View("SurveyVotePage", list);
+        }
+
         [HttpPost]
         [Route("add")]
         public IActionResult AddSurvey(SurveyModel surveyModel)
         {
-            if (surveyModel == null)
-                return Redirect("/");
+            if (surveyModel != null && surveyModel.SurveyTitle != null && (surveyModel.SurveyChoiceModel.Count != 1 && surveyModel.SurveyChoiceModel[0] != null))
+            {
 
-            if (surveyModel.SurveyTitle == null)
-                return Redirect("/");
+            }else
+            {
+
+                return Redirect("/Survey");
+            }
+            
 
             surveyModel.ApplicationUserId = _userManager.GetUserId(HttpContext.User);
             _applicationDbContext.Surveys.Add(surveyModel);
@@ -97,19 +109,19 @@ namespace Etkinlik.Controllers
             }
             catch (Exception)
             {
-                return Redirect("/");
+                return Redirect("/Survey");
             }
             if (delSurvey == null)
-                return Redirect("/");
+                return Redirect("/Survey");
 
             try
             {
                 if (delSurvey.ApplicationUserId != user.Id)
-                    return Redirect("/");
+                    return Redirect("/Survey");
             }
             catch (Exception)
             {
-                return Redirect("/");
+                return Redirect("/Survey");
             }
             _applicationDbContext.Remove(delSurvey);
             _applicationDbContext.SaveChanges();
@@ -120,21 +132,59 @@ namespace Etkinlik.Controllers
         [HttpPost("update/{id}")]
         public IActionResult UpdateSurvey(int id, SurveyModel survey)
         {
-            SurveyModel updSurvey = _applicationDbContext.Surveys.First(s => s.Id == id);
-            if (updSurvey == null)
-                return Redirect("/");
+            if (survey != null && survey.SurveyTitle != null && (survey.SurveyChoiceModel.Count != 1 && survey.SurveyChoiceModel[0] != null))
+            {
+
+            }
+            else
+            {
+
+                return Redirect("/Survey");
+            }
+
+            SurveyModel updSurvey;
+            try {
+                updSurvey = _applicationDbContext.Surveys.First(s => s.Id == id);
+                if (!survey.SurveyTitle.Equals("") && !survey.SurveyTitle.Equals(updSurvey.SurveyTitle))
+                    updSurvey.SurveyTitle = survey.SurveyTitle;
+            }
+
+            catch (Exception)
+            {
+                return Redirect("/Survey/add");
+            }
 
             if (!_userManager.GetUserId(User).Equals(updSurvey.ApplicationUserId))
-                return Redirect("/");
+                return Redirect("/Survey");
 
-            if (!survey.SurveyTitle.Equals("") && !survey.SurveyTitle.Equals(updSurvey.SurveyTitle))
-                updSurvey.SurveyTitle = survey.SurveyTitle;
-            if (!survey.SurveyChoiceModel.Equals(updSurvey.SurveyChoiceModel))
-                updSurvey.SurveyChoiceModel = survey.SurveyChoiceModel;
+            updSurvey.SurveyChoiceModel = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == updSurvey.Id).ToList();
+            int i = 0;
+            try
+            {
+                for(; i<survey.SurveyChoiceModel.Count(); i++)
+                {
+                    updSurvey.SurveyChoiceModel[i].ChoiceName = survey.SurveyChoiceModel[i].ChoiceName;
+                }
+            }catch (Exception) {
+                for(; i < survey.SurveyChoiceModel.Count(); i++)
+                {
+                    updSurvey.SurveyChoiceModel.Add(new SurveyChoiceModel
+                    {
+                        ChoiceName = survey.SurveyChoiceModel[i].ChoiceName,
+                        Vote = 0,
+                        SurveyModel = updSurvey,
+                        SurveyModelId = updSurvey.Id
+                    });
+                }
+            }
 
+            for(; i<updSurvey.SurveyChoiceModel.Count; i++)
+            {
+                updSurvey.SurveyChoiceModel.RemoveAt(i);
+            }
             _applicationDbContext.Surveys.Update(updSurvey);
             _applicationDbContext.SaveChanges();
-            return Redirect("/");
+            return Redirect("/Survey");
         }
 
         [Authorize]
@@ -168,7 +218,7 @@ namespace Etkinlik.Controllers
                 option.Vote += 1;
                 _applicationDbContext.SurveyChoices.Update(option);
                 _applicationDbContext.SaveChanges();
-                Redirect("/");
+                Redirect("/Survey");
                 return;
             }
 
@@ -182,6 +232,7 @@ namespace Etkinlik.Controllers
             List<SurveyChoiceModel> choices = _applicationDbContext.SurveyChoices.Where(sc => sc.SurveyModelId == survey.Id).ToList();
             return choices;
         }
-
+        
+        
     }
 }
